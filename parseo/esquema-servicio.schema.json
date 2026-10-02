@@ -1,0 +1,1007 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://peregri.app/schemas/parseo-servicio.schema.json",
+  "title": "Salida del parseo de documentos de viaje",
+  "description": "Forma exacta que debe devolver la IA al parsear un documento (PDF o imagen) subido por el agenciero. Ver PROMPT-PARSEO-v1.md para las reglas de extracción y MODELO-DATOS.md para cómo se persiste esto en la base.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "documento",
+    "servicios"
+  ],
+  "properties": {
+    "documento": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "idiomaDetectado",
+        "tipoDocumentoDetectado",
+        "confianzaGlobal"
+      ],
+      "properties": {
+        "idiomaDetectado": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "es",
+            "en",
+            "pt",
+            "otro",
+            null
+          ]
+        },
+        "tipoDocumentoDetectado": {
+          "type": "string",
+          "enum": [
+            "e_ticket",
+            "voucher_hotel",
+            "voucher_traslado",
+            "voucher_excursion",
+            "voucher_paquete",
+            "entrada",
+            "poliza_seguro",
+            "boarding_pass",
+            "otro"
+          ]
+        },
+        "confianzaGlobal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "error": {
+          "type": "string",
+          "description": "Solo presente si el documento no pudo procesarse en absoluto (ilegible, no es un documento de viaje)."
+        }
+      }
+    },
+    "servicios": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/servicio"
+      }
+    }
+  },
+  "$defs": {
+    "servicio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claveLocal",
+        "tipo",
+        "titulo",
+        "subtitulo",
+        "estado",
+        "temporal",
+        "ubicacion",
+        "grupo",
+        "esComplemento",
+        "complementoDe",
+        "proveedor",
+        "referencias",
+        "viajeros",
+        "pax",
+        "datos",
+        "camposExtra",
+        "notas",
+        "letraChica",
+        "extraccion"
+      ],
+      "properties": {
+        "claveLocal": {
+          "type": "string",
+          "description": "Identificador único DENTRO de esta respuesta (no persistente). Sirve para que otro servicio lo referencie vía complementoDe. Ej: 'svc-1', 'svc-2'."
+        },
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "vuelo",
+            "tren",
+            "bus",
+            "ferry",
+            "crucero",
+            "traslado",
+            "alquiler_auto",
+            "hotel",
+            "excursion",
+            "entrada",
+            "circuito",
+            "paquete",
+            "seguro",
+            "otro"
+          ]
+        },
+        "subtipo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitulo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "estado": {
+          "type": "string",
+          "enum": [
+            "confirmado",
+            "pendiente",
+            "no_incluido",
+            "cancelado"
+          ]
+        },
+        "temporal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "modo",
+            "inicio",
+            "fin"
+          ],
+          "properties": {
+            "modo": {
+              "type": "string",
+              "enum": [
+                "instante",
+                "rango",
+                "dia_completo",
+                "transversal",
+                "sin_fecha"
+              ]
+            },
+            "inicio": {
+              "$ref": "#/$defs/momento"
+            },
+            "fin": {
+              "$ref": "#/$defs/momento"
+            }
+          }
+        },
+        "ubicacion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "inicio",
+            "fin"
+          ],
+          "properties": {
+            "inicio": {
+              "$ref": "#/$defs/lugar"
+            },
+            "fin": {
+              "$ref": "#/$defs/lugar"
+            }
+          }
+        },
+        "grupo": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "clave",
+            "etiqueta",
+            "orden"
+          ],
+          "properties": {
+            "clave": {
+              "type": "string"
+            },
+            "etiqueta": {
+              "type": "string"
+            },
+            "orden": {
+              "type": "integer"
+            }
+          }
+        },
+        "esComplemento": {
+          "type": "boolean"
+        },
+        "complementoDe": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "claveLocal del servicio padre en esta misma respuesta."
+        },
+        "proveedor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "nombre",
+            "telefono",
+            "telefonoEmergencia",
+            "email",
+            "contacto",
+            "direccion",
+            "sitioWeb"
+          ],
+          "properties": {
+            "nombre": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "telefono": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "telefonoEmergencia": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "email": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "contacto": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "direccion": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sitioWeb": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Solo si está impreso en el documento (ej. la web de la agencia emisora del voucher). NUNCA la web pública conocida de una aerolínea o aseguradora — eso es conocimiento del mundo, prohibido por la regla anti-alucinación. Ese enriquecimiento va por el catálogo de plataforma (ver MODELO-DATOS.md § Catálogos de plataforma)."
+            }
+          }
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "etiqueta",
+              "valor",
+              "tipo"
+            ],
+            "properties": {
+              "etiqueta": {
+                "type": "string"
+              },
+              "valor": {
+                "type": "string"
+              },
+              "tipo": {
+                "type": "string",
+                "enum": [
+                  "pnr",
+                  "voucher",
+                  "booking",
+                  "poliza",
+                  "confirmacion",
+                  "otro"
+                ]
+              }
+            }
+          }
+        },
+        "viajeros": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "nombreEnDocumento",
+              "nombreNormalizado",
+              "rol",
+              "viajeroId",
+              "confianzaMatch"
+            ],
+            "properties": {
+              "nombreEnDocumento": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Tal cual aparece impreso. null si está tachado/redactado/ilegible."
+              },
+              "nombreNormalizado": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "rol": {
+                "type": "string",
+                "enum": [
+                  "titular",
+                  "acompanante"
+                ]
+              },
+              "viajeroId": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Solo se completa si vino un match claro contra el contexto de viajeros del viaje."
+              },
+              "confianzaMatch": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              }
+            }
+          }
+        },
+        "pax": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "adultos",
+            "menores",
+            "infantes",
+            "total"
+          ],
+          "properties": {
+            "adultos": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "menores": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "infantes": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "total": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        "datos": {
+          "$ref": "#/$defs/datosPorTipo"
+        },
+        "camposExtra": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "etiqueta",
+              "valor"
+            ],
+            "properties": {
+              "etiqueta": {
+                "type": "string"
+              },
+              "valor": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "notas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "letraChica": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extraccion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "confianza",
+            "requiereRevision",
+            "motivoRevision",
+            "camposInciertos",
+            "paginasFuente",
+            "fragmentoFuente"
+          ],
+          "properties": {
+            "confianza": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "requiereRevision": {
+              "type": "boolean"
+            },
+            "motivoRevision": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "camposInciertos": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "paginasFuente": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "fragmentoFuente": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Cita textual breve del documento que sustenta la fecha y el proveedor de este servicio. No debe ir null si el dato existe en el documento."
+            }
+          }
+        }
+      }
+    },
+    "momento": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "fechaHoraLocal",
+        "zonaHoraria",
+        "precision"
+      ],
+      "properties": {
+        "fechaHoraLocal": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$"
+        },
+        "zonaHoraria": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "precision": {
+          "type": "string",
+          "enum": [
+            "minuto",
+            "dia",
+            "aproximada",
+            "ambigua"
+          ]
+        }
+      }
+    },
+    "lugar": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "nombre",
+        "direccion",
+        "ciudad",
+        "pais",
+        "codigo"
+      ],
+      "properties": {
+        "nombre": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "direccion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ciudad": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pais": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "codigo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Código IATA/estación si aplica."
+        }
+      }
+    },
+    "datosPorTipo": {
+      "type": "object",
+      "description": "additionalProperties:true a propósito — permite que el modelo agregue una clave puntual de más sin romper el schema; camposExtra sigue siendo el lugar preferido para eso.",
+      "additionalProperties": true,
+      "properties": {
+        "aerolinea": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "codigoAerolinea": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "numeroVuelo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cabina": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "origen": {
+          "$ref": "#/$defs/lugar"
+        },
+        "destino": {
+          "$ref": "#/$defs/lugar"
+        },
+        "duracion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "aeronave": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "escalas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "asientos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "equipajeBodega": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ej: '1x25kg (55lbs)'. No lo repitas en notas."
+        },
+        "equipajeCabina": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Ej: '1x15kg'. No lo repitas en notas."
+        },
+        "numeroETicket": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "estadoVuelo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nombreHotel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "categoria": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "direccion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "zona": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "noches": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "habitaciones": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "descripcion": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "regimen": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "ocupantes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "horaCheckIn": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "horaCheckOut": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "telefonoHotel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localizadorExterno": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modalidad": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "privado",
+            "regular",
+            "compartido",
+            null
+          ]
+        },
+        "desde": {
+          "$ref": "#/$defs/lugar"
+        },
+        "hasta": {
+          "$ref": "#/$defs/lugar"
+        },
+        "vueloReferencia": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "numero": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "hora": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aeropuerto": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "puntoEncuentro": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "esperaMaxima": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "direccionServicio": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "llegada",
+            "salida",
+            "interno",
+            null
+          ]
+        },
+        "nombre": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "idiomaGuia": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lugarRecogida": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "horaRecogida": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "incluye": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "noIncluye": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ciudadesVisitadas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "atraccion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tipoPase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validezDesde": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validezHasta": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "diasDeUso": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "numeroConfirmacion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "codigoBarras": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "restricciones": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categoriaVehiculo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transmision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lugarRetiro": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "horaRetiro": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lugarDevolucion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "horaDevolucion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "coberturas": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "concepto": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "monto": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "kilometraje": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "serviciosComponentes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "aseguradora": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "numeroPoliza": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "plan": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vigenciaDesde": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vigenciaHasta": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "telefonoSOS": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "territorio": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

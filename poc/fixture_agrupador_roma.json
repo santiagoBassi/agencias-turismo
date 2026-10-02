@@ -1,0 +1,4732 @@
+[
+  {
+    "claveLocal": "svc-1",
+    "tipo": "hotel",
+    "titulo": "HOTEL TRITONE",
+    "subtitulo": "Habitación 2 camas deluxe",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-27T14:30",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T10:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "HOTEL TRITONE",
+        "direccion": "Via del Tritone 210",
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "HOTEL TRITONE",
+        "direccion": "Via del Tritone 210",
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "hotel-1",
+      "etiqueta": "Estancia en Roma",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Referencia de la agencia",
+        "valor": "100088",
+        "tipo": "voucher"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "nombreHotel": "HOTEL TRITONE",
+      "telefonoHotel": "+390669922575",
+      "tipoPase": "Habitación 2 camas deluxe",
+      "zona": "3 Estrellas (3*) | Solo Habitación"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Restricción",
+        "valor": "Tarifa Empaquetada"
+      },
+      {
+        "etiqueta": "Impuestos extra",
+        "valor": "180.00 EUR (pagaderos a la llegada)"
+      }
+    ],
+    "notas": [
+      "Comuníquese con el establecimiento al menos 48 horas antes de la llegada para organizar el check-in.",
+      "El hotel podrá cobrar impuestos de la ciudad o impuesto hotelero directamente en el establecimiento."
+    ],
+    "letraChica": "Una vez confirmado el pago de la reserva, habrá un cargo de (USD)0.00 en caso de anulación. A partir 07-07-2026, desde 17:34:24 hrs. habrá un cargo mínimo de (USD) 1,107.60. Tarifas expresadas en dólar estadounidense (USD).",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Desde: 27-07-2026 Hasta: 31-07-2026"
+    },
+    "id": "svc_952efe1b2b",
+    "documentoId": "doc_9fc95c26d8",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "traslado",
+    "titulo": "Traslado privado desde Aeropuerto Fiumicino a Hotel Tritone",
+    "subtitulo": "Traslado de llegada en Roma",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-27T17:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-27T17:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto de Roma (FCO)",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": "FCO"
+      },
+      "fin": {
+        "nombre": "Hotel TRITONE",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "traslado-llegada",
+      "etiqueta": "Traslado de llegada",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Carrani Tours S.R.L.",
+      "telefono": "+39 06 43 21 81",
+      "telefonoEmergencia": "+39 348 8105614",
+      "email": "incoming@carrani.com",
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": "www.carrani.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Número de Voucher",
+        "valor": "26/054266/001001",
+        "tipo": "voucher"
+      },
+      {
+        "etiqueta": "Provisión",
+        "valor": "AR1140",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Camino Vanesa",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.95
+      },
+      {
+        "nombreEnDocumento": "Meiller Santiago Oscar",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 0.95
+      },
+      {
+        "nombreEnDocumento": "Meiller Julieta",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "modalidad": "privado"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Transportista",
+        "valor": "BONANNI EXPRESS S.A.S."
+      }
+    ],
+    "notas": [
+      "Arriving at FCO Terminal 1: the driver will wait at the door n.2 at the meeting Point Column showing a signboard with the name of the people",
+      "Arriving at FCO Terminal 2: the driver will wait at the Meeting Point Column showing a signboard with the name of the people",
+      "Arriving at FCO Terminal 3: the driver will wait at the Meeting Point Column n2 showing a signboard with the name of the people"
+    ],
+    "letraChica": "FOR ALL THE ARRIVALS TO FCO AIRPORT THE WAITING TIME IS ONE HOUR MAXIMUM AFTER THE \"LANDED\" SIGN APPEARS ON THE BOARD. IN CASE OF DELAY REACHING THE DRIVER WITHIN ONE HOUR (DUE TO CUSTOM PROBLEMS/LUGGAGE CLAIMS, ETC), THE CLIENT HAS TO INFORM THE COMPANY BY PHONE AT +39 348 8105614, OUTSIDE OFFICE HOURS, NIGHT EMERGENCY NUMBER +39 345 8315703. ONLY IF INFORMED THE DRIVER WILL WAIT EXTRA TIME APPLYING A SUPPLEMENT.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "27-JUL-26 17:00 | From: Aeropuerto de Roma (FCO) To: Hotel TRITONE"
+    },
+    "id": "svc_4cb8823427",
+    "documentoId": "doc_5f721473db",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "vuelo",
+    "titulo": "Vuelo AR 1140 a Roma",
+    "subtitulo": "Aerolíneas Argentinas",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-26T22:35",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-27T17:00",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto Internacional Ministro Pistarini",
+        "direccion": null,
+        "ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "codigo": "EZE"
+      },
+      "fin": {
+        "nombre": "Aeropuerto de Roma-Fiumicino",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": "FCO"
+      }
+    },
+    "grupo": {
+      "clave": "ida",
+      "etiqueta": "Ida",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "221 4895938",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código de reserva",
+        "valor": "JBMNPJ",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "Reserva aerolínea",
+        "valor": "QNACVY",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "Boleto electrónico",
+        "valor": "0444859697411",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "MEILLER/JULIETA",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "aerolinea": "Aerolíneas Argentinas",
+      "aeronave": "AIRBUS INDUSTRIE A330 JET",
+      "cabina": "Turista",
+      "numeroVuelo": "AR 1140",
+      "origen": {
+        "nombre": "EZE",
+        "direccion": null,
+        "ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "codigo": "EZE"
+      },
+      "tipoPase": "Electrónico",
+      "vueloReferencia": null,
+      "zona": "Terminal 3"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Millaje",
+        "valor": "6920"
+      },
+      {
+        "etiqueta": "Emisión CO2",
+        "valor": "631.76 kg"
+      },
+      {
+        "etiqueta": "Comidas",
+        "valor": "Cena, Desayuno"
+      }
+    ],
+    "notas": [
+      "Por favor verifique el horario de vuelo antes de la salida"
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "PARTIDA: DOMINGO 26 JUL ARRIBO: LUNES 27 JUL"
+    },
+    "id": "svc_f82541b955",
+    "documentoId": "doc_91bdfac3b9",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-2",
+    "tipo": "vuelo",
+    "titulo": "Vuelo AR 1133 a Buenos Aires",
+    "subtitulo": "Aerolíneas Argentinas",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-10T20:05",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-11T04:10",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto Adolfo Suárez Madrid-Barajas",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      },
+      "fin": {
+        "nombre": "Aeropuerto Internacional Ministro Pistarini",
+        "direccion": null,
+        "ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "codigo": "EZE"
+      }
+    },
+    "grupo": {
+      "clave": "vuelta",
+      "etiqueta": "Vuelta",
+      "orden": 2
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "221 4895938",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código de reserva",
+        "valor": "JBMNPJ",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "Boleto electrónico",
+        "valor": "0444859697411",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "MEILLER/JULIETA",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "aerolinea": "Aerolíneas Argentinas",
+      "aeronave": "AIRBUS INDUSTRIE A330 JET",
+      "cabina": "Turista",
+      "numeroVuelo": "AR 1133",
+      "origen": {
+        "nombre": "MAD",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      },
+      "tipoPase": "Electrónico",
+      "vueloReferencia": null,
+      "zona": "Terminal 1"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Millaje",
+        "valor": "6251"
+      },
+      {
+        "etiqueta": "Emisión CO2",
+        "valor": "502.89 kg"
+      },
+      {
+        "etiqueta": "Comidas",
+        "valor": "Cena, Desayuno"
+      }
+    ],
+    "notas": [
+      "Por favor verifique el horario de vuelo antes de la salida"
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "PARTIDA: LUNES 10 AGO ARRIBO: MARTES 11 AGO"
+    },
+    "id": "svc_bd159fc841",
+    "documentoId": "doc_91bdfac3b9",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "vuelo",
+    "titulo": "Vuelo Aerolíneas Argentinas AR 1140",
+    "subtitulo": "EZE a FCO",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-26T22:35",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-27T17:00",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto Internacional Ministro Pistarini",
+        "direccion": null,
+        "ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "codigo": "EZE"
+      },
+      "fin": {
+        "nombre": "Aeropuerto de Roma-Fiumicino",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": "FCO"
+      }
+    },
+    "grupo": {
+      "clave": "ida",
+      "etiqueta": "Ida",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "221 4895938",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código de reserva",
+        "valor": "HTTQJX",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Localizador Aerolínea",
+        "valor": "HFXZIT",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "e-Ticket Vanesa Caminos",
+        "valor": "0444859697408",
+        "tipo": "confirmacion"
+      },
+      {
+        "etiqueta": "e-Ticket Santiago Oscar Meiller",
+        "valor": "0444859697409",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "CAMINOS/VANESA",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "MEILLER/SANTIAGO OSCAR",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 2,
+      "menores": 0,
+      "infantes": 0,
+      "total": 2
+    },
+    "datos": {
+      "aerolinea": "Aerolíneas Argentinas",
+      "numeroVuelo": "AR 1140",
+      "origen": {
+        "nombre": "EZE",
+        "direccion": null,
+        "ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "codigo": "EZE"
+      },
+      "puntoEncuentro": [],
+      "restricciones": [],
+      "serviciosComponentes": [],
+      "vueloReferencia": null,
+      "zona": null
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Emisiones CO2",
+        "valor": "631.76 kg"
+      }
+    ],
+    "notas": [
+      "Por favor verifique el horario de vuelo antes de la salida"
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "PARTIDA: DOMINGO 26 JUL ARRIBO: LUNES 27 JUL"
+    },
+    "id": "svc_12496ae141",
+    "documentoId": "doc_c459c90661",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-2",
+    "tipo": "vuelo",
+    "titulo": "Vuelo Aerolíneas Argentinas AR 1133",
+    "subtitulo": "MAD a EZE",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-10T20:05",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-11T04:10",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto de Madrid-Barajas",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      },
+      "fin": {
+        "nombre": "Aeropuerto Internacional Ministro Pistarini",
+        "direccion": null,
+        "ciudad": "Buenos Aires",
+        "pais": "Argentina",
+        "codigo": "EZE"
+      }
+    },
+    "grupo": {
+      "clave": "vuelta",
+      "etiqueta": "Vuelta",
+      "orden": 2
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "221 4895938",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código de reserva",
+        "valor": "HTTQJX",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Localizador Aerolínea",
+        "valor": "HFXZIT",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "e-Ticket Vanesa Caminos",
+        "valor": "0444859697408",
+        "tipo": "confirmacion"
+      },
+      {
+        "etiqueta": "e-Ticket Santiago Oscar Meiller",
+        "valor": "0444859697409",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "CAMINOS/VANESA",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "MEILLER/SANTIAGO OSCAR",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 2,
+      "menores": 0,
+      "infantes": 0,
+      "total": 2
+    },
+    "datos": {
+      "aerolinea": "Aerolíneas Argentinas",
+      "numeroVuelo": "AR 1133",
+      "origen": {
+        "nombre": "MAD",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      },
+      "puntoEncuentro": [],
+      "restricciones": [],
+      "serviciosComponentes": [],
+      "vueloReferencia": null,
+      "zona": null
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Emisiones CO2",
+        "valor": "502.89 kg"
+      }
+    ],
+    "notas": [
+      "Por favor verifique el horario de vuelo antes de la salida"
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "PARTIDA: LUNES 10 AGO ARRIBO: MARTES 11 AGO"
+    },
+    "id": "svc_0471bf506c",
+    "documentoId": "doc_c459c90661",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "excursion",
+    "titulo": "Visita guiada por los Museos Vaticanos y la Capilla Sixtina",
+    "subtitulo": "Tour en español",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-29T08:30",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-29T08:30",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Cine Giulio Cesare",
+        "direccion": "Viale Giulio Cesare, 229",
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Museos Vaticanos",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "actividad-vaticano",
+      "etiqueta": "Excursión Vaticano",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Tourismotion Roma",
+      "telefono": "+39 0692926678",
+      "telefonoEmergencia": "+39 0692926678",
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "ID de reserva",
+        "valor": "A40114585",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Referencia del proveedor",
+        "valor": "137529150",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "atraccion": "Museos Vaticanos y Capilla Sixtina"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Importe total",
+        "valor": "US$ 305,65"
+      },
+      {
+        "etiqueta": "Estado de pago",
+        "valor": "Pagado por completo"
+      }
+    ],
+    "notas": [
+      "El guía estará esperando con un cartel de TOURISMOTION en el exterior del Cine Giulio Cesare.",
+      "Acudir 10 minutos antes de la hora indicada (8:30 h).",
+      "El horario de inicio puede ajustarse hasta 30 minutos antes o después según necesidades operativas.",
+      "Para acceder a la Capilla Sixtina: hombros y rodillas cubiertos, evitar escotes (mujeres), pantalones hasta rodillas (hombres)."
+    ],
+    "letraChica": "Condiciones de cancelación: Reintegro total si cancelas antes de las 08:30h del 28/07/2026. Tras ese plazo, por retraso o no presentarse, no hay reembolso. Se pierde el derecho a devolución por discapacidad si no se notifica 72h antes.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "Miércoles 29 julio/26 8:30 h"
+    },
+    "id": "svc_8f42ec8c0f",
+    "documentoId": "doc_672a55ab7d",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-001",
+    "tipo": "excursion",
+    "titulo": "Visita guiada por el Coliseo, Foro y Palatino",
+    "subtitulo": "Tour en español",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-28T11:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-28T11:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Basílica dei Santi Cosma e Damiano",
+        "direccion": "Via dei Fori Imperiali, 1",
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Coliseo, Foro y Palatino",
+        "direccion": "Via dei Fori Imperiali, 1",
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "visita-coliseo",
+      "etiqueta": "Excursión Roma",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Vivicos International Travel Srl",
+      "telefono": "+39 327 6468014",
+      "telefonoEmergencia": "+39 320 1376113",
+      "email": "ignacio@hybristurismo.com.ar",
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "ID de reserva",
+        "valor": "A40114583",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Referencia del proveedor",
+        "valor": "DGD27VS4",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "modalidad": "regular"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Estado del pago",
+        "valor": "Pagado por completo"
+      },
+      {
+        "etiqueta": "Precio total",
+        "valor": "US$ 205,13"
+      }
+    ],
+    "notas": [
+      "Llegar al punto de encuentro 20 minutos antes para hacer el check-in.",
+      "El horario de inicio es indicativo y puede variar hasta 3 horas por proceso de gestión de entradas.",
+      "Identificar al guía por chaleco azul o camiseta blanca.",
+      "Imprescindible llevar DNI o pasaporte original de todos los participantes.",
+      "No permitido: mochilas grandes, paraguas largos, objetos voluminosos, sillas de ruedas o carritos de bebé."
+    ],
+    "letraChica": "Si cancelas la reserva antes de las 11:00 horas del 23 de julio de 2026 obtendrás un reintegro total. Entrada no válida para grupos escolares.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Martes 28 julio/26 11:00 h"
+    },
+    "id": "svc_229103b401",
+    "documentoId": "doc_3b549d08d8",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-tren-01",
+    "tipo": "tren",
+    "titulo": "Tren Frecciarossa 9520",
+    "subtitulo": "Roma Termini a Firenze S. M. Novella",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T09:10",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T10:46",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Roma Termini",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "trayecto-01",
+      "etiqueta": "Trayecto principal",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "PNR",
+        "valor": "NAFEAN",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "CP",
+        "valor": "074201",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "asientos": [
+        "8-3C"
+      ],
+      "categoria": "STANDARD / Super Economy",
+      "numeroVuelo": "9520"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Tarifa",
+        "valor": "23,90€"
+      }
+    ],
+    "notas": [],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "FRECCIAROSSA 9520 31/07/2026 Roma Termini 09:10 Firenze S. M. Novella 10:46"
+    },
+    "id": "svc_5c69de08a1",
+    "documentoId": "doc_fad751570b",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-tren-01",
+    "tipo": "tren",
+    "titulo": "Tren Frecciarossa 9520",
+    "subtitulo": "Roma Termini a Firenze S. M. Novella",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T09:10",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T10:46",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Roma Termini",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje_principal",
+      "etiqueta": "Traslado en tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "PNR",
+        "valor": "NAFEAN",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "CP",
+        "valor": "074202",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "asientos": [
+        "8-4D"
+      ],
+      "categoria": "STANDARD / Super Economy",
+      "numeroVuelo": "9520"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Precio",
+        "valor": "23,90€"
+      }
+    ],
+    "notas": [],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "FRECCIAROSSA 9520 31/07/2026 Roma Termini 09:10 Firenze S. M. Novella 10:46"
+    },
+    "id": "svc_2073e59f05",
+    "documentoId": "doc_fd72a75e42",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "tren",
+    "titulo": "Tren Frecciarossa 9520",
+    "subtitulo": "Roma Termini a Firenze S. M. Novella",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T09:10",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T10:46",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Roma Termini",
+        "direccion": null,
+        "ciudad": "Roma",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "trayecto-1",
+      "etiqueta": "Trayecto en Tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "PNR",
+        "valor": "NAFEAN",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "CP",
+        "valor": "074203",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "aerolinea": null,
+      "asientos": [
+        "8-3D"
+      ],
+      "categoria": "STANDARD / Super Economy",
+      "numeroVuelo": "9520"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Vagón/Asiento",
+        "valor": "8-3D"
+      },
+      {
+        "etiqueta": "Tarifa",
+        "valor": "23,90€"
+      }
+    ],
+    "notas": [],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Roma Termini 09:10 - Firenze S. M. Novella 10:46"
+    },
+    "id": "svc_77297ac9fe",
+    "documentoId": "doc_52cc8ec030",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-tren-001",
+    "tipo": "tren",
+    "titulo": "Tren Regio 4023: Florencia a Pisa",
+    "subtitulo": "Tren Regionale Trenitalia",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T11:00",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T11:51",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje_principal",
+      "etiqueta": "Trayecto en Tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código del boleto",
+        "valor": "2886597233",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "categoria": "2a CLASSE / ORDINARIA"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Fecha y hora de emisión",
+        "valor": "08/07/2026 00:26"
+      },
+      {
+        "etiqueta": "Precio",
+        "valor": "9,30€"
+      }
+    ],
+    "notas": [
+      "La activación es automática y se produce a la hora de salida programada del tren elegido.",
+      "Para hacer cambios, haz clic en «Gestionar» antes de la hora de activación."
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Firenze S. M. Novella 11:00 31/07/2026"
+    },
+    "id": "svc_afc5948df0",
+    "documentoId": "doc_cf400d1e33",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-tren-001",
+    "tipo": "tren",
+    "titulo": "Tren Regionale 4023",
+    "subtitulo": "Firenze S. M. Novella a Pisa Centrale",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T11:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T11:51",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje_tren",
+      "etiqueta": "Trayecto en Tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código del boleto",
+        "valor": "2886597235",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "categoria": "2a CLASSE / ORDINARIA",
+      "origen": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "zona": "2a CLASSE"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Precio",
+        "valor": "9,30€"
+      },
+      {
+        "etiqueta": "Fecha de emisión",
+        "valor": "08/07/2026 00:26"
+      }
+    ],
+    "notas": [
+      "La activación es automática y se produce a la hora de salida programada del tren elegido.",
+      "Para hacer cambios, clic en «Gestionar» antes de la hora de activación."
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Regionale 4023 31/07/2026"
+    },
+    "id": "svc_744aa2f106",
+    "documentoId": "doc_a897c5680f",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "tren",
+    "titulo": "Tren Regio 4023: Firenze S. M. Novella a Pisa Centrale",
+    "subtitulo": "2ª Clase / Ordinaria",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T11:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T11:51",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje_tren_01",
+      "etiqueta": "Trayecto en Tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Regionale",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código del boleto",
+        "valor": "2886597237",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Número de tren",
+        "valor": "4023",
+        "tipo": "otro"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "categoria": "2ª Classe / Ordinaria"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Fecha de emisión",
+        "valor": "08/07/2026 00:26"
+      },
+      {
+        "etiqueta": "Precio",
+        "valor": "9,30€"
+      }
+    ],
+    "notas": [
+      "La activación es automática y se produce a la hora de salida programada del tren elegido."
+    ],
+    "letraChica": "Para hacer cambios, haz clic en «Gestionar» antes de la hora de activación.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Regionale 4023 31/07/2026 Firenze S. M. Novella 11:00 -> Pisa Centrale 11:51"
+    },
+    "id": "svc_49ac4f8b29",
+    "documentoId": "doc_d65448d3a1",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "tren",
+    "titulo": "Tren de Pisa a Florencia",
+    "subtitulo": "Tren Regionale 4046",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T17:09",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T18:01",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje_01",
+      "etiqueta": "Trayecto ferroviario",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Regionale",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código del boleto",
+        "valor": "2886598861",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "categoria": "2a CLASSE / ORDINARIA",
+      "numeroVuelo": "4046"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Fecha y hora de emisión",
+        "valor": "08/07/2026 00:34"
+      },
+      {
+        "etiqueta": "Precio",
+        "valor": "9,30€"
+      }
+    ],
+    "notas": [
+      "La activación es automática y se produce a la hora de salida programada del tren elegido.",
+      "Para hacer cambios, haz clic en «Gestionar» antes de la hora de activación."
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Regionale 4046 31/07/2026 Pisa Centrale 17:09 -> Firenze S. M. Novella 18:01"
+    },
+    "id": "svc_8c2301ddf3",
+    "documentoId": "doc_4d1d18e59d",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-tren-001",
+    "tipo": "tren",
+    "titulo": "Tren Regionale 4046",
+    "subtitulo": "Pisa Centrale a Firenze S. M. Novella",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T17:09",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T18:01",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "tren-pisa-florencia",
+      "etiqueta": "Trayecto ferroviario",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código del boleto",
+        "valor": "2886598859",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "categoria": "2a CLASSE / ORDINARIA",
+      "origen": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "validezDesde": "2026-07-31"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Fecha de emisión",
+        "valor": "08/07/2026 00:34"
+      },
+      {
+        "etiqueta": "Precio",
+        "valor": "9,30€"
+      }
+    ],
+    "notas": [
+      "La activación es automática y se produce a la hora de salida programada del tren elegido."
+    ],
+    "letraChica": "Para hacer cambios, haz clic en «Gestionar» antes de la hora de activación.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Pisa Centrale 17:09 Firenze S. M. Novella 18:01 31/07/2026"
+    },
+    "id": "svc_0316d9377a",
+    "documentoId": "doc_db98766088",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "tren-01",
+    "tipo": "tren",
+    "titulo": "Tren Frecciarossa 9428",
+    "subtitulo": "Firenze S. M. Novella a Venezia S. Lucia",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T18:20",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T20:34",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Venezia S. Lucia",
+        "direccion": null,
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje",
+      "etiqueta": "Tramo Florencia - Venecia",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "PNR",
+        "valor": "NAGGN5",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "CP",
+        "valor": "991401",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.9
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "asientos": [
+        "11-13C"
+      ],
+      "categoria": "Standard / Super Economy",
+      "numeroVuelo": "9428"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Tarifa",
+        "valor": "37,90€"
+      }
+    ],
+    "notas": [],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "FRECCIAROSSA 9428 31/07/2026 Firenze S. M. Novella 18:20 Venezia S. Lucia 20:34"
+    },
+    "id": "svc_afb506cfbb",
+    "documentoId": "doc_27fcbd916b",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "tren",
+    "titulo": "Tren Regio 4046",
+    "subtitulo": "Pisa Centrale a Firenze S. M. Novella",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T17:09",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T18:01",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje",
+      "etiqueta": "Traslado en tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código del boleto",
+        "valor": "2886598863",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "categoria": "2ª Classe / Ordinaria",
+      "origen": {
+        "nombre": "Pisa Centrale",
+        "direccion": null,
+        "ciudad": "Pisa",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "serviciosComponentes": [
+        "Regionale 4046"
+      ]
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Fecha y hora de emisión",
+        "valor": "08/07/2026 00:34"
+      },
+      {
+        "etiqueta": "Precio",
+        "valor": "9,30€"
+      }
+    ],
+    "notas": [
+      "La activación es automática y se produce a la hora de salida programada del tren elegido."
+    ],
+    "letraChica": "Para hacer cambios, haz clic en «Gestionar» antes de la hora de activación.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Regionale 4046 31/07/2026 Pisa Centrale 17:09 Firenze S. M. Novella 18:01"
+    },
+    "id": "svc_a42ee213ed",
+    "documentoId": "doc_54b6a2360b",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-tren-1",
+    "tipo": "tren",
+    "titulo": "Tren Frecciarossa 9428",
+    "subtitulo": "Firenze S. M. Novella a Venezia S. Lucia",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T18:20",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T20:34",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Venezia S. Lucia",
+        "direccion": null,
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "trayecto-1",
+      "etiqueta": "Traslado en tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Trenitalia",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "PNR",
+        "valor": "NAGGN5",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "CP",
+        "valor": "991402",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "numeroVuelo": "9428",
+      "origen": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "puntoEncuentro": [
+        "Vagón/Asiento: 11-14D"
+      ],
+      "tipoPase": "STANDARD / Super Economy"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Precio",
+        "valor": "37,90€"
+      }
+    ],
+    "notas": [],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Frecciarossa 9428 31/07/2026"
+    },
+    "id": "svc_d28742529b",
+    "documentoId": "doc_be9992ad48",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "tren",
+    "titulo": "Tren Frecciarossa 9428",
+    "subtitulo": "Firenze S. M. Novella a Venezia S. Lucia",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T18:20",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-07-31T20:34",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Venezia S. Lucia",
+        "direccion": null,
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "viaje_tren_01",
+      "etiqueta": "Trayecto en Tren",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Frecciarossa",
+      "telefono": null,
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "PNR",
+        "valor": "NAGGN5",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "CP",
+        "valor": "991403",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "numeroVuelo": "9428",
+      "origen": {
+        "nombre": "Firenze S. M. Novella",
+        "direccion": null,
+        "ciudad": "Florencia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "puntoEncuentro": [],
+      "restricciones": [
+        "STANDARD / Super Economy"
+      ],
+      "vueloReferencia": null
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Vagón/Asiento",
+        "valor": "11-13D"
+      },
+      {
+        "etiqueta": "Tarifa",
+        "valor": "37,90€"
+      }
+    ],
+    "notas": [],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "FRECCIAROSSA 9428 31/07/2026 Firenze S. M. Novella 18:20 Venezia S. Lucia 20:34"
+    },
+    "id": "svc_1e70b9bc9d",
+    "documentoId": "doc_7c0f0296e6",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "excursion",
+    "titulo": "Visita guiada por Venecia",
+    "subtitulo": "Tour en español",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-01T09:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-01T12:00",
+        "zonaHoraria": "Europe/Rome",
+        "precision": "aproximada"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Calle Larga Ascensione",
+        "direccion": "Calle Larga Ascensione, junto a la oficina de correos",
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Calle Larga Ascensione",
+        "direccion": "Calle Larga Ascensione, junto a la oficina de correos",
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "excursion-venecia",
+      "etiqueta": "Excursión en Venecia",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Park Viaggi S.R.L.",
+      "telefono": "+39 340 4158707",
+      "telefonoEmergencia": "+39 041 5230200",
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "ID de reserva",
+        "valor": "A40115007",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Referencia del proveedor",
+        "valor": "98256356",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "atraccion": "Visita guiada por Venecia",
+      "puntoEncuentro": [
+        "Calle Larga Ascensione, frente a la oficina de correos, junto a la Plaza de San Marcos",
+        "Stand de madera con el identificativo de color amarillo con las letras 'Meeting point'"
+      ]
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Idioma",
+        "valor": "Español"
+      }
+    ],
+    "notas": [
+      "Presentarse 15 minutos antes de la hora indicada.",
+      "El guía estará esperando en el stand de madera con el identificativo de color amarillo con las letras 'Meeting point'."
+    ],
+    "letraChica": "Si cancelas la reserva antes de las 09:00 horas (9:00am) del 31 de julio de 2026 (hora de Venecia) obtendrás un reintegro total. Si cancelas con menos tiempo, llegas tarde o no te presentas, no se ofrecerá ningún reembolso.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Sábado 1 agosto/26 9:00 h"
+    },
+    "id": "svc_52bbc28fe9",
+    "documentoId": "doc_23a481f6d4",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-hotel-1",
+    "tipo": "hotel",
+    "titulo": "Cavalletto & Doge Orseolo",
+    "subtitulo": "Triple Room - Standard",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-31T14:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-02T10:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Cavalletto & Doge Orseolo",
+        "direccion": "Piazza San Marco, 1107",
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Cavalletto & Doge Orseolo",
+        "direccion": "Piazza San Marco, 1107",
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "alojamiento",
+      "etiqueta": "Alojamiento",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "028 4458417",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Reserva",
+        "valor": "PH_32N4R-1",
+        "tipo": "booking"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": null,
+        "confianzaMatch": null
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": null,
+        "confianzaMatch": null
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": null,
+        "confianzaMatch": null
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "habitaciones": [
+        {
+          "descripcion": "Triple Room - Standard",
+          "ocupantes": [
+            "Vanesa Camino",
+            "Santiago Oscar Meiller",
+            "Julieta Meiller"
+          ],
+          "regimen": "BB"
+        }
+      ],
+      "noches": 2
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "City tax",
+        "valor": "4,50 euros por persona y noche"
+      }
+    ],
+    "notas": [],
+    "letraChica": "In case of any amendment please contact us to check the rates and conditions as these could change - Hotel will invoice the total amount of this booking in case of no show. En caso de modificación, por favor contacten con nosotros para verificar las tarifas y condiciones de la reserva ya que podrían ser diferentes. En caso de no show el hotel se reserva el derecho de aplicar gastos del 100%.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "Entrada: 31/07/2026 - Salida: 02/08/2026"
+    },
+    "id": "svc_97b3d318ac",
+    "documentoId": "doc_b1e7f43291",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "vuelo",
+    "titulo": "Vuelo Air France AF 1427",
+    "subtitulo": "Venezia (VCE) a Paris (CDG)",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-02T12:45",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-02T14:40",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto Marco Polo",
+        "direccion": null,
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": "VCE"
+      },
+      "fin": {
+        "nombre": "Aeropuerto Charles de Gaulle",
+        "direccion": null,
+        "ciudad": "Paris",
+        "pais": "Francia",
+        "codigo": "CDG"
+      }
+    },
+    "grupo": {
+      "clave": "ida",
+      "etiqueta": "Ida",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Air France",
+      "telefono": "221 4895938",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "GOYJUU",
+        "tipo": "pnr"
+      },
+      {
+        "etiqueta": "Localizador aerolínea",
+        "valor": "BCERED",
+        "tipo": "pnr"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "CAMINOS/VANESA",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "MEILLER/SANTIAGO OSCAR",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "MEILLER/JULIETA",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "aerolinea": "Air France",
+      "numeroVuelo": "AF 1427",
+      "origen": {
+        "nombre": "Venecia",
+        "direccion": null,
+        "ciudad": "Venecia",
+        "pais": "Italia",
+        "codigo": "VCE"
+      },
+      "serviciosComponentes": [
+        "0575283390533",
+        "0575283390534",
+        "0575283390535"
+      ],
+      "tipoPase": "Turista",
+      "vueloReferencia": null,
+      "zona": "2 TERM F"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Aeronave",
+        "valor": "AIRBUS INDUSTRIE A318 JET"
+      },
+      {
+        "etiqueta": "Duración",
+        "valor": "1 horas 55 minutos"
+      },
+      {
+        "etiqueta": "Emisión CO2",
+        "valor": "91.54 kg"
+      }
+    ],
+    "notas": [
+      "Por favor verifique el horario de vuelo antes de la salida."
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "PARTIDA: DOMINGO 02 AGO"
+    },
+    "id": "svc_9cffcb729a",
+    "documentoId": "doc_805a42ccd3",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "excursion",
+    "titulo": "Tour por París, paseo en barco y Torre Eiffel",
+    "subtitulo": "Tour con subida a la segunda planta Torre Eiffel",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-03T15:45",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-03T15:45",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Place de Sydney",
+        "direccion": "Cruce entre Avenue de Suffren y Rue Jean Rey",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Torre Eiffel",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "excursion-1",
+      "etiqueta": "Excursión",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Extime Travel",
+      "telefono": "+33 1 44 55 60 00",
+      "telefonoEmergencia": "+33 6 14 96 42 81",
+      "email": "ignacio@hybristurismo.com.ar",
+      "contacto": "Julieta Meiller",
+      "direccion": null,
+      "sitioWeb": "https://www.civitatis.com/es/paris/tour-paris-crucero-torre-eiffel/"
+    },
+    "referencias": [
+      {
+        "etiqueta": "ID de Reserva",
+        "valor": "A40143342",
+        "tipo": "voucher"
+      },
+      {
+        "etiqueta": "Referencia del Proveedor",
+        "valor": "60110071",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "idiomaGuia": "Español"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Acceso audioguía",
+        "valor": "https://eiffeltower.goodbarber.app"
+      }
+    ],
+    "notas": [
+      "Presentarse al menos 15 minutos antes de la hora indicada.",
+      "Punto de encuentro: Place de Sydney, en el cruce de Avenue de Suffren y Rue Jean Rey.",
+      "Llevar auriculares propios para la audioguía.",
+      "El recorrido del barco está sujeto a condiciones climáticas.",
+      "El orden de las actividades puede variar."
+    ],
+    "letraChica": "Si cancelas la reserva antes de las 15:45 horas del 02 de agosto de 2026 obtendrás un reintegro total. Si cancelas con menos tiempo, llegas tarde o no te presentas, no se ofrecerá ningún reembolso. Civitatis actúa como intermediario.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "Lunes 3 agosto/26 15:45 h"
+    },
+    "id": "svc_2b782a01ad",
+    "documentoId": "doc_35b363123b",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-hotel-001",
+    "tipo": "hotel",
+    "titulo": "Citadines Opéra Paris",
+    "subtitulo": "Departamento ejecutivo",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-02T14:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-06T11:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Citadines Opéra Paris",
+        "direccion": "18 Rue Favart",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Citadines Opéra Paris",
+        "direccion": "18 Rue Favart",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "estadia_paris",
+      "etiqueta": "Estadía en París",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "028 4458417",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código de reserva",
+        "valor": "PH_32N5W-1",
+        "tipo": "booking"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "nombreHotel": "Citadines Opéra Paris",
+      "plan": "Sólo Habitación",
+      "tipoPase": null,
+      "transmision": null,
+      "validezDesde": null,
+      "validezHasta": null,
+      "vigenciaDesde": null,
+      "vigenciaHasta": null,
+      "zona": null
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Estadía",
+        "valor": "4 noches"
+      },
+      {
+        "etiqueta": "Configuración",
+        "valor": "1-Doble(s), 1-Sofá-cama simple(s)"
+      },
+      {
+        "etiqueta": "Cargo adicional municipal",
+        "valor": "115.41 USD"
+      }
+    ],
+    "notas": [
+      "Se solicitará documento de identidad con foto y tarjeta de crédito/débito o depósito en efectivo para gastos imprevistos en el check-in.",
+      "El personal de recepción recibirá a los huéspedes.",
+      "Esta propiedad cuenta con servicio de limpieza profesional."
+    ],
+    "letraChica": "Cancelación gratuita hasta el 01/08/2026 a las 18:59. Penalidad del 25% a partir de esa fecha y hasta el 02/08/2026 a las 18:59. En caso de No Show se cobrará el total. Impuesto municipal: 8.45 EUR por persona por noche (no aplica a menores de 18 años). Tasa de turismo: 1.5 EUR por persona por día.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "Entrada: 02/08/2026 - Salida: 06/08/2026 | HYBRIS TURISMO | 028 4458417"
+    },
+    "id": "svc_dc627ebdd5",
+    "documentoId": "doc_f6870e305b",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "vuelo",
+    "titulo": "Vuelo de Iberia IB 0586",
+    "subtitulo": "París (CDG) a Madrid (MAD)",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-06T12:45",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-06T14:55",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto Charles de Gaulle",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": "CDG"
+      },
+      "fin": {
+        "nombre": "Aeropuerto Adolfo Suárez Madrid-Barajas",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      }
+    },
+    "grupo": {
+      "clave": "vuelo-01",
+      "etiqueta": "Vuelo de ida",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "221 4895938",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Código de reserva agencia",
+        "valor": "AOMKPI",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Localizador aerolínea",
+        "valor": "BUX4X9",
+        "tipo": "pnr"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "CAMINOS/VANESA",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "MEILLER/SANTIAGO OSCAR",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "MEILLER/JULIETA",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "aerolinea": "Iberia",
+      "aeronave": "AIRBUS INDUSTRIE A320 JET",
+      "cabina": "Turista",
+      "duracion": "2horas 10minutos",
+      "equipajeBodega": "1x23kg (50lbs) por adulto",
+      "equipajeCabina": "1x10kg (22lbs) por adulto",
+      "numeroVuelo": "IB 0586",
+      "origen": {
+        "nombre": "AEROGARE 3",
+        "direccion": null,
+        "ciudad": "PARIS",
+        "pais": "FRANCE",
+        "codigo": "CDG"
+      },
+      "serviciosComponentes": [
+        "Comida y bebida para la venta"
+      ]
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Emisión de CO2",
+        "valor": "86.20 kg CO2"
+      }
+    ],
+    "notas": [
+      "Por favor verifique el horario de vuelo antes de la salida"
+    ],
+    "letraChica": null,
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "06 AGO 2026 PARTIDA: JUEVES 06 AGO"
+    },
+    "id": "svc_e62145076f",
+    "documentoId": "doc_d05e45a0e3",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "hotel-1",
+    "tipo": "hotel",
+    "titulo": "Smartrental Collection Gran Vía Centric",
+    "subtitulo": "Apartamento 1 Dormitorio - ROOM ONLY",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "rango",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-06T15:00",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-10T11:00",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Smartrental Collection Gran Vía Centric",
+        "direccion": "Gran Via, 42",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Smartrental Collection Gran Vía Centric",
+        "direccion": "Gran Via, 42",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "estadia",
+      "etiqueta": "Estadía en Hotel",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Hybris Turismo",
+      "telefono": "028 4458417",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Reserva",
+        "valor": "PH_32N67-1",
+        "tipo": "voucher"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Caminos",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "noches": 4,
+      "nombreHotel": "Smartrental Collection Gran Vía Centric",
+      "plan": "ROOM ONLY"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Estacionamiento",
+        "valor": "Disponible con cargo adicional de 39.00 EUR por unidad/noche"
+      },
+      {
+        "etiqueta": "Política de Depósito",
+        "valor": "300 euros en efectivo a la llegada"
+      },
+      {
+        "etiqueta": "Limpieza",
+        "valor": "Diaria bajo petición, sin cargo"
+      }
+    ],
+    "notas": [
+      "Se requiere tarjeta de identificación al llegar.",
+      "Edad mínima para el check-in: 18 años.",
+      "Se solicita un depósito de 300 euros en efectivo a la llegada."
+    ],
+    "letraChica": "La política de No-show para este proveedor es del 100% del valor de la reserva. No se permiten fiestas. No está permitido fumar en los apartamentos ni en zonas comunes. Se prohíben despedidas de soltero/a.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "Entrada: 06/08/2026 - Salida: 10/08/2026"
+    },
+    "id": "svc_230c58e03f",
+    "documentoId": "doc_aa0425b64a",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "traslado",
+    "titulo": "Traslado desde Aeropuerto CDG",
+    "subtitulo": "Traslado urbano en París",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-02T14:40",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-02T14:40",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto de París, Charles de Gaulle (CDG)",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": "CDG"
+      },
+      "fin": {
+        "nombre": "Citadines Opéra Paris",
+        "direccion": "18 Rue Favart, 75002 Paris",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "traslado_llegada",
+      "etiqueta": "Traslado de llegada",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "(+39) 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0033 177503528",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "D9Q124",
+        "tipo": "voucher"
+      },
+      {
+        "etiqueta": "Referencia Cliente",
+        "valor": "1304797",
+        "tipo": "booking"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.95
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "origen": {
+        "nombre": "Aeropuerto de París, Charles de Gaulle (CDG)",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": "CDG"
+      },
+      "puntoEncuentro": [
+        "Debe conectarse al Wi-Fi gratuito del aeropuerto",
+        "El conductor lo contactará por WhatsApp o SMS"
+      ],
+      "transmision": "Comfort Car",
+      "vueloReferencia": {
+        "numero": "AF##1427"
+      }
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Tipo de vehículo",
+        "valor": "Comfort XL - Meet&Greet"
+      }
+    ],
+    "notas": [
+      "El servicio incluye 1 hora de espera desde el horario de aterrizaje del vuelo.",
+      "Si está detenido recogiendo equipaje, notifique al contacto local."
+    ],
+    "letraChica": "Cancelación sin gastos hasta 24 horas antes de la recogida. El conductor se retirará al finalizar el tiempo de espera indicado.",
+    "extraccion": {
+      "confianza": 0.98,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Traslado entre Aeropuerto Internacional de Paris-Charles de Gaulle (CDG) y Centro Ciudad 02/08/2026"
+    },
+    "id": "svc_7e65ab9691",
+    "documentoId": "doc_1e4aa23492",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-2",
+    "tipo": "traslado",
+    "titulo": "Traslado al Aeropuerto CDG",
+    "subtitulo": "Traslado urbano en París",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-06T08:45",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-06T12:45",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Citadines Opéra Paris",
+        "direccion": "18 Rue Favart, 75002 Paris",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Aeropuerto de París, Charles de Gaulle (CDG)",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": "CDG"
+      }
+    },
+    "grupo": {
+      "clave": "traslado_salida",
+      "etiqueta": "Traslado de salida",
+      "orden": 2
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "(+39) 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0033 177503528",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "D9Q124",
+        "tipo": "voucher"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.95
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "horaRecogida": "08:45",
+      "vueloReferencia": {
+        "numero": "IB##586"
+      }
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Tipo de vehículo",
+        "valor": "Comfort XL - Sin Meet&Greet"
+      }
+    ],
+    "notas": [
+      "El conductor lo esperará fuera de la entrada principal del hotel.",
+      "Considerar flexibilidad de 10/15 minutos sobre el horario de recogida."
+    ],
+    "letraChica": "En los traslados de salida no se monitorean los transportes.",
+    "extraccion": {
+      "confianza": 0.98,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        3
+      ],
+      "fragmentoFuente": "Traslado entre Aeropuerto Internacional de Paris-Charles de Gaulle (CDG) y Centro Ciudad 06/08/2026"
+    },
+    "id": "svc_686d45f25e",
+    "documentoId": "doc_1e4aa23492",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-3",
+    "tipo": "traslado",
+    "titulo": "Traslado desde Aeropuerto Madrid",
+    "subtitulo": "Traslado urbano en Madrid",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-06T14:55",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-06T14:55",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto de Madrid - Barajas (MAD)",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      },
+      "fin": {
+        "nombre": "SmartRental Collection Gran Via Centric",
+        "direccion": "Calle Gran Vía 42, 28013 Madrid",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "traslado_madrid",
+      "etiqueta": "Traslado Madrid",
+      "orden": 3
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "(+39) 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0034 692137245",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "D9Q124",
+        "tipo": "voucher"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.95
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "vueloReferencia": {
+        "numero": "IB##586"
+      }
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Tipo de vehículo",
+        "valor": "Comfort Minivan"
+      }
+    ],
+    "notas": [
+      "El conductor lo esperará en la zona posterior a la recogida de maletas."
+    ],
+    "letraChica": "El servicio incluye 1 hora y 30 minutos de espera desde el aterrizaje.",
+    "extraccion": {
+      "confianza": 0.98,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        5
+      ],
+      "fragmentoFuente": "Traslado en Madrid 06/08/2026"
+    },
+    "id": "svc_7b9336f64a",
+    "documentoId": "doc_1e4aa23492",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-4",
+    "tipo": "traslado",
+    "titulo": "Traslado al Aeropuerto Madrid",
+    "subtitulo": "Traslado urbano en Madrid",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-10T16:35",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-10T20:05",
+        "zonaHoraria": null,
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "SmartRental Collection Gran Via Centric",
+        "direccion": "Calle Gran Vía 42, 28013 Madrid",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Aeropuerto de Madrid - Barajas (MAD)",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      }
+    },
+    "grupo": {
+      "clave": "traslado_salida_madrid",
+      "etiqueta": "Traslado salida Madrid",
+      "orden": 4
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "(+39) 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0034 692137245",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "D9Q124",
+        "tipo": "voucher"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.95
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "horaRecogida": "16:35",
+      "vueloReferencia": {
+        "numero": "AR##1133"
+      }
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Tipo de vehículo",
+        "valor": "Comfort Minivan"
+      }
+    ],
+    "notas": [
+      "El conductor lo esperará en el lobby o fuera de la entrada del hotel."
+    ],
+    "letraChica": "En los traslados de salida no se monitorean los transportes.",
+    "extraccion": {
+      "confianza": 0.98,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        7
+      ],
+      "fragmentoFuente": "Traslado en Madrid 10/08/2026"
+    },
+    "id": "svc_4ba9e6976f",
+    "documentoId": "doc_1e4aa23492",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "excursion",
+    "titulo": "Autobús turístico Madrid City Tour",
+    "subtitulo": "Billete de 48 horas",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "dia_completo",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-07T09:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-07T09:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Plaza de Cánovas del Castillo",
+        "direccion": "Plaza de Cánovas del Castillo",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Plaza de Cánovas del Castillo",
+        "direccion": "Plaza de Cánovas del Castillo",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "excursion-madrid",
+      "etiqueta": "Excursión",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Julia Travel España",
+      "telefono": "+34 93 317 64 54",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "ID de Reserva",
+        "valor": "A40143500",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Referencia del Proveedor",
+        "valor": "78MB3MR3",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.9
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "nombre": "Autobús turístico Madrid City Tour - Billete de 48 horas",
+      "vigenciaDesde": "2026-08-07",
+      "vigenciaHasta": "2026-08-22"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Idiomas",
+        "valor": "Español"
+      },
+      {
+        "etiqueta": "Importe total",
+        "valor": "US$ 150,41"
+      },
+      {
+        "etiqueta": "Bebida de cortesía",
+        "valor": "Tablao flamenco La Quimera (calle Cuchilleros, 7)"
+      }
+    ],
+    "notas": [
+      "El billete se puede utilizar durante los 15 días siguientes a la fecha indicada.",
+      "El autobús inicia y finaliza su recorrido en la Plaza de Cánovas del Castillo (Neptuno).",
+      "Si sois un grupo de más de 10 personas, canjear el bono en la parada del Museo del Prado (Calle de Felipe IV, s/n).",
+      "Se incluyen auriculares desechables, pero se sugiere llevar propios por sostenibilidad.",
+      "Se ofrece bebida de cortesía en tablao La Quimera (12:00 a 16:00 h)."
+    ],
+    "letraChica": "Cancelación sin gastos hasta el 05 de agosto de 2026 a las 23:59 h.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Viernes 7 agosto/26"
+    },
+    "id": "svc_76a4b40193",
+    "documentoId": "doc_bfaa057a76",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "traslado",
+    "titulo": "Traslado de llegada en París",
+    "subtitulo": "Traslado desde Aeropuerto CDG a Citadines Opéra Paris",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-02T14:40",
+        "zonaHoraria": "Europe/Paris",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-02T15:40",
+        "zonaHoraria": "Europe/Paris",
+        "precision": "aproximada"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto Internacional de París-Charles de Gaulle",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": "CDG"
+      },
+      "fin": {
+        "nombre": "Citadines Opéra Paris",
+        "direccion": "18 Rue Favart, 75002 Paris",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "ida",
+      "etiqueta": "Traslado de llegada",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "+39 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0033 177503528",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "D9Q124",
+        "tipo": "voucher"
+      },
+      {
+        "etiqueta": "Referencia Cliente",
+        "valor": "1304797",
+        "tipo": "booking"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.9
+      },
+      {
+        "nombreEnDocumento": "Santiago Oscar Meiller",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1.0
+      },
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meiller",
+        "rol": "acompanante",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1.0
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "categoria": "Comfort Car",
+      "modalidad": "privado",
+      "transmision": null
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Transporte",
+        "valor": "AF##1427"
+      },
+      {
+        "etiqueta": "Servicio",
+        "valor": "Comfort XL - Meet&Greet"
+      }
+    ],
+    "notas": [
+      "Debe conectarse al Wi-Fi gratuito del aeropuerto.",
+      "Si no localiza al conductor, llame al contacto local 0033 177503528."
+    ],
+    "letraChica": "Cancelación sin gastos hasta 24 horas antes de la recogida.",
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "02/08/2026 ... Traslado entre Aeropuerto Internacional de Paris-Charles de Gaulle (CDG) y Centro Ciudad"
+    },
+    "id": "svc_4ff9abad71",
+    "documentoId": "doc_79c654dc81",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-2",
+    "tipo": "traslado",
+    "titulo": "Traslado de salida en París",
+    "subtitulo": "Traslado desde Citadines Opéra Paris a Aeropuerto CDG",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-06T08:45",
+        "zonaHoraria": "Europe/Paris",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-06T12:45",
+        "zonaHoraria": "Europe/Paris",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Citadines Opéra Paris",
+        "direccion": "18 Rue Favart, 75002 Paris",
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Aeropuerto Internacional de París-Charles de Gaulle",
+        "direccion": null,
+        "ciudad": "París",
+        "pais": "Francia",
+        "codigo": "CDG"
+      }
+    },
+    "grupo": {
+      "clave": "vuelta",
+      "etiqueta": "Traslado de salida",
+      "orden": 2
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "+39 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0033 177503528",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Localizador",
+        "valor": "D9Q124",
+        "tipo": "voucher"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.9
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "categoria": "Comfort Car"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Transporte",
+        "valor": "IB##586"
+      },
+      {
+        "etiqueta": "Hora del transporte",
+        "valor": "12:45"
+      }
+    ],
+    "notas": [],
+    "letraChica": "Cancelación sin gastos hasta 24 horas antes de la recogida.",
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        3
+      ],
+      "fragmentoFuente": "06/08/2026 ... Traslado entre Aeropuerto Internacional de Paris-Charles de Gaulle (CDG) y Centro Ciudad"
+    },
+    "id": "svc_323913fb50",
+    "documentoId": "doc_79c654dc81",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-3",
+    "tipo": "traslado",
+    "titulo": "Traslado en Madrid (Llegada)",
+    "subtitulo": "Traslado desde Aeropuerto Madrid-Barajas a SmartRental Collection",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-06T14:55",
+        "zonaHoraria": "Europe/Madrid",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-06T14:55",
+        "zonaHoraria": "Europe/Madrid",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Aeropuerto de Madrid - Barajas, Adolfo Suarez",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      },
+      "fin": {
+        "nombre": "SmartRental Collection Gran Via Centric",
+        "direccion": "Calle Gran Vía 42, 28013 Madrid",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "traslado-madrid-in",
+      "etiqueta": "Traslado Madrid",
+      "orden": 3
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "+39 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0034 692137245",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.9
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "categoria": "Comfort Minivan"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Transporte",
+        "valor": "IB##586"
+      }
+    ],
+    "notas": [
+      "Para asistencia local, llamar al 0034 692137245."
+    ],
+    "letraChica": "Cancelación sin gastos hasta 24 horas antes.",
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        5
+      ],
+      "fragmentoFuente": "06/08/2026 ... Traslado en Madrid"
+    },
+    "id": "svc_cc4fc4467b",
+    "documentoId": "doc_79c654dc81",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-4",
+    "tipo": "traslado",
+    "titulo": "Traslado en Madrid (Salida)",
+    "subtitulo": "Traslado desde SmartRental Collection a Aeropuerto Madrid-Barajas",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-10T16:35",
+        "zonaHoraria": "Europe/Madrid",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-10T20:05",
+        "zonaHoraria": "Europe/Madrid",
+        "precision": "minuto"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "SmartRental Collection Gran Via Centric",
+        "direccion": "Calle Gran Vía 42, 28013 Madrid",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Aeropuerto de Madrid - Barajas, Adolfo Suarez",
+        "direccion": null,
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": "MAD"
+      }
+    },
+    "grupo": {
+      "clave": "traslado-madrid-out",
+      "etiqueta": "Traslado Madrid",
+      "orden": 4
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "WORLD EXPERIENCE SRL",
+      "telefono": "+39 0697630256",
+      "telefonoEmergencia": "0039 3408867832",
+      "email": "support@ineedtours.com",
+      "contacto": "0034 692137245",
+      "direccion": "Via de Pinedo 18, 55041 Lido di Camaiore (Lucca) ITALIA",
+      "sitioWeb": "www.ineedtours.com"
+    },
+    "referencias": [],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Vanesa Camino",
+        "nombreNormalizado": "Vanesa Camino",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 0.9
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "categoria": "Comfort Minivan"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Transporte",
+        "valor": "AR##1133"
+      },
+      {
+        "etiqueta": "Hora del transporte",
+        "valor": "20:05"
+      }
+    ],
+    "notas": [
+      "Para asistencia local, llamar al 0034 692137245."
+    ],
+    "letraChica": "Cancelación sin gastos hasta 24 horas antes.",
+    "extraccion": {
+      "confianza": 1.0,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        7
+      ],
+      "fragmentoFuente": "10/08/2026 ... Traslado en Madrid"
+    },
+    "id": "svc_c4a135b4b7",
+    "documentoId": "doc_79c654dc81",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-1",
+    "tipo": "excursion",
+    "titulo": "Excursión a Toledo y Segovia",
+    "subtitulo": "Excursión sin entradas",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "instante",
+      "inicio": {
+        "fechaHoraLocal": "2026-08-09T09:00",
+        "zonaHoraria": "Europe/Madrid",
+        "precision": "minuto"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-09T09:00",
+        "zonaHoraria": "Europe/Madrid",
+        "precision": "ambigua"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": "Estación de metro Las Ventas",
+        "direccion": "Salida calle Julio Camba",
+        "ciudad": "Madrid",
+        "pais": "España",
+        "codigo": null
+      },
+      "fin": {
+        "nombre": "Toledo y Segovia",
+        "direccion": null,
+        "ciudad": "Toledo/Segovia",
+        "pais": "España",
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "excursion-01",
+      "etiqueta": "Excursión",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Amigo Tours España",
+      "telefono": "(+34) 91 129 34 83",
+      "telefonoEmergencia": null,
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": null
+    },
+    "referencias": [
+      {
+        "etiqueta": "Reserva ID",
+        "valor": "A40143504",
+        "tipo": "booking"
+      },
+      {
+        "etiqueta": "Supplier Reference",
+        "valor": "YX27FWM1",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "Julieta Meiller",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 0.95
+      }
+    ],
+    "pax": {
+      "adultos": 3,
+      "menores": 0,
+      "infantes": 0,
+      "total": 3
+    },
+    "datos": {
+      "atraccion": "Toledo y Segovia",
+      "lugarRecogida": "Estación de metro Las Ventas, salida calle Julio Camba"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Precio pagado",
+        "valor": "US$ 201,66"
+      }
+    ],
+    "notas": [
+      "Es imprescindible llegar con 15 minutos de antelación al punto de encuentro.",
+      "La visita al Alcázar de Segovia se realiza sin guía.",
+      "La actividad se realiza con un guía que habla español, aunque en ocasiones podría hacerse de forma bilingüe."
+    ],
+    "letraChica": "Condiciones de cancelación: Si cancelas la reserva antes de las 09:00 horas del 08 de agosto de 2026 (hora de Madrid) obtendrás un reintegro total. Si cancelas con menos tiempo, llegas tarde o no te presentas, no se ofrecerá ningún reembolso.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1
+      ],
+      "fragmentoFuente": "Domingo 9 agosto/26 9:00 h"
+    },
+    "id": "svc_96e8a72256",
+    "documentoId": "doc_33bfe1493f",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-seguro-01",
+    "tipo": "seguro",
+    "titulo": "Asistencia al Viajero",
+    "subtitulo": "Assist Card GEA 150",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "transversal",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-26T00:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-11T00:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": null,
+        "direccion": null,
+        "ciudad": null,
+        "pais": null,
+        "codigo": null
+      },
+      "fin": {
+        "nombre": null,
+        "direccion": null,
+        "ciudad": null,
+        "pais": null,
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "seguro",
+      "etiqueta": "Seguro de viaje",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Assist Card",
+      "telefono": "+54 (11) 5555-1500",
+      "telefonoEmergencia": "+5491127039665",
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": "www.assistcard.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "N° Assist Card",
+        "valor": "540 25393064 0A80 / 1",
+        "tipo": "poliza"
+      },
+      {
+        "etiqueta": "N° de documento de viaje",
+        "valor": "46203270",
+        "tipo": "booking"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "JULIETA MEILLER",
+        "nombreNormalizado": "Julieta Meller",
+        "rol": "titular",
+        "viajeroId": "trv_a3e5b8f9f1",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "aseguradora": "Assist Card",
+      "categoria": "GEA 150",
+      "numeroPoliza": "540 25393064 0A80 / 1",
+      "territorio": "Internacional"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Agencia",
+        "valor": "9963"
+      },
+      {
+        "etiqueta": "Cobertura máxima",
+        "valor": "USD 150.000"
+      },
+      {
+        "etiqueta": "Límite de edad",
+        "valor": "85 años"
+      }
+    ],
+    "notas": [
+      "Descarga la app de Assist Card para solicitar asistencia.",
+      "En caso de viaje a USA, comunicarse obligatoriamente antes de ir a una sala de emergencias.",
+      "Tener a mano pasaporte con sellos de salida y ticket aéreo."
+    ],
+    "letraChica": "Verifique en las condiciones generales las cláusulas correspondientes a los límites e importes indicados. Debe recibir autorización de Assist Card antes de tomar cualquier iniciativa.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "VIGENCIA DEL SERVICIO 26/07/2026 11/08/2026 inclusive."
+    },
+    "id": "svc_8a03dc74c9",
+    "documentoId": "doc_7a99a702a3",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "svc-seguro-001",
+    "tipo": "seguro",
+    "titulo": "Asistencia al viajero Assist Card",
+    "subtitulo": "Producto GEA 150",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "transversal",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-26T00:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-11T23:59",
+        "zonaHoraria": null,
+        "precision": "dia"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": null,
+        "direccion": null,
+        "ciudad": null,
+        "pais": null,
+        "codigo": null
+      },
+      "fin": {
+        "nombre": null,
+        "direccion": null,
+        "ciudad": null,
+        "pais": null,
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "seguro-viaje",
+      "etiqueta": "Seguro de viaje",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Assist Card",
+      "telefono": "+54 (11) 5555-1500",
+      "telefonoEmergencia": "+5491127039665",
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": "my.assistcard.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Nº Assist Card",
+        "valor": "540 25393063 0A80 / 1",
+        "tipo": "poliza"
+      },
+      {
+        "etiqueta": "Nº de documento de viaje",
+        "valor": "23486169",
+        "tipo": "booking"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "SANTIAGO OSCAR MEILLER",
+        "nombreNormalizado": "Santiago Oscar Meiller",
+        "rol": "titular",
+        "viajeroId": "trv_afcda2c7c9",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "aseguradora": "Assist Card",
+      "numeroPoliza": "540 25393063 0A80 / 1",
+      "vigenciaDesde": "2026-07-26",
+      "vigenciaHasta": "2026-08-11",
+      "zona": "Internacional"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Producto",
+        "valor": "GEA 150"
+      },
+      {
+        "etiqueta": "Cobertura máxima global",
+        "valor": "USD 150.000"
+      },
+      {
+        "etiqueta": "Agencia",
+        "valor": "9963"
+      }
+    ],
+    "notas": [
+      "Si viajas a USA, antes de ir a una sala de emergencia de un hospital es esencial que te comuniques con Assist Card.",
+      "Solicita asistencia médica desde la aplicación móvil de Assist Card.",
+      "Ten a mano pasaporte y ticket aéreo/boarding pass al solicitar asistencia."
+    ],
+    "letraChica": "Verifique en las condiciones generales las cláusulas correspondientes a los límites e importes. Usted debe recibir la autorización de Assist Card antes de tomar cualquier iniciativa. Los seguros están amparados por Chubb Seguros.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "VIGENCIA DEL SERVICIO 26/07/2026 11/08/2026"
+    },
+    "id": "svc_9ce1f6705a",
+    "documentoId": "doc_a62398e1cd",
+    "confirmado": true,
+    "origenDatos": "ia"
+  },
+  {
+    "claveLocal": "seguro-001",
+    "tipo": "seguro",
+    "titulo": "Asistencia al Viajero",
+    "subtitulo": "Assist Card GEA 150",
+    "estado": "confirmado",
+    "temporal": {
+      "modo": "transversal",
+      "inicio": {
+        "fechaHoraLocal": "2026-07-26T00:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      },
+      "fin": {
+        "fechaHoraLocal": "2026-08-11T00:00",
+        "zonaHoraria": null,
+        "precision": "dia"
+      }
+    },
+    "ubicacion": {
+      "inicio": {
+        "nombre": null,
+        "direccion": null,
+        "ciudad": null,
+        "pais": null,
+        "codigo": null
+      },
+      "fin": {
+        "nombre": null,
+        "direccion": null,
+        "ciudad": null,
+        "pais": null,
+        "codigo": null
+      }
+    },
+    "grupo": {
+      "clave": "seguro",
+      "etiqueta": "Asistencia al Viajero",
+      "orden": 1
+    },
+    "esComplemento": false,
+    "complementoDe": null,
+    "proveedor": {
+      "nombre": "Assist Card",
+      "telefono": "+54 11 5555-1500",
+      "telefonoEmergencia": "+54 9 11 2703-9665",
+      "email": null,
+      "contacto": null,
+      "direccion": null,
+      "sitioWeb": "www.assistcard.com"
+    },
+    "referencias": [
+      {
+        "etiqueta": "Número de Assist Card",
+        "valor": "540 25393062 0A80 / 1",
+        "tipo": "poliza"
+      },
+      {
+        "etiqueta": "Número de Documento de Viaje",
+        "valor": "22921543",
+        "tipo": "confirmacion"
+      }
+    ],
+    "viajeros": [
+      {
+        "nombreEnDocumento": "VANESA CAMINOS",
+        "nombreNormalizado": "Vanesa Caminos",
+        "rol": "titular",
+        "viajeroId": "trv_d1e9da0af8",
+        "confianzaMatch": 1
+      }
+    ],
+    "pax": {
+      "adultos": 1,
+      "menores": 0,
+      "infantes": 0,
+      "total": 1
+    },
+    "datos": {
+      "aseguradora": "Chubb Seguros",
+      "numeroPoliza": "540 25393062 0A80 / 1",
+      "vigenciaDesde": "26/07/2026",
+      "vigenciaHasta": "11/08/2026",
+      "zona": "Internacional"
+    },
+    "camposExtra": [
+      {
+        "etiqueta": "Cobertura máxima",
+        "valor": "USD 150.000"
+      },
+      {
+        "etiqueta": "Agencia",
+        "valor": "9963"
+      }
+    ],
+    "notas": [
+      "En caso de asistencia médica, solicita la misma desde la aplicación móvil o a través de WhatsApp.",
+      "Si viajas a USA, comunícate con la asistencia antes de ir a una sala de emergencia.",
+      "Ten a mano pasaporte con sellos de salida y ticket aéreo al solicitar asistencia."
+    ],
+    "letraChica": "Producto válido solo para titulares de 85 años o menores. Sujeto a condiciones generales y particulares. Los seguros están amparados por Chubb Seguros.",
+    "extraccion": {
+      "confianza": 1,
+      "requiereRevision": false,
+      "motivoRevision": null,
+      "camposInciertos": [],
+      "paginasFuente": [
+        1,
+        2
+      ],
+      "fragmentoFuente": "VIGENCIA DEL SERVICIO 26/07/2026 11/08/2026 inclusive."
+    },
+    "id": "svc_58ab35cc15",
+    "documentoId": "doc_3171b9921b",
+    "confirmado": true,
+    "origenDatos": "ia"
+  }
+]

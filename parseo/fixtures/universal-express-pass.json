@@ -1,0 +1,153 @@
+{
+  "_comentario_fixture": "Fuente: DocumentosEjemplo/05 Universal x4 Expres Pass.pdf. Caso: mezcla un formato de fecha inequívoco en inglés ('14/JAN/2026') con formato MM/DD/YYYY también inequívoco ('01/14/2026 - 01/20/2026', el 14 no puede ser mes) -> sin ambigüedad real pese a mezclar formatos. Cubre 'rango' + subtipo 'pase_multidia' (4 días de uso dentro de una ventana de 7). También ejemplifica NO corregir errores de tipeo en un nombre propio ('Valntina') -- solo se normaliza mayúscula/minúscula, nunca se adivina la ortografía correcta.",
+  "documento": {
+    "idiomaDetectado": "en",
+    "tipoDocumentoDetectado": "entrada",
+    "confianzaGlobal": 0.92
+  },
+  "servicios": [
+    {
+      "claveLocal": "svc-1",
+      "tipo": "entrada",
+      "subtipo": "pase_multidia",
+      "titulo": "4-Day Universal Express Pass",
+      "subtitulo": "Universal Orlando Resort",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "rango",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-14T00:00",
+          "zonaHoraria": "America/New_York",
+          "precision": "dia"
+        },
+        "fin": {
+          "fechaHoraLocal": "2026-01-20T00:00",
+          "zonaHoraria": "America/New_York",
+          "precision": "dia"
+        }
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Universal Orlando Resort",
+          "direccion": "6000 Universal Blvd., Orlando, FL 32819, USA",
+          "ciudad": "Orlando",
+          "pais": "Estados Unidos",
+          "codigo": null
+        },
+        "fin": {
+          "nombre": "Universal Orlando Resort",
+          "direccion": "6000 Universal Blvd., Orlando, FL 32819, USA",
+          "ciudad": "Orlando",
+          "pais": "Estados Unidos",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Universal Orlando Resort",
+        "telefono": "407-352-6945",
+        "telefonoEmergencia": null,
+        "email": "onlinereservations@action.travel",
+        "contacto": "Online Bookings",
+        "direccion": "2151 Consulate Drive, Suite # 18, Orlando, Florida 32837, USA",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Booking",
+          "valor": "929FNB",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Número de confirmación",
+          "valor": "929FNB-1744083-2ACTRVL",
+          "tipo": "confirmacion"
+        },
+        {
+          "etiqueta": "Código de ticket",
+          "valor": "44702112601050752724621231952",
+          "tipo": "otro"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "Alejandro Carrozzo",
+          "nombreNormalizado": "Alejandro Carrozzo",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": "Deisy Maria Liz Nanco Alonso",
+          "nombreNormalizado": "Deisy María Liz Nanco Alonso",
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": "Leon Carrozzo",
+          "nombreNormalizado": "León Carrozzo",
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": "Valntina Carrozzo",
+          "nombreNormalizado": "Valntina Carrozzo",
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "atraccion": "Universal Orlando Resort",
+        "tipoPase": "4-Day Universal Express Pass",
+        "validezDesde": "2026-01-14",
+        "validezHasta": "2026-01-20",
+        "diasDeUso": 4,
+        "numeroConfirmacion": "929FNB-1744083-2ACTRVL",
+        "codigoBarras": "44702112601050752724621231952",
+        "restricciones": [
+          "No disponible en Pteranodon Flyers",
+          "No disponible en Hagrid's Magical Creatures Motorbike Adventure",
+          "No incluye admisión a los parques temáticos",
+          "No incluye estacionamiento"
+        ]
+      },
+      "camposExtra": [
+        {
+          "etiqueta": "Fecha de compra",
+          "valor": "02/01/2026"
+        },
+        {
+          "etiqueta": "Fecha de la orden",
+          "valor": "05/01/2026"
+        }
+      ],
+      "notas": [
+        "Las entradas se adjuntan al correo de confirmación como PDF y deben imprimirse o mostrarse en el celular.",
+        "El ingreso está sujeto a escaneo biométrico.",
+        "Requiere identificación con foto válida."
+      ],
+      "letraChica": "Ticket no reembolsable, no transferible; debe ser usado por la misma persona todos los días. Los parques, atracciones o espectáculos pueden cerrar por mantenimiento, capacidad, clima o eventos especiales, y sus horarios pueden cambiar sin previo aviso.",
+      "extraccion": {
+        "confianza": 0.9,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "Valid only from 01/14/2026 - 01/20/2026"
+      }
+    }
+  ]
+}

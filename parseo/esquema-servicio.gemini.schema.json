@@ -1,0 +1,952 @@
+{
+  "type": "object",
+  "properties": {
+    "documento": {
+      "type": "object",
+      "properties": {
+        "idiomaDetectado": {
+          "type": "string",
+          "nullable": true,
+          "enum": [
+            "es",
+            "en",
+            "pt",
+            "otro"
+          ]
+        },
+        "tipoDocumentoDetectado": {
+          "type": "string",
+          "enum": [
+            "e_ticket",
+            "voucher_hotel",
+            "voucher_traslado",
+            "voucher_excursion",
+            "voucher_paquete",
+            "entrada",
+            "poliza_seguro",
+            "boarding_pass",
+            "otro"
+          ]
+        },
+        "confianzaGlobal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "error": {
+          "type": "string",
+          "nullable": true,
+          "description": "Solo si el documento no pudo procesarse en absoluto."
+        }
+      },
+      "required": [
+        "idiomaDetectado",
+        "tipoDocumentoDetectado",
+        "confianzaGlobal"
+      ]
+    },
+    "servicios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claveLocal": {
+            "type": "string",
+            "description": "Id único DENTRO de esta respuesta, para que complementoDe pueda referenciarlo."
+          },
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "vuelo",
+              "tren",
+              "bus",
+              "ferry",
+              "crucero",
+              "traslado",
+              "alquiler_auto",
+              "hotel",
+              "excursion",
+              "entrada",
+              "circuito",
+              "paquete",
+              "seguro",
+              "otro"
+            ]
+          },
+          "subtipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "subtitulo": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "enum": [
+              "confirmado",
+              "pendiente",
+              "no_incluido",
+              "cancelado"
+            ]
+          },
+          "temporal": {
+            "type": "object",
+            "properties": {
+              "modo": {
+                "type": "string",
+                "enum": [
+                  "instante",
+                  "rango",
+                  "dia_completo",
+                  "transversal",
+                  "sin_fecha"
+                ]
+              },
+              "inicio": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "fechaHoraLocal": {
+                    "type": "string",
+                    "description": "YYYY-MM-DDTHH:mm, hora local, sin offset."
+                  },
+                  "zonaHoraria": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "precision": {
+                    "type": "string",
+                    "enum": [
+                      "minuto",
+                      "dia",
+                      "aproximada",
+                      "ambigua"
+                    ]
+                  }
+                },
+                "required": [
+                  "fechaHoraLocal",
+                  "zonaHoraria",
+                  "precision"
+                ]
+              },
+              "fin": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "fechaHoraLocal": {
+                    "type": "string",
+                    "description": "YYYY-MM-DDTHH:mm, hora local, sin offset."
+                  },
+                  "zonaHoraria": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "precision": {
+                    "type": "string",
+                    "enum": [
+                      "minuto",
+                      "dia",
+                      "aproximada",
+                      "ambigua"
+                    ]
+                  }
+                },
+                "required": [
+                  "fechaHoraLocal",
+                  "zonaHoraria",
+                  "precision"
+                ]
+              }
+            },
+            "required": [
+              "modo",
+              "inicio",
+              "fin"
+            ]
+          },
+          "ubicacion": {
+            "type": "object",
+            "properties": {
+              "inicio": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "direccion": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "pais": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "codigo": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Código IATA/estación si aplica."
+                  }
+                },
+                "required": [
+                  "nombre",
+                  "direccion",
+                  "ciudad",
+                  "pais",
+                  "codigo"
+                ]
+              },
+              "fin": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "direccion": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "pais": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "codigo": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "nombre",
+                  "direccion",
+                  "ciudad",
+                  "pais",
+                  "codigo"
+                ]
+              }
+            },
+            "required": [
+              "inicio",
+              "fin"
+            ]
+          },
+          "grupo": {
+            "type": "object",
+            "nullable": true,
+            "properties": {
+              "clave": {
+                "type": "string"
+              },
+              "etiqueta": {
+                "type": "string"
+              },
+              "orden": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "clave",
+              "etiqueta",
+              "orden"
+            ]
+          },
+          "esComplemento": {
+            "type": "boolean"
+          },
+          "complementoDe": {
+            "type": "string",
+            "nullable": true,
+            "description": "claveLocal del servicio padre en esta misma respuesta."
+          },
+          "proveedor": {
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "type": "string",
+                "nullable": true
+              },
+              "telefono": {
+                "type": "string",
+                "nullable": true
+              },
+              "telefonoEmergencia": {
+                "type": "string",
+                "nullable": true
+              },
+              "email": {
+                "type": "string",
+                "nullable": true
+              },
+              "contacto": {
+                "type": "string",
+                "nullable": true
+              },
+              "direccion": {
+                "type": "string",
+                "nullable": true
+              },
+              "sitioWeb": {
+                "type": "string",
+                "nullable": true,
+                "description": "Solo si está impreso en el documento. NUNCA la web pública conocida de una aerolínea o aseguradora — eso viene del catálogo de plataforma, no del parseo."
+              }
+            },
+            "required": [
+              "nombre",
+              "telefono",
+              "telefonoEmergencia",
+              "email",
+              "contacto",
+              "direccion",
+              "sitioWeb"
+            ]
+          },
+          "referencias": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "etiqueta": {
+                  "type": "string"
+                },
+                "valor": {
+                  "type": "string"
+                },
+                "tipo": {
+                  "type": "string",
+                  "enum": [
+                    "pnr",
+                    "voucher",
+                    "booking",
+                    "poliza",
+                    "confirmacion",
+                    "otro"
+                  ]
+                }
+              },
+              "required": [
+                "etiqueta",
+                "valor",
+                "tipo"
+              ]
+            }
+          },
+          "viajeros": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "nombreEnDocumento": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "nombreNormalizado": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "rol": {
+                  "type": "string",
+                  "enum": [
+                    "titular",
+                    "acompanante"
+                  ]
+                },
+                "viajeroId": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "confianzaMatch": {
+                  "type": "number",
+                  "nullable": true,
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "nombreEnDocumento",
+                "nombreNormalizado",
+                "rol",
+                "viajeroId",
+                "confianzaMatch"
+              ]
+            }
+          },
+          "pax": {
+            "type": "object",
+            "properties": {
+              "adultos": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 0
+              },
+              "menores": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 0
+              },
+              "infantes": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 0
+              },
+              "total": {
+                "type": "integer",
+                "nullable": true,
+                "minimum": 0
+              }
+            },
+            "required": [
+              "adultos",
+              "menores",
+              "infantes",
+              "total"
+            ]
+          },
+          "datos": {
+            "type": "object",
+            "description": "Campos tipados según 'tipo' (ver PROMPT-PARSEO-v2.md). Completá solo los que apliquen al tipo de este servicio; dejá null los que no.",
+            "properties": {
+              "aerolinea": {
+                "type": "string",
+                "nullable": true
+              },
+              "codigoAerolinea": {
+                "type": "string",
+                "nullable": true
+              },
+              "numeroVuelo": {
+                "type": "string",
+                "nullable": true
+              },
+              "cabina": {
+                "type": "string",
+                "nullable": true
+              },
+              "origen": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "direccion": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "pais": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "codigo": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "nombre",
+                  "direccion",
+                  "ciudad",
+                  "pais",
+                  "codigo"
+                ]
+              },
+              "destino": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "direccion": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "pais": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "codigo": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "nombre",
+                  "direccion",
+                  "ciudad",
+                  "pais",
+                  "codigo"
+                ]
+              },
+              "duracion": {
+                "type": "string",
+                "nullable": true
+              },
+              "aeronave": {
+                "type": "string",
+                "nullable": true
+              },
+              "escalas": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "asientos": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "equipajeBodega": {
+                "type": "string",
+                "nullable": true,
+                "description": "Ej: '1x25kg (55lbs)'. No lo repitas en notas."
+              },
+              "equipajeCabina": {
+                "type": "string",
+                "nullable": true,
+                "description": "Ej: '1x15kg'. No lo repitas en notas."
+              },
+              "numeroETicket": {
+                "type": "string",
+                "nullable": true
+              },
+              "estadoVuelo": {
+                "type": "string",
+                "nullable": true
+              },
+              "nombreHotel": {
+                "type": "string",
+                "nullable": true
+              },
+              "categoria": {
+                "type": "string",
+                "nullable": true
+              },
+              "direccion": {
+                "type": "string",
+                "nullable": true
+              },
+              "zona": {
+                "type": "string",
+                "nullable": true
+              },
+              "noches": {
+                "type": "integer",
+                "nullable": true
+              },
+              "habitaciones": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "descripcion": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "regimen": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "ocupantes": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "horaCheckIn": {
+                "type": "string",
+                "nullable": true
+              },
+              "horaCheckOut": {
+                "type": "string",
+                "nullable": true
+              },
+              "telefonoHotel": {
+                "type": "string",
+                "nullable": true
+              },
+              "localizadorExterno": {
+                "type": "string",
+                "nullable": true
+              },
+              "modalidad": {
+                "type": "string",
+                "nullable": true,
+                "enum": [
+                  "privado",
+                  "regular",
+                  "compartido"
+                ]
+              },
+              "desde": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "direccion": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "pais": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "codigo": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "nombre",
+                  "direccion",
+                  "ciudad",
+                  "pais",
+                  "codigo"
+                ]
+              },
+              "hasta": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "nombre": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "direccion": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "ciudad": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "pais": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "codigo": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "nombre",
+                  "direccion",
+                  "ciudad",
+                  "pais",
+                  "codigo"
+                ]
+              },
+              "vueloReferencia": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "numero": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "hora": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "aeropuerto": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              },
+              "puntoEncuentro": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "esperaMaxima": {
+                "type": "string",
+                "nullable": true
+              },
+              "direccionServicio": {
+                "type": "string",
+                "nullable": true,
+                "enum": [
+                  "llegada",
+                  "salida",
+                  "interno"
+                ]
+              },
+              "nombre": {
+                "type": "string",
+                "nullable": true
+              },
+              "idiomaGuia": {
+                "type": "string",
+                "nullable": true
+              },
+              "lugarRecogida": {
+                "type": "string",
+                "nullable": true
+              },
+              "horaRecogida": {
+                "type": "string",
+                "nullable": true
+              },
+              "incluye": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "noIncluye": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "ciudadesVisitadas": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "atraccion": {
+                "type": "string",
+                "nullable": true
+              },
+              "tipoPase": {
+                "type": "string",
+                "nullable": true
+              },
+              "validezDesde": {
+                "type": "string",
+                "nullable": true
+              },
+              "validezHasta": {
+                "type": "string",
+                "nullable": true
+              },
+              "diasDeUso": {
+                "type": "integer",
+                "nullable": true
+              },
+              "numeroConfirmacion": {
+                "type": "string",
+                "nullable": true
+              },
+              "codigoBarras": {
+                "type": "string",
+                "nullable": true
+              },
+              "restricciones": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "categoriaVehiculo": {
+                "type": "string",
+                "nullable": true
+              },
+              "transmision": {
+                "type": "string",
+                "nullable": true
+              },
+              "lugarRetiro": {
+                "type": "string",
+                "nullable": true
+              },
+              "horaRetiro": {
+                "type": "string",
+                "nullable": true
+              },
+              "lugarDevolucion": {
+                "type": "string",
+                "nullable": true
+              },
+              "horaDevolucion": {
+                "type": "string",
+                "nullable": true
+              },
+              "coberturas": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Texto libre por cobertura, ej. 'Basic Coverage (Mandatory)' o 'Responsabilidad civil: USD 100.000'."
+              },
+              "kilometraje": {
+                "type": "string",
+                "nullable": true
+              },
+              "serviciosComponentes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "aseguradora": {
+                "type": "string",
+                "nullable": true
+              },
+              "numeroPoliza": {
+                "type": "string",
+                "nullable": true
+              },
+              "plan": {
+                "type": "string",
+                "nullable": true
+              },
+              "vigenciaDesde": {
+                "type": "string",
+                "nullable": true
+              },
+              "vigenciaHasta": {
+                "type": "string",
+                "nullable": true
+              },
+              "telefonoSOS": {
+                "type": "string",
+                "nullable": true
+              },
+              "territorio": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          },
+          "camposExtra": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "etiqueta": {
+                  "type": "string"
+                },
+                "valor": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "etiqueta",
+                "valor"
+              ]
+            }
+          },
+          "notas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "letraChica": {
+            "type": "string",
+            "nullable": true
+          },
+          "extraccion": {
+            "type": "object",
+            "properties": {
+              "confianza": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "requiereRevision": {
+                "type": "boolean"
+              },
+              "motivoRevision": {
+                "type": "string",
+                "nullable": true
+              },
+              "camposInciertos": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "paginasFuente": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "fragmentoFuente": {
+                "type": "string",
+                "nullable": true,
+                "description": "Cita textual breve del documento que sustenta la fecha y el proveedor de este servicio. No debe ir null si el dato existe en el documento."
+              }
+            },
+            "required": [
+              "confianza",
+              "requiereRevision",
+              "motivoRevision",
+              "camposInciertos",
+              "paginasFuente",
+              "fragmentoFuente"
+            ]
+          }
+        },
+        "required": [
+          "claveLocal",
+          "tipo",
+          "titulo",
+          "subtitulo",
+          "estado",
+          "temporal",
+          "ubicacion",
+          "grupo",
+          "esComplemento",
+          "complementoDe",
+          "proveedor",
+          "referencias",
+          "viajeros",
+          "pax",
+          "datos",
+          "camposExtra",
+          "notas",
+          "letraChica",
+          "extraccion"
+        ]
+      }
+    }
+  },
+  "required": [
+    "documento",
+    "servicios"
+  ]
+}

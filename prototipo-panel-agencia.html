@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Hybris Turismo — Panel de la Agencia</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Marca de la agencia (theming). Tema actual: Hybris Turismo.
+     Default de plataforma si la agencia no configura nada: #4f46e5 (ver resetBrandDefault en JS). */
+  --brand:#0e7490;--brand-d:#0b5f76;--brand-l:#ecfeff;--brand-lm:#a5f3fc;
+  --tx:#0f172a;--t2:#334155;--mu:#64748b;--mu2:#94a3b8;
+  --bg:#f8fafc;--wh:#fff;--br:#e2e8f0;--br2:#f1f5f9;
+  --sb:#0f172a;--sb2:#1e293b;--sb3:#334155;
+  --gn:#10b981;--gnl:#d1fae5;--gndk:#065f46;
+  --am:#f59e0b;--aml:#fef3c7;--amdk:#92400e;
+  --rd:#ef4444;--rdl:#fee2e2;
+  --pu:#8b5cf6;--pul:#f5f3ff;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;background:var(--bg);color:var(--tx);overflow:hidden;height:100vh}
+
+/* ── LOGIN ───────────────────────────────────────────────────────────────── */
+#login{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,var(--brand) 100%);display:flex;align-items:center;justify-content:center;z-index:1000}
+.login-box{background:#fff;border-radius:20px;padding:40px 36px;width:380px;box-shadow:0 32px 80px rgba(0,0,0,.35)}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.login-ico{width:48px;height:48px;background:linear-gradient(135deg,var(--brand),var(--brand-d));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;overflow:hidden}
+.login-ico img{width:100%;height:100%;object-fit:cover}
+.login-brand h1{font-size:20px;font-weight:800;color:var(--tx)}
+.login-brand p{font-size:12px;color:var(--mu);margin-top:2px}
+.login-title{font-size:22px;font-weight:700;color:var(--tx);margin-bottom:6px}
+.login-sub{font-size:13px;color:var(--mu);margin-bottom:24px}
+.inp-lbl{font-size:12px;font-weight:600;color:var(--t2);margin-bottom:5px;display:block}
+.inp{width:100%;padding:10px 12px;border:1.5px solid var(--br);border-radius:var(--r-sm);font-size:14px;font-family:inherit;color:var(--tx);outline:none;transition:border-color .15s}
+.inp:focus{border-color:var(--brand)}
+.inp-g{margin-bottom:16px}
+.btn-login{width:100%;background:var(--brand);color:#fff;border:none;border-radius:var(--r-sm);padding:12px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;margin-top:4px}
+.btn-login:hover{background:var(--brand-d)}
+.login-hint{font-size:11px;color:var(--mu2);text-align:center;margin-top:14px}
+
+/* ── APP SHELL ───────────────────────────────────────────────────────────── */
+#app{display:none;height:100vh;overflow:hidden}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────────────────── */
+.sidebar{width:232px;height:100vh;background:var(--sb);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:50;flex-shrink:0}
+.sb-logo{display:flex;align-items:center;gap:10px;padding:20px 16px 16px;border-bottom:1px solid var(--sb3)}
+.sb-ico{width:34px;height:34px;background:linear-gradient(135deg,var(--brand),var(--brand-d));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff;flex-shrink:0;overflow:hidden}
+.sb-ico img{width:100%;height:100%;object-fit:cover}
+.sb-name{font-size:15px;font-weight:700;color:#f1f5f9}
+.sb-tag{font-size:10px;color:var(--mu2);margin-top:1px}
+.sb-nav{flex:1;padding:10px 8px;overflow-y:auto}
+.sb-section{font-size:10px;font-weight:700;color:var(--mu2);letter-spacing:.08em;text-transform:uppercase;padding:10px 8px 6px}
+.sbn{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--r-sm);color:#94a3b8;cursor:pointer;transition:background .12s,color .12s;user-select:none;font-size:13px;font-weight:500;margin-bottom:2px;-webkit-tap-highlight-color:transparent}
+.sbn:hover{background:var(--sb2);color:#e2e8f0}
+.sbn.on{background:var(--brand);color:#fff}
+.sbn svg{width:16px;height:16px;flex-shrink:0}
+.sbn-badge{margin-left:auto;background:var(--rd);color:#fff;border-radius:20px;font-size:10px;font-weight:700;padding:1px 6px}
+.sb-footer{padding:12px 8px;border-top:1px solid var(--sb3)}
+.sb-user{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--r-sm);cursor:pointer}
+.sb-user:hover{background:var(--sb2)}
+.sb-avatar{width:32px;height:32px;background:linear-gradient(135deg,var(--brand),var(--brand-d));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700;flex-shrink:0}
+.sb-uname{font-size:12px;font-weight:600;color:#e2e8f0}
+.sb-uemail{font-size:10px;color:var(--mu2)}
+.sb-powered{font-size:9px;color:var(--mu2);text-align:center;padding-top:10px;letter-spacing:.02em}
+
+/* ── MAIN ────────────────────────────────────────────────────────────────── */
+.main{margin-left:232px;flex:1;min-width:0;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.topbar{height:58px;background:#fff;border-bottom:1px solid var(--br);display:flex;align-items:center;padding:0 24px;gap:12px;flex-shrink:0}
+.topbar-title{font-size:16px;font-weight:700;color:var(--tx);flex:1}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--br2);border-radius:var(--r-sm);padding:7px 12px;width:220px}
+.search-box svg{width:14px;height:14px;color:var(--mu);flex-shrink:0}
+.search-box input{border:none;background:transparent;outline:none;font-size:13px;color:var(--tx);width:100%;font-family:inherit}
+.search-box input::placeholder{color:var(--mu2)}
+.tb-avatar{width:34px;height:34px;background:linear-gradient(135deg,var(--brand),var(--brand-d));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:700;cursor:pointer;flex-shrink:0}
+.content{flex:1;overflow-y:auto;overflow-x:hidden;padding:24px;scrollbar-width:thin;scrollbar-color:var(--br) transparent;scrollbar-gutter:stable}
+
+/* ── VIEWS ───────────────────────────────────────────────────────────────── */
+.view{display:none}
+.view.on{display:block}
+
+/* ── CARDS ───────────────────────────────────────────────────────────────── */
+.card{background:#fff;border-radius:var(--r-md);border:1px solid var(--br);padding:18px}
+
+/* ── BUTTONS ─────────────────────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-sm);font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:background .12s,opacity .12s;white-space:nowrap}
+.btn:active{opacity:.85}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-d)}
+.btn-outline{background:#fff;color:var(--t2);border:1.5px solid var(--br)}
+.btn-outline:hover{background:var(--br2)}
+.btn-ghost{background:transparent;color:var(--mu);border:none}
+.btn-ghost:hover{background:var(--br2);color:var(--t2)}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-icon{width:32px;height:32px;padding:0;justify-content:center;border-radius:var(--r-sm);background:transparent;color:var(--mu);border:1.5px solid var(--br)}
+.btn-icon:hover{background:var(--br2)}
+.btn-icon svg{width:14px;height:14px}
+/* Identidad de IA: fija, no sigue el color de marca de la agencia (misma señal en toda la plataforma) */
+.btn-ai{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff}
+.btn-ai:hover{opacity:.9}
+
+/* ── PILLS ───────────────────────────────────────────────────────────────── */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.p-gn{background:var(--gnl);color:var(--gndk)}
+.p-am{background:var(--aml);color:var(--amdk)}
+.p-bl{background:var(--brand-l);color:var(--brand)}
+.p-pu{background:var(--pul);color:#5b21b6}
+.p-rd{background:var(--rdl);color:#991b1b}
+.p-mu{background:var(--br2);color:var(--mu)}
+
+/* ── DASHBOARD ───────────────────────────────────────────────────────────── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+.mc{background:#fff;border-radius:var(--r-md);border:1px solid var(--br);padding:18px 20px}
+.mc-val{font-size:32px;font-weight:900;color:var(--tx);letter-spacing:-.03em;line-height:1}
+.mc-lbl{font-size:12px;color:var(--mu);margin-top:5px;font-weight:500}
+.mc-icon{font-size:22px;margin-bottom:10px}
+
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-size:15px;font-weight:700;color:var(--tx)}
+.section-sub{font-size:12px;color:var(--mu);margin-top:1px}
+
+/* TABLE */
+.tbl-wrap{background:#fff;border-radius:var(--r-md);border:1px solid var(--br);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;font-weight:700;color:var(--mu);letter-spacing:.06em;text-transform:uppercase;padding:11px 16px;text-align:left;background:var(--br2);border-bottom:1px solid var(--br)}
+td{padding:13px 16px;border-bottom:1px solid var(--br);font-size:13px;color:var(--t2);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr.clickable{cursor:pointer;transition:background .1s}
+tr.clickable:hover td{background:#f8fafc}
+.td-main{font-weight:600;color:var(--tx)}
+.td-flag{font-size:16px;margin-right:6px}
+.td-sub{font-size:11px;font-weight:400;color:var(--mu);margin-top:2px}
+
+/* ── TRIP DETAIL ─────────────────────────────────────────────────────────── */
+.back-row{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.back-btn{display:flex;align-items:center;gap:5px;color:var(--mu);font-size:13px;cursor:pointer;padding:6px 10px;border-radius:var(--r-sm);transition:background .1s}
+.back-btn:hover{background:var(--br);color:var(--t2)}
+.trip-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.trip-title{font-size:24px;font-weight:800;color:var(--tx);letter-spacing:-.02em}
+.trip-meta{font-size:13px;color:var(--mu);margin-top:4px}
+.trip-actions{display:flex;gap:8px}
+
+/* TABS */
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--br);margin-bottom:24px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:10px 18px;font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .12s,border-color .12s;user-select:none;white-space:nowrap}
+.tab:hover{color:var(--t2)}
+.tab.on{color:var(--brand);border-bottom-color:var(--brand)}
+.tab-panel{display:none}
+.tab-panel.on{display:block}
+
+/* ── RESUMEN TAB ─────────────────────────────────────────────────────────── */
+.resumen-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.viajero-card{display:flex;align-items:center;gap:14px;padding:16px;background:var(--brand-l);border-radius:var(--r-md);border:1px solid var(--brand-lm);margin-bottom:12px}
+.vc-avatar{width:48px;height:48px;background:linear-gradient(135deg,var(--brand),var(--pu));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:700;flex-shrink:0}
+.vc-name{font-size:16px;font-weight:700;color:var(--tx)}
+.vc-contact{font-size:12px;color:var(--mu);margin-top:2px}
+.vc-status{margin-top:6px;display:flex;align-items:center;gap:8px}
+.progress-card{padding:16px}
+.prog-items{display:flex;gap:8px;flex-wrap:wrap}
+.data-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--br)}
+.data-row:last-child{border-bottom:none}
+.data-lbl{font-size:12px;color:var(--mu)}
+.data-val{font-size:13px;font-weight:600;color:var(--tx)}
+
+/* ── SERVICIOS TAB ───────────────────────────────────────────────────────── */
+.service-section{margin-bottom:20px}
+.service-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.service-title{font-size:14px;font-weight:700;color:var(--tx);display:flex;align-items:center;gap:8px}
+.service-title span{font-size:18px}
+.service-actions{display:flex;gap:8px}
+.service-item{background:#fff;border:1.5px solid var(--br);border-radius:var(--r-md);padding:14px 16px;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px}
+.si-icon{font-size:22px;flex-shrink:0;margin-top:2px}
+.si-body{flex:1;min-width:0}
+.si-title{font-size:14px;font-weight:700;color:var(--tx)}
+.si-detail{font-size:12px;color:var(--mu);margin-top:3px;line-height:1.5}
+.si-pills{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.si-actions{display:flex;gap:6px;align-items:center;margin-left:auto;flex-shrink:0}
+
+/* Flight lookup */
+.flight-lookup{background:var(--brand-l);border:1.5px dashed var(--brand-lm);border-radius:var(--r-md);padding:16px;margin-bottom:10px}
+.fl-title{font-size:13px;font-weight:700;color:var(--brand);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.fl-row{display:flex;gap:8px;align-items:flex-end}
+.fl-inp-g{flex:1}
+.fl-lbl{font-size:11px;font-weight:600;color:var(--t2);margin-bottom:4px}
+.fl-inp{padding:8px 10px;border:1.5px solid var(--br);border-radius:var(--r-sm);font-size:13px;font-family:inherit;color:var(--tx);outline:none;width:100%}
+.fl-inp:focus{border-color:var(--brand)}
+#fl-result{margin-top:12px;background:#fff;border-radius:var(--r-sm);padding:12px;border:1px solid var(--brand-lm)}
+.fl-result-title{font-size:11px;font-weight:700;color:var(--gn);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.fl-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fl-field-lbl{font-size:10px;color:var(--mu);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.fl-field-val{font-size:13px;font-weight:700;color:var(--tx);margin-top:2px}
+
+/* ── DOCUMENTOS TAB ──────────────────────────────────────────────────────── */
+.drop-zone{border:2.5px dashed var(--br);border-radius:var(--r-md);padding:32px;text-align:center;background:#fff;margin-bottom:20px;cursor:pointer;transition:border-color .15s,background .15s}
+.drop-zone:hover,.drop-zone.drag{border-color:var(--brand);background:var(--brand-l)}
+.drop-icon{font-size:36px;margin-bottom:10px}
+.drop-title{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:4px}
+.drop-sub{font-size:12px;color:var(--mu)}
+.doc-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.doc-item{background:#fff;border:1px solid var(--br);border-radius:var(--r-sm);padding:12px 14px;display:flex;align-items:center;gap:12px}
+.doc-item-icon{font-size:22px;flex-shrink:0}
+.doc-item-name{font-size:13px;font-weight:600;color:var(--tx)}
+.doc-item-sub{font-size:11px;color:var(--mu);margin-top:2px}
+.doc-item-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.file-input-hidden{display:none}
+
+/* AI result card */
+.ai-result-card{display:none;background:linear-gradient(135deg,#f5f3ff,#ede9fe);border:1.5px solid #c4b5fd;border-radius:var(--r-md);padding:16px;margin-bottom:16px}
+.ai-result-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ai-badge{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border-radius:20px;font-size:11px;font-weight:700;padding:4px 10px;flex-shrink:0}
+.ai-result-title{font-size:14px;font-weight:700;color:#3b0764}
+.ai-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.ai-field{background:rgba(255,255,255,.7);border-radius:var(--r-sm);padding:8px 10px}
+.ai-field-lbl{font-size:10px;font-weight:600;color:#7c3aed;text-transform:uppercase;letter-spacing:.05em}
+.ai-field-val{font-size:13px;font-weight:700;color:var(--tx);margin-top:2px}
+.ai-actions{display:flex;gap:8px}
+.btn-confirm{background:var(--gn);color:#fff;font-size:13px;font-weight:700;border:none;border-radius:var(--r-sm);padding:9px 18px;cursor:pointer;font-family:inherit}
+.btn-confirm:hover{background:#059669}
+
+/* Spinner */
+.ai-spinner{display:none;text-align:center;padding:20px}
+.spinner-text{font-size:13px;font-weight:600;color:var(--pu);margin-top:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;width:24px;height:24px;border:3px solid var(--pul);border-top-color:var(--pu);border-radius:50%;animation:spin .7s linear infinite}
+
+/* Visor del documento original — al lado del resultado del parseo IA, para
+   revisar el archivo real contra lo que la IA extrajo antes de confirmar. */
+.parse-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;margin-bottom:16px}
+@media (max-width:900px){.parse-split{grid-template-columns:1fr}}
+.parse-viewer{border:1px solid var(--br);border-radius:var(--r-md);overflow:hidden;background:var(--wh)}
+.parse-viewer-hd{padding:10px 14px;border-bottom:1px solid var(--br);font-size:12px;font-weight:700;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.parse-viewer-box{height:420px;background:#f1f5f9}
+.parse-viewer-box iframe,.parse-viewer-box img{width:100%;height:100%;border:none;display:block;object-fit:contain}
+
+/* ── ITINERARIO TAB ──────────────────────────────────────────────────────── */
+.auto-banner{display:flex;align-items:flex-start;gap:12px;background:var(--brand-l);border:1.5px solid var(--brand-lm);border-radius:var(--r-md);padding:14px 16px;margin-bottom:20px}
+.auto-banner-icon{font-size:22px;flex-shrink:0}
+.auto-banner-title{font-size:13px;font-weight:700;color:var(--brand)}
+.auto-banner-sub{font-size:12px;color:var(--mu);margin-top:3px;line-height:1.5}
+.auto-timeline{display:flex;flex-direction:column;gap:0}
+.at-item{display:flex;gap:16px;padding-bottom:20px;position:relative}
+.at-item:last-child{padding-bottom:0}
+.at-left{display:flex;flex-direction:column;align-items:center;width:40px;flex-shrink:0}
+.at-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;z-index:1}
+.at-line{flex:1;width:2px;background:var(--br);margin-top:4px}
+.at-body{flex:1;padding-top:6px}
+.at-date{font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.at-title{font-size:14px;font-weight:700;color:var(--tx)}
+.at-detail{font-size:12px;color:var(--mu);margin-top:3px;line-height:1.5}
+.at-source{font-size:10px;font-weight:600;color:var(--mu2);margin-top:6px;display:flex;align-items:center;gap:4px}
+
+/* ── MODAL ───────────────────────────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:800;display:none;align-items:center;justify-content:center}
+.modal-overlay.on{display:flex}
+.modal-box{background:#fff;border-radius:var(--r-lg);width:480px;max-width:92vw;max-height:88vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,.35)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--br)}
+.modal-title{font-size:16px;font-weight:800;color:var(--tx)}
+.modal-close{cursor:pointer;color:var(--mu);font-size:20px;line-height:1;background:none;border:none;padding:4px}
+.modal-body{padding:20px 22px}
+.modal-foot{display:flex;justify-content:flex-end;gap:8px;padding:16px 22px;border-top:1px solid var(--br)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chip-select{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.chip-opt{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1.5px solid var(--br);cursor:pointer;color:var(--t2);background:#fff;user-select:none;-webkit-tap-highlight-color:transparent}
+.chip-opt.on{background:var(--brand);border-color:var(--brand);color:#fff}
+
+/* Selector de viajeros con buscador + selección múltiple (alta de viaje) */
+.traveler-picker{max-height:220px;overflow-y:auto;border:1px solid var(--br);border-radius:var(--r-sm);margin-top:8px}
+.tp-row{display:flex;align-items:center;gap:10px;padding:9px 12px;cursor:pointer;border-bottom:1px solid var(--br2);user-select:none;-webkit-tap-highlight-color:transparent}
+.tp-row:last-child{border-bottom:none}
+.tp-row:hover{background:var(--br2)}
+.tp-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--br);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.tp-row.on{background:var(--brand-l)}
+.tp-row.on .tp-check{background:var(--brand);border-color:var(--brand)}
+.tp-row.on .tp-check::after{content:'✓';color:#fff;font-size:12px;font-weight:700}
+.tp-info{flex:1;min-width:0}
+.tp-name{font-size:13px;font-weight:600;color:var(--tx)}
+.tp-meta{font-size:11px;color:var(--mu);margin-top:1px}
+.tp-empty{padding:14px;text-align:center;font-size:12px;color:var(--mu)}
+
+.destino-row{display:flex;gap:8px;margin-bottom:8px}
+.destino-row .inp{flex:1}
+
+/* ── VIAJEROS VIEW ───────────────────────────────────────────────────────── */
+.travelers-list{display:flex;flex-direction:column;gap:10px}
+.traveler-row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--br);border-radius:var(--r-md);padding:14px 16px}
+.t-info{flex:1}
+.t-name{font-size:14px;font-weight:700;color:var(--tx)}
+.t-contact{font-size:12px;color:var(--mu);margin-top:2px}
+.t-trips{font-size:11px;color:var(--mu2);margin-top:4px}
+
+/* ── CONFIGURACIÓN VIEW ──────────────────────────────────────────────────── */
+.config-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.swatch{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid #fff;box-shadow:0 0 0 1px var(--br)}
+.swatch.on{box-shadow:0 0 0 2px var(--tx)}
+.logo-upload{display:flex;align-items:center;gap:14px}
+.logo-preview{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,var(--brand),var(--brand-d));display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;overflow:hidden;flex-shrink:0}
+.logo-preview img{width:100%;height:100%;object-fit:cover}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ─────────────────────────────────────────────────────────────── -->
+<div id="login">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-ico"></div>
+      <div class="login-brand"><h1 id="login-brand-name">Hybris Turismo</h1><p>Panel de la Agencia</p></div>
+    </div>
+    <div class="login-title">Bienvenido de vuelta</div>
+    <div class="login-sub">Ingresá con tu cuenta de agencia</div>
+    <div class="inp-g"><label class="inp-lbl">Email</label><input class="inp" id="login-email" type="email" value="hola@hybristurismo.com"></div>
+    <div class="inp-g"><label class="inp-lbl">Contraseña</label><input class="inp" type="password" value="••••••••"></div>
+    <button class="btn-login" onclick="doLogin()">Ingresar al panel →</button>
+    <div class="login-hint">Demo · Hacé clic en "Ingresar" para continuar</div>
+  </div>
+</div>
+
+<!-- ── APP ───────────────────────────────────────────────────────────────── -->
+<div id="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-logo">
+      <div class="sb-ico"></div>
+      <div><div class="sb-name" id="sb-name">Hybris Turismo</div><div class="sb-tag">Panel de agencia</div></div>
+    </div>
+    <div class="sb-nav">
+      <div class="sb-section">Principal</div>
+      <div class="sbn on" data-view="dashboard" onclick="go('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Viajes
+        <span class="sbn-badge" id="sbn-trip-count">0</span>
+      </div>
+      <div class="sbn" data-view="travelers" onclick="go('travelers')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Viajeros
+      </div>
+      <div class="sb-section">Configuración</div>
+      <div class="sbn" data-view="config" onclick="go('config')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Configuración
+      </div>
+    </div>
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="sb-avatar" id="sb-avatar">HT</div>
+        <div><div class="sb-uname" id="sb-uname">Hybris Turismo</div><div class="sb-uemail" id="sb-uemail">hola@hybristurismo.com</div></div>
+      </div>
+      <div class="sb-powered">Con tecnología de Peregrí</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Viajes</div>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Buscar viaje o viajero…">
+      </div>
+      <button class="btn btn-primary btn-sm" onclick="openNewTripModal()">+ Nuevo viaje</button>
+      <div class="tb-avatar" id="tb-avatar" title="Hybris Turismo">HT</div>
+    </div>
+
+    <div class="content">
+
+      <!-- ── DASHBOARD VIEW ─────────────────────────────────────────────── -->
+      <div class="view on" id="view-dashboard">
+
+        <div class="metrics">
+          <div class="mc"><div class="mc-icon">✈</div><div class="mc-val" id="m-trips">0</div><div class="mc-lbl">Viajes activos</div></div>
+          <div class="mc"><div class="mc-icon">👥</div><div class="mc-val" id="m-travelers">0</div><div class="mc-lbl">Viajeros este mes</div></div>
+          <div class="mc"><div class="mc-icon">📄</div><div class="mc-val" style="color:var(--am)" id="m-docs-pend">0</div><div class="mc-lbl">Docs pendientes</div></div>
+          <div class="mc"><div class="mc-icon">🗓</div><div class="mc-val">5</div><div class="mc-lbl">Salidas próximas 7d</div></div>
+        </div>
+
+        <div class="section-header">
+          <div>
+            <div class="section-title">Viajes activos</div>
+            <div class="section-sub">Hacé clic en un viaje para ver el detalle y cargarlo</div>
+          </div>
+          <button class="btn btn-primary" onclick="openNewTripModal()">+ Nuevo viaje</button>
+        </div>
+
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Viaje</th>
+                <th>Viajero</th>
+                <th>Salida</th>
+                <th>Vuelta</th>
+                <th>Documentos</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="trips-tbody"></tbody>
+          </table>
+        </div>
+      </div><!-- /dashboard -->
+
+      <!-- ── VIAJEROS VIEW ──────────────────────────────────────────────── -->
+      <div class="view" id="view-travelers">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Viajeros</div>
+            <div class="section-sub">Todos los clientes de tu agencia. Creá una cuenta para asignarlos a un viaje.</div>
+          </div>
+          <button class="btn btn-primary" onclick="openNewTravelerModal()">+ Nuevo viajero</button>
+        </div>
+        <div class="travelers-list" id="travelers-list"></div>
+      </div><!-- /travelers -->
+
+      <!-- ── CONFIGURACIÓN VIEW ─────────────────────────────────────────── -->
+      <div class="view" id="view-config">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Personalización de marca</div>
+            <div class="section-sub">Así se ve tu panel y así verán tu marca tus viajeros. Elegí tu logo y tu color — o dejá el estilo default de Peregrí.</div>
+          </div>
+        </div>
+        <div class="config-grid">
+          <div class="card">
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:14px">Datos de la agencia</div>
+            <div class="inp-g"><label class="inp-lbl">Nombre de la agencia</label><input class="inp" id="cfg-name" oninput="onAgencyNameChange(this)"></div>
+            <div class="inp-g"><label class="inp-lbl">Email de contacto</label><input class="inp" id="cfg-email" oninput="onAgencyEmailChange(this)"></div>
+
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin:20px 0 10px">Logo</div>
+            <div class="logo-upload">
+              <div class="logo-preview" id="cfg-logo-preview"></div>
+              <div style="flex:1">
+                <label class="inp-lbl">Emoji o iniciales</label>
+                <input class="inp" id="cfg-logo-emoji" maxlength="2" style="width:80px" oninput="onLogoEmojiChange(this)">
+                <label class="inp-lbl" style="margin-top:10px">O subí una imagen</label>
+                <input type="file" accept="image/*" class="inp" onchange="onLogoFile(this)">
+              </div>
+            </div>
+
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin:20px 0 6px">Color primario</div>
+            <div class="swatches" id="cfg-swatches"></div>
+            <div class="inp-g" style="margin-top:8px">
+              <label class="inp-lbl">Color personalizado</label>
+              <input type="color" id="cfg-color-custom" oninput="onCustomColor(this)" style="width:60px;height:36px;border:1.5px solid var(--br);border-radius:var(--r-sm);cursor:pointer;padding:2px">
+            </div>
+            <button class="btn btn-outline" style="margin-top:14px" onclick="resetBrandDefault()">Restaurar default (Peregrí)</button>
+          </div>
+
+          <div class="card">
+            <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:12px">Vista previa en vivo</div>
+            <div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--sb);border-radius:var(--r-md);margin-bottom:12px">
+              <div class="sb-ico" id="cfg-preview-sb-ico" style="width:34px;height:34px"></div>
+              <div><div style="font-size:14px;font-weight:700;color:#f1f5f9" id="cfg-preview-name">Hybris Turismo</div><div style="font-size:10px;color:var(--mu2)">Panel de agencia</div></div>
+            </div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center">Botón de ejemplo</button>
+            <div style="font-size:11px;color:var(--mu);margin-top:10px;line-height:1.5">Este es el mismo estilo que verán tus viajeros en su app: logo y color se aplican automáticamente.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:20px">
+          <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:6px">🎟️ Integraciones</div>
+          <div style="font-size:12px;color:var(--mu);margin-bottom:14px;line-height:1.5">Sumá tu link de afiliado de Civitatis para que tus viajeros puedan reservar una excursión desde su app cuando no saben qué hacer. Si compran usando ese link, Civitatis te paga la comisión directamente a vos.</div>
+          <div class="inp-g">
+            <label class="inp-lbl">Link de afiliado de Civitatis</label>
+            <input class="inp" id="cfg-civitatis" placeholder="https://www.civitatis.com/es/roma/?aid=tu-agencia" oninput="onCivitatisChange(this)">
+          </div>
+        </div>
+      </div><!-- /config -->
+
+      <!-- ── TRIP DETAIL VIEW ───────────────────────────────────────────── -->
+      <div class="view" id="view-trip">
+
+        <div class="back-row">
+          <div class="back-btn" onclick="go('dashboard')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Volver a Viajes
+          </div>
+        </div>
+
+        <div class="trip-header">
+          <div>
+            <div class="trip-title" id="trip-title">Viaje</div>
+            <div class="trip-meta" id="trip-meta">—</div>
+          </div>
+          <div class="trip-actions">
+            <button class="btn btn-outline" onclick="resendTripAccess()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Reenviar acceso
+            </button>
+            <button class="btn btn-primary" onclick="markTripReady()">✓ Marcar como listo</button>
+          </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tab-bar">
+          <div class="tab on" data-tab="resumen" onclick="showTab('resumen')">Resumen</div>
+          <div class="tab" data-tab="servicios" onclick="showTab('servicios')">Servicios</div>
+          <div class="tab" data-tab="documentos" onclick="showTab('documentos')">Documentos</div>
+          <div class="tab" data-tab="itinerario" onclick="showTab('itinerario')">Itinerario ✨</div>
+        </div>
+
+        <!-- ── TAB: RESUMEN ─────────────────────────────────────────────── -->
+        <div class="tab-panel on" id="tab-resumen">
+          <div id="trip-travelers-wrap"></div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="card">
+              <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:12px">Datos del viaje</div>
+              <div id="trip-data-card"></div>
+            </div>
+            <div class="card">
+              <div style="font-size:13px;font-weight:700;color:var(--tx);margin-bottom:12px">Categorías cargadas</div>
+              <div class="prog-items" id="trip-progress-items"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── TAB: SERVICIOS ───────────────────────────────────────────── -->
+        <div class="tab-panel" id="tab-servicios">
+
+          <!-- TRANSPORTE -->
+          <div class="service-section">
+            <div class="service-header">
+              <div class="service-title"><span>🧭</span> Transporte</div>
+              <div class="service-actions">
+                <button class="btn btn-outline btn-sm" onclick="toggleFlightLookup()">🔍 Buscar vuelo por nº</button>
+                <button class="btn btn-outline btn-sm" onclick="openManualServiceModal('transport','transporte')">+ Manual</button>
+              </div>
+            </div>
+            <div class="section-sub" style="margin:-6px 0 12px">Vuelo, tren, bus, ferry, auto o crucero — cualquier tramo que mueva al viajero entre puntos.</div>
+
+            <div class="flight-lookup" id="fl-lookup" style="display:none">
+              <div class="fl-title">🔍 Autocompletar vuelo por número</div>
+              <div class="fl-row">
+                <div class="fl-inp-g"><div class="fl-lbl">Nº de vuelo</div><input class="fl-inp" id="fl-num" placeholder="ej: AM0029" value="AM0029"></div>
+                <div class="fl-inp-g"><div class="fl-lbl">Fecha</div><input class="fl-inp" id="fl-date" placeholder="ej: 08 Oct" value="08 Oct 2026"></div>
+                <button class="btn btn-primary btn-sm" onclick="lookupFlight()" style="align-self:flex-end;margin-bottom:1px">Buscar vuelo</button>
+              </div>
+              <div id="fl-result" style="display:none">
+                <div class="fl-result-title">✓ Vuelo encontrado — revisá los datos</div>
+                <div class="fl-fields">
+                  <div><div class="fl-field-lbl">Aerolínea</div><div class="fl-field-val">Aeroméxico</div></div>
+                  <div><div class="fl-field-lbl">Ruta</div><div class="fl-field-val">EZE → MEX</div></div>
+                  <div><div class="fl-field-lbl">Salida</div><div class="fl-field-val">08 Oct · 23:25 hs</div></div>
+                  <div><div class="fl-field-lbl">Llegada</div><div class="fl-field-val">09 Oct · 06:05 hs</div></div>
+                  <div><div class="fl-field-lbl">Reserva</div><div class="fl-field-val">LQRKKZ</div></div>
+                  <div><div class="fl-field-lbl">Duración</div><div class="fl-field-val">9h 40m</div></div>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="confirmFlight()">✓ Confirmar y guardar vuelo</button>
+              </div>
+            </div>
+
+            <div id="transport-list"></div>
+          </div>
+
+          <!-- ALOJAMIENTO -->
+          <div class="service-section">
+            <div class="service-header">
+              <div class="service-title"><span>🏨</span> Alojamiento</div>
+              <div class="service-actions">
+                <button class="btn btn-ai btn-sm" onclick="document.getElementById('hotel-file').click()">🤖 Subir voucher (IA)</button>
+                <button class="btn btn-outline btn-sm" onclick="openManualServiceModal('hotel','alojamiento')">+ Manual</button>
+              </div>
+            </div>
+            <input type="file" id="hotel-file" class="file-input-hidden" accept=".pdf,image/*" onchange="triggerFileParse('hotel', this)">
+
+            <div class="parse-split" id="hotel-parse-split" style="display:none">
+              <div class="parse-viewer">
+                <div class="parse-viewer-hd">📄 <span id="hotel-viewer-name">—</span></div>
+                <div class="parse-viewer-box" id="hotel-viewer-box"></div>
+              </div>
+              <div>
+                <div id="hotel-spinner" class="ai-spinner">
+                  <div class="spin"></div>
+                  <div class="spinner-text">🤖 Leyendo el voucher con IA…</div>
+                </div>
+                <div class="ai-result-card" id="hotel-result">
+                  <div class="ai-result-header">
+                    <span class="ai-badge">✨ IA detectó</span>
+                    <div><div class="ai-result-title">Revisá los campos y confirmá</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Archivo: <span id="hotel-filename">—</span></div></div>
+                  </div>
+                  <div class="ai-fields" id="hotel-ai-fields"></div>
+                  <div class="ai-actions">
+                    <button class="btn-confirm" onclick="confirmParse('hotel')">✓ Confirmar y guardar</button>
+                    <button class="btn btn-ghost btn-sm" onclick="discardParse('hotel')">Descartar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="hotel-list"></div>
+          </div>
+
+          <!-- EXCURSIONES -->
+          <div class="service-section">
+            <div class="service-header">
+              <div class="service-title"><span>🗺</span> Excursiones</div>
+              <div class="service-actions">
+                <button class="btn btn-outline btn-sm" onclick="openManualServiceModal('excursions','excursión')">+ Agregar excursión</button>
+              </div>
+            </div>
+            <div id="excursions-list"></div>
+          </div>
+
+          <!-- SEGURO -->
+          <div class="service-section">
+            <div class="service-header">
+              <div class="service-title"><span>🛡</span> Seguro de viaje</div>
+              <div class="service-actions">
+                <button class="btn btn-ai btn-sm" onclick="document.getElementById('seguro-file').click()">🤖 Subir póliza (IA)</button>
+                <button class="btn btn-outline btn-sm" onclick="openManualServiceModal('insurance','seguro')">+ Manual</button>
+              </div>
+            </div>
+            <input type="file" id="seguro-file" class="file-input-hidden" accept=".pdf,image/*" onchange="triggerFileParse('seguro', this)">
+
+            <div class="parse-split" id="seguro-parse-split" style="display:none">
+              <div class="parse-viewer">
+                <div class="parse-viewer-hd">📄 <span id="seguro-viewer-name">—</span></div>
+                <div class="parse-viewer-box" id="seguro-viewer-box"></div>
+              </div>
+              <div>
+                <div id="seguro-spinner" class="ai-spinner">
+                  <div class="spin"></div>
+                  <div class="spinner-text">🤖 Leyendo la póliza con IA…</div>
+                </div>
+                <div class="ai-result-card" id="seguro-result">
+                  <div class="ai-result-header">
+                    <span class="ai-badge">✨ IA detectó</span>
+                    <div><div class="ai-result-title">Revisá los campos y confirmá</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Archivo: <span id="seguro-filename">—</span></div></div>
+                  </div>
+                  <div class="ai-fields" id="seguro-ai-fields"></div>
+                  <div class="ai-actions">
+                    <button class="btn-confirm" onclick="confirmParse('seguro')">✓ Confirmar y guardar</button>
+                    <button class="btn btn-ghost btn-sm" onclick="discardParse('seguro')">Descartar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="insurance-list"></div>
+          </div>
+        </div><!-- /servicios -->
+
+        <!-- ── TAB: DOCUMENTOS ──────────────────────────────────────────── -->
+        <div class="tab-panel" id="tab-documentos">
+
+          <div style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border:1.5px solid #c4b5fd;border-radius:var(--r-md);padding:14px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px">
+            <span style="font-size:22px">🤖</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#3b0764">Feature estrella: parseo automático con IA</div>
+              <div style="font-size:12px;color:#6d28d9;margin-top:3px;line-height:1.5">Subí el archivo → la IA lo lee → los campos se completan solos. Vos solo revisás y confirmás. Funciona para seguros, vouchers de hotel, traslados y boarding passes.</div>
+            </div>
+          </div>
+
+          <div class="drop-zone" id="doc-dropzone" onclick="document.getElementById('doc-file').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDocDrop(event)">
+            <div class="drop-icon">📂</div>
+            <div class="drop-title">Arrastrá un archivo acá o hacé clic para subir</div>
+            <div class="drop-sub">La IA va a leer el documento y completar los campos automáticamente</div>
+          </div>
+          <input type="file" id="doc-file" class="file-input-hidden" accept=".pdf,image/*" onchange="triggerFileParse('boarding', this)">
+
+          <div class="parse-split" id="boarding-parse-split" style="display:none">
+            <div class="parse-viewer">
+              <div class="parse-viewer-hd">📄 <span id="boarding-viewer-name">—</span></div>
+              <div class="parse-viewer-box" id="boarding-viewer-box"></div>
+            </div>
+            <div>
+              <div id="boarding-spinner" class="ai-spinner">
+                <div class="spin"></div>
+                <div class="spinner-text">🤖 Leyendo el documento con IA… detectando tipo de archivo…</div>
+              </div>
+              <div class="ai-result-card" id="boarding-result">
+                <div class="ai-result-header">
+                  <span class="ai-badge">✨ IA detectó</span>
+                  <div><div class="ai-result-title">Revisá los campos y confirmá</div><div style="font-size:11px;color:var(--mu);margin-top:2px">Archivo: <span id="boarding-filename">—</span></div></div>
+                </div>
+                <div class="ai-fields" id="boarding-ai-fields"></div>
+                <div class="ai-actions">
+                  <button class="btn-confirm" onclick="confirmParse('boarding')">✓ Confirmar y guardar documento</button>
+                  <button class="btn btn-ghost btn-sm" onclick="discardParse('boarding')">Descartar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-header" style="margin-top:8px">
+            <div class="section-title">Documentos cargados</div>
+          </div>
+          <div class="doc-list" id="doc-list"></div>
+        </div><!-- /documentos -->
+
+        <!-- ── TAB: ITINERARIO AUTOMÁTICO ───────────────────────────────── -->
+        <div class="tab-panel" id="tab-itinerario">
+          <div class="auto-banner">
+            <div class="auto-banner-icon">✨</div>
+            <div>
+              <div class="auto-banner-title">Itinerario generado automáticamente</div>
+              <div class="auto-banner-sub">Se arma solo ordenando por fecha y hora los servicios que cargaste: vuelos, hotel y excursiones. No tenés que escribir nada. Si agregás o editás un servicio, el itinerario se actualiza solo.</div>
+            </div>
+          </div>
+          <div class="auto-timeline" id="tab-itinerario-body"></div>
+        </div><!-- /itinerario -->
+
+      </div><!-- /trip -->
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ── MODAL (genérico, contenido inyectado por JS) ─────────────────────── -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal-box" id="modal-body-inner"></div>
+</div>
+
+<script>
+// ── State (todo en memoria; se pierde al recargar — no hay backend) ──────────
+let _uid = 0;
+function uid(){ return 'id' + (++_uid); }
+
+const state = {
+  agency: { name:'Hybris Turismo', email:'hola@hybristurismo.com', logo:'✈', logoImg:null, color:'#0e7490', civitatisUrl:'https://www.civitatis.com/es/roma/?aid=hybristurismo' },
+  // `dni` es el identificador principal del viajero (ver openNewTravelerModal/createTraveler).
+  travelers: [
+    { id:'t1', name:'Santiago Bassi', dni:'30123456', email:'santiagobassi21@gmail.com', phone:'+54 11 4444-5555', accessSent:true },
+    { id:'t2', name:'María López', dni:'28456789', email:'maria.lopez@mail.com', phone:'+54 11 5555-2222', accessSent:true },
+    { id:'t3', name:'Carlos Rodríguez', dni:'25987654', email:'carlos.rodriguez@mail.com', phone:'+54 11 5555-3333', accessSent:false },
+    { id:'t4', name:'Ana Martínez', dni:'32345678', email:'ana.martinez@mail.com', phone:'+54 11 5555-4444', accessSent:false },
+    { id:'t5', name:'Pablo García', dni:'27890123', email:'pablo.garcia@mail.com', phone:'+54 11 5555-5555', accessSent:false },
+    { id:'t6', name:'Julieta Fernández', dni:'35678901', email:'julieta.fernandez@mail.com', phone:'+54 11 5555-6666', accessSent:false },
+  ],
+  trips: [
+    {
+      id:'trip1', nombre:'Roma', tipo:'ciudad', destinos:[{ciudad:'Roma', pais:'Italia', flag:'🇮🇹'}], travelerIds:['t1'],
+      salida:'2026-06-12', vuelta:'2026-06-19', noches:7,
+      services:{
+        transport:[
+          { id:'s1', icon:'✈', tipo:'vuelo', title:'AR1304 — EZE → FCO', detail:'Aerolíneas Argentinas · Vie 12 Jun 09:00 → Sáb 13 Jun 04:30 · 15h 30m', tag:'Ida', source:'ia', dateKey:'2026-06-12T09:00' },
+          { id:'s2', icon:'✈', tipo:'vuelo', title:'AR1305 — FCO → EZE', detail:'Aerolíneas Argentinas · Jue 19 Jun 11:00 → Vie 20 Jun 02:45 · 15h 45m', tag:'Vuelta', source:'ia', dateKey:'2026-06-19T11:00' },
+        ],
+        hotel:[
+          { id:'s3', icon:'🏨', title:'Hotel Artemide Roma', detail:'Via Nazionale 22 · Check-in 13 Jun · Check-out 19 Jun · 6 noches · Doble Superior', source:'ia', checkin:'2026-06-13T14:00', checkout:'2026-06-19T12:00' },
+        ],
+        excursions:[
+          { id:'s4', icon:'🏛', title:'Tour Coliseo y Foro Romano', detail:'3 horas · Guía en español · Entrada incluida', source:'manual', dateKey:'2026-06-13T10:00' },
+          { id:'s5', icon:'⛪', title:'Tour Vaticano y Capilla Sixtina', detail:'4 horas · Guía en español · Museos Vaticanos incluidos', source:'manual', dateKey:'2026-06-14T09:00' },
+          { id:'s6', icon:'🍽', title:'Cena — Osteria del Boccone (Trastevere)', detail:'Reserva a nombre de Bassi · 2 personas', source:'manual', dateKey:'2026-06-16T20:30' },
+        ],
+        insurance:[
+          { id:'s7', icon:'🛡', title:'Assist Card Gold Internacional', detail:'Póliza AC-2026-4821-SB · 12–19 Jun 2026 · Italia + Schengen · SOS: +1 800 999 1234', source:'ia', sitioWeb:'https://www.assistcard.com' },
+        ],
+      },
+      // `archivo` apunta al PDF real de DocumentosEjemplo/ que se usa como muestra para "Ver original"
+      // (mismo criterio que prototipo-app-viajero.html: PDF real, aunque el contenido no sea literalmente
+      // el de este viaje a Roma — ver CONTEXTO-PROYECTO.md).
+      docs:[
+        { id:'d1', icon:'🛡', name:'seguro-assist-card.pdf', sub:'Subido 7 Jun · Cargado por IA', tag:'✓ Parseado', archivo:'DocumentosEjemplo/Traslados%20y%20Excursion.pdf' },
+        { id:'d2', icon:'✈', name:'boarding-AR1304.pdf', sub:'Subido 8 Jun · Cargado por IA', tag:'✓ Parseado', archivo:'DocumentosEjemplo/E-TKT%20Giemenez%20Nelida%20Raquel.pdf' },
+        { id:'d3', icon:'🏨', name:'voucher-artemide-roma.pdf', sub:'Subido 8 Jun · Cargado por IA', tag:'✓ Parseado', archivo:'DocumentosEjemplo/04%20HTL%20Lomas%20del%20Volcan%2007%20Enero.pdf' },
+        { id:'d4', icon:'🪪', name:'pasaporte-info.pdf', sub:'Subido 9 Jun · Carga manual', tag:'Manual' },
+      ],
+    },
+    {
+      id:'trip2', nombre:'París', tipo:'ciudad', destinos:[{ciudad:'París', pais:'Francia', flag:'🇫🇷'}], travelerIds:['t2'],
+      salida:'2026-06-15', vuelta:'2026-06-22', noches:7,
+      services:{
+        transport:[{ id:'s8', icon:'✈', tipo:'vuelo', title:'AF2210 — EZE → CDG', detail:'Air France · Vie 15 Jun 21:15 → Sáb 16 Jun 15:40', tag:'Ida', source:'ia' }],
+        hotel:[{ id:'s9', icon:'🏨', title:'Hotel Le Marais', detail:'París · 7 noches · Habitación Doble', source:'ia' }],
+        excursions:[{ id:'s10', icon:'🚲', title:'City tour en bicicleta', detail:'Reserva confirmada · 3 horas', source:'manual' }],
+        insurance:[],
+      },
+      docs:[],
+    },
+    {
+      id:'trip3', nombre:'Nueva York', tipo:'ciudad', destinos:[{ciudad:'Nueva York', pais:'Estados Unidos', flag:'🇺🇸'}], travelerIds:['t3'],
+      salida:'2026-06-20', vuelta:'2026-06-28', noches:8,
+      services:{ transport:[{ id:'s11', icon:'✈', tipo:'vuelo', title:'UA845 — EZE → JFK', detail:'United Airlines · Sáb 20 Jun 23:50 → Dom 21 Jun 10:15', tag:'Ida', source:'ia' }], hotel:[], excursions:[], insurance:[] },
+      docs:[],
+    },
+    {
+      id:'trip4', nombre:'Barcelona', tipo:'ciudad', destinos:[{ciudad:'Barcelona', pais:'España', flag:'🇪🇸'}], travelerIds:['t4'],
+      salida:'2026-06-28', vuelta:'2026-07-05', noches:7,
+      services:{ transport:[{ id:'s12', icon:'✈', tipo:'vuelo', title:'IB6844 — EZE → BCN', detail:'Iberia · Dom 28 Jun 13:10 → Lun 29 Jun 08:35', tag:'Ida', source:'ia' }], hotel:[], excursions:[], insurance:[] },
+      docs:[],
+    },
+    {
+      id:'trip5', nombre:'Lisboa', tipo:'ciudad', destinos:[{ciudad:'Lisboa', pais:'Portugal', flag:'🇵🇹'}], travelerIds:['t5'],
+      salida:'2026-07-03', vuelta:'2026-07-09', noches:6,
+      services:{ transport:[], hotel:[], excursions:[], insurance:[] },
+      docs:[],
+    },
+    {
+      id:'trip6', nombre:'Crucero por el Mediterráneo', tipo:'crucero',
+      destinos:[
+        {ciudad:'Barcelona', pais:'España', flag:'🇪🇸'},
+        {ciudad:'Civitavecchia (Roma)', pais:'Italia', flag:'🇮🇹'},
+        {ciudad:'Marsella', pais:'Francia', flag:'🇫🇷'},
+      ],
+      travelerIds:['t6'],
+      salida:'2026-07-10', vuelta:'2026-07-17', noches:7,
+      services:{
+        transport:[
+          { id:'s13', icon:'✈', tipo:'vuelo', title:'IB6844 — EZE → BCN', detail:'Iberia · Vie 10 Jul 13:10 → Sáb 11 Jul 08:35', tag:'Ida', source:'ia', dateKey:'2026-07-10T13:10' },
+          { id:'s17', icon:'🚢', tipo:'crucero', title:'Crucero MSC Fantasia — Barcelona → Marsella', detail:'MSC Cruceros · Embarque 11 Jul 18:00 · Desembarque 17 Jul 08:00', tag:'Embarque', source:'ia', dateKey:'2026-07-11T18:00' },
+        ],
+        hotel:[],
+        excursions:[
+          { id:'s14', icon:'🚢', title:'Embarque — Barcelona', detail:'Puerto de Barcelona · Zarpe 22:00', source:'manual', dateKey:'2026-07-11T22:00' },
+          { id:'s15', icon:'🏛', title:'Excursión — Roma (Civitavecchia)', detail:'Visita a Roma clásica · 8 horas · Regreso al barco 18:00', source:'manual', dateKey:'2026-07-13T09:00' },
+          { id:'s16', icon:'⛵', title:'Excursión — Marsella y Calanques', detail:'Medio día · Guía en español', source:'manual', dateKey:'2026-07-15T10:00' },
+        ],
+        insurance:[],
+      },
+      docs:[],
+    },
+  ],
+  currentTripId: null,
+};
+
+function computeProgress(trip){
+  const slots = [
+    trip.services.transport.length > 0,
+    trip.services.hotel.length > 0,
+    trip.services.insurance.length > 0,
+    trip.services.excursions.length > 0,
+    trip.docs.length > 0,
+  ];
+  return Math.round((slots.filter(Boolean).length / slots.length) * 100);
+}
+state.trips.forEach(t => t.progreso = computeProgress(t));
+function syncTripProgress(trip){ trip.progreso = computeProgress(trip); }
+function currentTrip(){ return state.trips.find(t => t.id === state.currentTripId); }
+
+// ── Tipos de viaje: un viaje no es necesariamente "una ciudad" ───────────────
+// La identidad visual del viaje es su TIPO, no la bandera de un país — así
+// funciona igual de bien un roadtrip, un crucero o un viaje de naturaleza.
+const TRIP_TYPES = {
+  ciudad:   { label:'Ciudad',              icon:'🏙️' },
+  multi:    { label:'Multidestino',        icon:'🗺️' },
+  crucero:  { label:'Crucero',             icon:'🚢' },
+  roadtrip: { label:'Roadtrip',            icon:'🚗' },
+  playa:    { label:'Playa',               icon:'🏖️' },
+  aventura: { label:'Naturaleza/Aventura', icon:'🏔️' },
+  negocios: { label:'Negocios',            icon:'💼' },
+  otro:     { label:'Otro',                icon:'🧳' },
+};
+function tripIcon(trip){ return (TRIP_TYPES[trip.tipo] || TRIP_TYPES.otro).icon; }
+
+// ── Tipos de transporte: el eje de un viaje no siempre es un vuelo ───────────
+const TRANSPORT_TYPES = {
+  vuelo:   { label:'Vuelo',   icon:'✈' },
+  tren:    { label:'Tren',    icon:'🚆' },
+  bus:     { label:'Bus',     icon:'🚌' },
+  ferry:   { label:'Ferry',   icon:'⛴' },
+  auto:    { label:'Auto',    icon:'🚗' },
+  crucero: { label:'Crucero', icon:'🚢' },
+  otro:    { label:'Otro',    icon:'🧭' },
+};
+
+// ── Helpers para viajes con uno o varios destinos (lugares/países/tramos) ────
+// Un destino puede ser una ciudad, una región o un lugar sin país (ej: "Patagonia").
+function tripFlags(trip){ return [...new Set(trip.destinos.map(d=>d.flag).filter(Boolean))].join(' '); }
+function tripRoute(trip){ return trip.destinos.map(d=>d.ciudad).join(' → '); }
+function tripCountries(trip){ return [...new Set(trip.destinos.map(d=>d.pais).filter(Boolean))].join(', '); }
+
+// ── Banderas por país (best-effort): un destino sin país conocido simplemente
+// no muestra bandera — no es obligatorio para que el viaje tenga sentido ─────
+const COUNTRY_FLAGS = {
+  'argentina':'🇦🇷','brasil':'🇧🇷','chile':'🇨🇱','uruguay':'🇺🇾','paraguay':'🇵🇾','bolivia':'🇧🇴','perú':'🇵🇪','peru':'🇵🇪','colombia':'🇨🇴','ecuador':'🇪🇨','venezuela':'🇻🇪','méxico':'🇲🇽','mexico':'🇲🇽',
+  'estados unidos':'🇺🇸','eeuu':'🇺🇸','canadá':'🇨🇦','canada':'🇨🇦',
+  'españa':'🇪🇸','espana':'🇪🇸','italia':'🇮🇹','francia':'🇫🇷','portugal':'🇵🇹','alemania':'🇩🇪','reino unido':'🇬🇧','inglaterra':'🇬🇧','irlanda':'🇮🇪','holanda':'🇳🇱','países bajos':'🇳🇱','bélgica':'🇧🇪','suiza':'🇨🇭','austria':'🇦🇹','grecia':'🇬🇷','croacia':'🇭🇷','turquía':'🇹🇷','turquia':'🇹🇷',
+  'japón':'🇯🇵','japon':'🇯🇵','china':'🇨🇳','tailandia':'🇹🇭','india':'🇮🇳','indonesia':'🇮🇩','vietnam':'🇻🇳','emiratos árabes unidos':'🇦🇪','emiratos arabes unidos':'🇦🇪',
+  'egipto':'🇪🇬','marruecos':'🇲🇦','sudáfrica':'🇿🇦','sudafrica':'🇿🇦','tanzania':'🇹🇿','kenia':'🇰🇪',
+  'australia':'🇦🇺','nueva zelanda':'🇳🇿',
+};
+function flagForCountry(pais){ return COUNTRY_FLAGS[(pais||'').trim().toLowerCase()] || ''; }
+
+// ── Sample extractions para el parseo IA (datos reales de documentos de ejemplo) ──
+const SAMPLE_EXTRACTIONS = {
+  hotel: {
+    fields:[['Hotel','Hotel Lomas del Volcán'],['Check-in','07 Ene 2026 · 14:00'],['Check-out','09 Ene 2026 · 12:00'],['Habitación','Bungalow · 2 Queen Beds'],['Régimen','Alojamiento y Desayuno'],['Nº Reserva','P5TB2Z']],
+    build:()=>({ id:uid(), icon:'🏨', title:'Hotel Lomas del Volcán', detail:'San Carlos, Costa Rica · Check-in 07 Ene · Check-out 09 Ene · 2 noches', source:'ia', checkin:'2026-01-07T14:00', checkout:'2026-01-09T12:00' }),
+  },
+  seguro: {
+    fields:[['Aseguradora','Assist Card Gold'],['Nº Póliza','AC-2026-7734-XX'],['Vigencia','Según fechas del viaje'],['Cobertura médica','USD 100.000'],['Teléfono SOS','+1 800 999 1234'],['Sitio web','assistcard.com']],
+    build:()=>({ id:uid(), icon:'🛡', title:'Assist Card Gold Internacional', detail:'Cobertura médica USD 100.000 · SOS +1 800 999 1234', source:'ia', sitioWeb:'https://www.assistcard.com' }),
+  },
+  boarding: {
+    fields:[['Tipo','E-Ticket de vuelo'],['Aerolínea','Aeroméxico'],['Vuelo','AM0029'],['Ruta','EZE → MEX'],['Pasajero','GIMENEZ NELIDA RAQUEL'],['Reserva','LQRKKZ']],
+    build:(fname)=>({ id:uid(), icon:'✈', name:fname, sub:'Cargado por IA', tag:'✓ Parseado' }),
+  },
+};
+
+// ── Motor de marca (theming) ──────────────────────────────────────────────────
+function shade(hex, pct){
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n>>16)&255, g = (n>>8)&255, b = n&255;
+  r = Math.max(0, Math.round(r*(1-pct))); g = Math.max(0, Math.round(g*(1-pct))); b = Math.max(0, Math.round(b*(1-pct)));
+  return '#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function tint(hex, pct){
+  const n = parseInt(hex.slice(1), 16);
+  let r = (n>>16)&255, g = (n>>8)&255, b = n&255;
+  r = Math.round(r+(255-r)*pct); g = Math.round(g+(255-g)*pct); b = Math.round(b+(255-b)*pct);
+  return '#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function applyBrand(){
+  const c = state.agency.color;
+  document.documentElement.style.setProperty('--brand', c);
+  document.documentElement.style.setProperty('--brand-d', shade(c, 0.18));
+  document.documentElement.style.setProperty('--brand-l', tint(c, 0.92));
+  document.documentElement.style.setProperty('--brand-lm', tint(c, 0.72));
+}
+function initials(name){ return name.split(' ').filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join(''); }
+function brandMark(){ return state.agency.logoImg ? '<img src="'+state.agency.logoImg+'" alt="logo">' : state.agency.logo; }
+
+function renderChrome(){
+  document.title = state.agency.name + ' — Panel de la Agencia';
+  document.querySelectorAll('.login-ico, .sb-ico').forEach(el => el.innerHTML = brandMark());
+  document.getElementById('login-brand-name').textContent = state.agency.name;
+  document.getElementById('login-email').value = state.agency.email;
+  document.getElementById('sb-name').textContent = state.agency.name;
+  const ini = initials(state.agency.name);
+  document.getElementById('sb-avatar').textContent = ini;
+  document.getElementById('sb-uname').textContent = state.agency.name;
+  document.getElementById('sb-uemail').textContent = state.agency.email;
+  document.getElementById('tb-avatar').textContent = ini;
+  document.getElementById('tb-avatar').title = state.agency.name;
+}
+
+// ── Formato ────────────────────────────────────────────────────────────────
+function fmtDate(iso){
+  if(!iso) return '—';
+  const d = new Date(iso+'T00:00:00');
+  return d.toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'});
+}
+function fmtDateTime(iso){
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'short'}) + ' · ' + d.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+}
+// ── Dashboard ──────────────────────────────────────────────────────────────
+function renderDashboard(){
+  document.getElementById('m-trips').textContent = state.trips.length;
+  document.getElementById('m-travelers').textContent = state.travelers.length;
+  document.getElementById('m-docs-pend').textContent = state.trips.filter(t=>t.progreso<100).length;
+  document.getElementById('sbn-trip-count').textContent = state.trips.length;
+  const tbody = document.getElementById('trips-tbody');
+  tbody.innerHTML = state.trips.map(t=>{
+    const names = t.travelerIds.map(id=>{ const tv = state.travelers.find(x=>x.id===id); return tv ? tv.name : null; }).filter(Boolean).join(', ') || '— sin viajero —';
+    return '<tr class="clickable" onclick="openTrip(\''+t.id+'\')">'
+      + '<td class="td-main"><span class="td-flag">'+tripIcon(t)+'</span>'+t.nombre
+      + (t.destinos.length>1 ? '<div class="td-sub">'+tripRoute(t)+' '+tripFlags(t)+'</div>' : '')
+      + '</td>'
+      + '<td>'+names+'</td>'
+      + '<td>'+fmtDate(t.salida)+'</td>'
+      + '<td>'+fmtDate(t.vuelta)+'</td>'
+      + '<td>📄 '+t.docs.length+' documento'+(t.docs.length===1?'':'s')+'</td>'
+      + '<td><button class="btn btn-outline btn-sm" onclick="event.stopPropagation();openTrip(\''+t.id+'\')">Ver →</button></td>'
+      + '</tr>';
+  }).join('');
+}
+
+// ── Viajeros ───────────────────────────────────────────────────────────────
+function renderTravelers(){
+  const wrap = document.getElementById('travelers-list');
+  wrap.innerHTML = state.travelers.map(t=>{
+    const tripCount = state.trips.filter(tr=>tr.travelerIds.includes(t.id)).length;
+    return '<div class="traveler-row">'
+      + '<div class="vc-avatar">'+(initials(t.name)[0]||'?')+'</div>'
+      + '<div class="t-info"><div class="t-name">'+t.name+' <span style="font-weight:400;color:var(--mu)">· DNI '+(t.dni||'—')+'</span></div><div class="t-contact">'+t.email+' &nbsp;·&nbsp; '+t.phone+'</div><div class="t-trips">'+tripCount+' viaje'+(tripCount===1?'':'s')+'</div></div>'
+      + '<span class="pill '+(t.accessSent?'p-gn':'p-mu')+'">'+(t.accessSent?'✓ Acceso enviado':'○ Sin acceso')+'</span>'
+      + '<button class="btn btn-outline btn-sm" onclick="sendAccess(\''+t.id+'\')">'+(t.accessSent?'Reenviar':'Enviar')+' acceso</button>'
+      + '</div>';
+  }).join('');
+}
+function sendAccess(id){
+  const t = state.travelers.find(x=>x.id===id);
+  if(!t) return;
+  t.accessSent = true;
+  renderTravelers();
+  if(state.currentTripId) renderTripSummary();
+  showToast('✓ Acceso enviado a '+t.name);
+}
+
+// ── Trip detail: render orchestrator ───────────────────────────────────────
+function openTrip(id){
+  state.currentTripId = id;
+  go('trip');
+  renderTrip();
+}
+function renderTrip(){
+  const trip = currentTrip();
+  if(!trip) return;
+  document.getElementById('topbar-title').textContent = tripIcon(trip) + ' ' + trip.nombre;
+  document.getElementById('trip-title').textContent = tripIcon(trip) + ' ' + trip.nombre;
+  const travelers = trip.travelerIds.map(id=>state.travelers.find(t=>t.id===id)).filter(Boolean);
+  const rutaMeta = trip.destinos.length>1 ? tripRoute(trip) : tripCountries(trip);
+  document.getElementById('trip-meta').textContent = (travelers.map(t=>t.name).join(', ') || 'Sin viajeros') + ' · ' + fmtDate(trip.salida) + ' – ' + fmtDate(trip.vuelta) + ' · ' + trip.noches + ' noches' + (rutaMeta ? ' · ' + rutaMeta : '');
+  renderTripSummary();
+  renderTripServices();
+  renderTripDocs();
+  rebuildItinerary();
+  showTab('resumen');
+}
+
+function renderTripSummary(){
+  const trip = currentTrip();
+  if(!trip) return;
+  const travelers = trip.travelerIds.map(id=>state.travelers.find(t=>t.id===id)).filter(Boolean);
+  const cardsHtml = travelers.length ? travelers.map(t=>
+    '<div class="viajero-card">'
+    + '<div class="vc-avatar">'+(initials(t.name)[0]||'?')+'</div>'
+    + '<div style="flex:1"><div class="vc-name">'+t.name+' <span style="font-weight:400;color:var(--mu)">· DNI '+(t.dni||'—')+'</span></div><div class="vc-contact">'+t.email+' &nbsp;·&nbsp; '+t.phone+'</div>'
+    + '<div class="vc-status"><span class="pill '+(t.accessSent?'p-gn':'p-mu')+'">'+(t.accessSent?'✓ Acceso enviado':'○ Sin acceso')+'</span></div></div>'
+    + '<button class="btn btn-outline btn-sm" onclick="sendAccess(\''+t.id+'\')">'+(t.accessSent?'Reenviar':'Enviar')+' magic link</button>'
+    + '</div>'
+  ).join('') : '<div style="font-size:12px;color:var(--mu);padding:8px 2px 14px">Este viaje todavía no tiene viajeros asignados.</div>';
+  document.getElementById('trip-travelers-wrap').innerHTML = cardsHtml + '<button class="btn btn-outline btn-sm" onclick="openAddTravelerToTripModal()">+ Agregar viajero</button>';
+
+  const destinoVal = trip.destinos.length>1
+    ? tripRoute(trip)+' '+tripFlags(trip)
+    : trip.destinos[0].ciudad+(trip.destinos[0].pais?', '+trip.destinos[0].pais:'')+' '+tripFlags(trip);
+  document.getElementById('trip-data-card').innerHTML =
+    '<div class="data-row"><span class="data-lbl">Tipo de viaje</span><span class="data-val">'+tripIcon(trip)+' '+(TRIP_TYPES[trip.tipo]||TRIP_TYPES.otro).label+'</span></div>'
+    + '<div class="data-row"><span class="data-lbl">Destino</span><span class="data-val">'+destinoVal+'</span></div>'
+    + '<div class="data-row"><span class="data-lbl">Salida</span><span class="data-val">'+fmtDate(trip.salida)+'</span></div>'
+    + '<div class="data-row"><span class="data-lbl">Regreso</span><span class="data-val">'+fmtDate(trip.vuelta)+'</span></div>'
+    + '<div class="data-row"><span class="data-lbl">Duración</span><span class="data-val">'+trip.noches+' noches</span></div>'
+    + '<div class="data-row"><span class="data-lbl">Viajeros</span><span class="data-val">'+travelers.length+'</span></div>';
+
+  document.getElementById('trip-progress-items').innerHTML = [
+    ['Transporte', trip.services.transport.length>0],
+    ['Hotel', trip.services.hotel.length>0],
+    ['Seguro', trip.services.insurance.length>0],
+    ['Excursiones', trip.services.excursions.length>0],
+    ['Documentos', trip.docs.length>0],
+  ].map(([label,ok])=>'<span class="pill '+(ok?'p-gn':'p-mu')+'">'+(ok?'✓':'○')+' '+label+'</span>').join('');
+}
+
+function serviceItemHtml(s){
+  return '<div class="service-item"><div class="si-icon">'+(s.icon||'•')+'</div>'
+    + '<div class="si-body"><div class="si-title">'+s.title+'</div><div class="si-detail">'+(s.detail||'')+'</div>'
+    + (s.sitioWeb ? '<div class="si-detail" style="margin-top:2px"><a href="'+s.sitioWeb+'" target="_blank" style="color:var(--brand);font-weight:600;text-decoration:none">🔗 '+s.sitioWeb.replace('https://','')+' ↗</a> <span class="pill p-pu" style="margin-left:2px">de la aseguradora</span></div>' : '')
+    + '<div class="si-pills">'+(s.source==='ia' ? '<span class="pill p-gn">✓ Cargado por IA</span>' : '<span class="pill p-mu">Carga manual</span>')+(s.tag?'<span class="pill p-bl">'+s.tag+'</span>':'')+'</div></div></div>';
+}
+function emptyServiceHtml(label){
+  return '<div style="font-size:12px;color:var(--mu);padding:14px 2px">Todavía no cargaste '+label+' para este viaje.</div>';
+}
+function renderTripServices(){
+  const trip = currentTrip();
+  if(!trip) return;
+  document.getElementById('transport-list').innerHTML = trip.services.transport.map(serviceItemHtml).join('') || emptyServiceHtml('transporte');
+  document.getElementById('hotel-list').innerHTML = trip.services.hotel.map(serviceItemHtml).join('') || emptyServiceHtml('alojamiento');
+  document.getElementById('excursions-list').innerHTML = trip.services.excursions.map(serviceItemHtml).join('') || emptyServiceHtml('excursiones');
+  document.getElementById('insurance-list').innerHTML = trip.services.insurance.map(serviceItemHtml).join('') || emptyServiceHtml('seguro');
+}
+
+function renderTripDocs(){
+  const trip = currentTrip();
+  if(!trip) return;
+  const dlIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+  document.getElementById('doc-list').innerHTML = trip.docs.map(d=>
+    '<div class="doc-item"><div class="doc-item-icon">'+(d.icon||'📄')+'</div><div><div class="doc-item-name">'+d.name+'</div><div class="doc-item-sub">'+d.sub+'</div></div>'
+    + '<div class="doc-item-right">'
+    + (d.archivo ? '<button class="btn btn-outline btn-sm" onclick="openDocViewer(\''+d.archivo+'\',\''+d.name.replace(/'/g,"\\'")+'\')">Ver original</button>' : '')
+    + '<span class="pill '+((d.tag||'').includes('Parseado')?'p-gn':'p-mu')+'">'+(d.tag||'Manual')+'</span><button class="btn btn-icon">'+dlIcon+'</button></div></div>'
+  ).join('') || '<div style="font-size:12px;color:var(--mu);padding:14px 2px">Todavía no se cargaron documentos.</div>';
+}
+
+function rebuildItinerary(){
+  const trip = currentTrip();
+  if(!trip) return;
+  const wrap = document.getElementById('tab-itinerario-body');
+  const items = [];
+  trip.services.transport.forEach(tr=>{ if(tr.dateKey) items.push({dateKey:tr.dateKey, icon:tr.icon||'🧭', bg:'#eff6ff', title:tr.title, detail:tr.detail, source:tr.source}); });
+  trip.services.hotel.forEach(h=>{
+    if(h.checkin) items.push({dateKey:h.checkin, icon:'🏨', bg:'#d1fae5', title:'Check-in — '+h.title, detail:h.detail, source:h.source});
+    if(h.checkout) items.push({dateKey:h.checkout, icon:'🏨', bg:'#d1fae5', title:'Check-out — '+h.title, detail:h.detail, source:h.source});
+  });
+  trip.services.excursions.forEach(e=>{ items.push({dateKey:e.dateKey||null, icon:e.icon||'🗺', bg:'#fef3c7', title:e.title, detail:e.detail, source:e.source}); });
+
+  if(!items.length){
+    wrap.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--mu);font-size:13px">Todavía no hay servicios cargados. Sumá transporte, hotel o excursiones y el itinerario se arma solo.</div>';
+    return;
+  }
+  const dated = items.filter(i=>i.dateKey).sort((a,b)=> new Date(a.dateKey) - new Date(b.dateKey));
+  const undated = items.filter(i=>!i.dateKey);
+  const all = [...dated, ...undated];
+  wrap.innerHTML = all.map((it,i)=>
+    '<div class="at-item"><div class="at-left"><div class="at-dot" style="background:'+it.bg+'">'+it.icon+'</div>'+(i<all.length-1?'<div class="at-line"></div>':'')+'</div>'
+    + '<div class="at-body"><div class="at-date">'+(it.dateKey?fmtDateTime(it.dateKey):'Sin fecha asignada')+'</div>'
+    + '<div class="at-title">'+it.title+'</div><div class="at-detail">'+(it.detail||'')+'</div>'
+    + '<div class="at-source"><span style="color:'+(it.source==='ia'?'var(--brand)':'var(--am)')+'">●</span> Generado desde: Servicio cargado '+(it.source==='ia'?'por IA':'manualmente')+'</div></div></div>'
+  ).join('');
+}
+
+// ── Login ────────────────────────────────────────────────────────────────────
+function doLogin(){
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+}
+
+// ── Navigation ───────────────────────────────────────────────────────────────
+function go(view){
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  document.getElementById('view-' + view).classList.add('on');
+  const titles = { dashboard:'Viajes', travelers:'Viajeros', config:'Personalización', trip:'Viaje' };
+  document.getElementById('topbar-title').textContent = titles[view] || view;
+  document.querySelectorAll('.sbn').forEach(n => n.classList.remove('on'));
+  document.querySelectorAll('.sbn[data-view="' + view + '"]').forEach(n => n.classList.add('on'));
+  if(view === 'travelers') renderTravelers();
+  if(view === 'config') renderConfig();
+}
+
+// ── Tabs (data-driven, no por índice) ─────────────────────────────────────────
+function showTab(tab){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.tab === tab));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+  document.getElementById('tab-' + tab).classList.add('on');
+}
+
+// ── Trip header actions ────────────────────────────────────────────────────
+function resendTripAccess(){
+  const trip = currentTrip();
+  if(!trip) return;
+  const first = state.travelers.find(t=>t.id===trip.travelerIds[0]);
+  if(!first) return showToast('Este viaje no tiene viajeros todavía');
+  sendAccess(first.id);
+}
+function markTripReady(){
+  const trip = currentTrip();
+  if(!trip) return;
+  trip.progreso = 100;
+  renderTripSummary();
+  renderDashboard();
+  showToast('✓ Viaje marcado como listo');
+}
+
+// ── Modal genérico ─────────────────────────────────────────────────────────
+function openModal(html){
+  document.getElementById('modal-body-inner').innerHTML = html;
+  document.getElementById('modal-overlay').classList.add('on');
+}
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('on');
+}
+
+let tripFormSelected = [];
+function toggleTripTraveler(id, el){
+  el.classList.toggle('on');
+  tripFormSelected = tripFormSelected.includes(id) ? tripFormSelected.filter(x=>x!==id) : [...tripFormSelected, id];
+}
+
+// ── Selector de viajeros con buscador (nombre / email / DNI) + selección múltiple ──
+function travelerSearchKey(t){
+  return (t.name+' '+(t.email||'')+' '+(t.dni||'')).toLowerCase();
+}
+function travelerPickerRowHtml(t, selectedIds){
+  return '<div class="tp-row'+(selectedIds.includes(t.id)?' on':'')+'" data-id="'+t.id+'" data-search="'+travelerSearchKey(t)+'" onclick="toggleTripTraveler(\''+t.id+'\', this)">'
+    + '<div class="tp-check"></div>'
+    + '<div class="tp-info"><div class="tp-name">'+t.name+'</div><div class="tp-meta">DNI '+(t.dni||'—')+' &nbsp;·&nbsp; '+(t.email||'—')+'</div></div>'
+    + '</div>';
+}
+function travelerPickerHtml(travelers, selectedIds){
+  return travelers.length ? travelers.map(t=>travelerPickerRowHtml(t, selectedIds)).join('') : '<div class="tp-empty">No hay viajeros cargados todavía.</div>';
+}
+function filterTravelerPicker(searchInputId, listId){
+  const q = document.getElementById(searchInputId).value.trim().toLowerCase();
+  const list = document.getElementById(listId);
+  const rows = list.querySelectorAll('.tp-row');
+  let visible = 0;
+  rows.forEach(row=>{
+    const match = row.dataset.search.includes(q);
+    row.style.display = match ? 'flex' : 'none';
+    if(match) visible++;
+  });
+  let empty = list.querySelector('.tp-empty-filter');
+  if(!visible && rows.length){
+    if(!empty){
+      empty = document.createElement('div');
+      empty.className = 'tp-empty tp-empty-filter';
+      list.appendChild(empty);
+    }
+    empty.textContent = 'Sin resultados para "'+q+'".';
+  } else if(empty){
+    empty.remove();
+  }
+}
+
+// ── Modal: nuevo viajero ────────────────────────────────────────────────────
+function openNewTravelerModal(){
+  openModal(
+    '<div class="modal-head"><div class="modal-title">Nuevo viajero</div><button class="modal-close" onclick="closeModal()">×</button></div>'
+    + '<div class="modal-body">'
+    + '<div class="inp-g"><label class="inp-lbl">Nombre y apellido</label><input class="inp" id="tv-name" placeholder="ej: Julieta Fernández"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">DNI</label><input class="inp" id="tv-dni" placeholder="ej: 30123456"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Email</label><input class="inp" id="tv-email" type="email" placeholder="ej: julieta@mail.com"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Teléfono</label><input class="inp" id="tv-phone" placeholder="ej: +54 11 1234-5678"></div>'
+    + '</div>'
+    + '<div class="modal-foot"><button class="btn btn-outline" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="createTraveler()">Crear cuenta de viajero</button></div>'
+  );
+}
+function createTraveler(){
+  const name = document.getElementById('tv-name').value.trim();
+  if(!name) return showToast('Ingresá un nombre');
+  const dni = document.getElementById('tv-dni').value.trim();
+  if(!dni) return showToast('Ingresá el DNI');
+  const email = document.getElementById('tv-email').value.trim() || '—';
+  const phone = document.getElementById('tv-phone').value.trim() || '—';
+  state.travelers.push({ id:uid(), name, dni, email, phone, accessSent:false });
+  closeModal();
+  renderTravelers();
+  showToast('✓ Cuenta de viajero creada');
+}
+
+// ── Modal: nuevo viaje ──────────────────────────────────────────────────────
+// Un "destino" es cualquier lugar (ciudad, región, parque, escala de crucero…);
+// el país es opcional y solo se usa para mostrar una bandera si hay match.
+function destinoRowHtml(){
+  return '<div class="destino-row">'
+    + '<input class="inp" placeholder="Lugar (ej: Roma, Patagonia, Serengeti)" data-field="ciudad">'
+    + '<input class="inp" placeholder="País o región (opcional)" data-field="pais">'
+    + '<button class="btn-icon" type="button" title="Quitar destino" onclick="removeDestinoRow(this)">×</button>'
+    + '</div>';
+}
+function addDestinoRow(){
+  document.getElementById('nt-destinos').insertAdjacentHTML('beforeend', destinoRowHtml());
+}
+function removeDestinoRow(btn){
+  const wrap = document.getElementById('nt-destinos');
+  if(wrap.children.length > 1) btn.closest('.destino-row').remove();
+}
+function collectDestinos(containerId){
+  return [...document.querySelectorAll('#'+containerId+' .destino-row')].map(row=>{
+    const pais = row.querySelector('[data-field="pais"]').value.trim();
+    return {
+      ciudad: row.querySelector('[data-field="ciudad"]').value.trim(),
+      pais,
+      flag: flagForCountry(pais),
+    };
+  }).filter(d=>d.ciudad);
+}
+
+let tripFormType = 'ciudad';
+function selectTripType(key, el){
+  tripFormType = key;
+  el.parentElement.querySelectorAll('.chip-opt').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+}
+function tripTypeChipsHtml(){
+  return Object.entries(TRIP_TYPES).map(([key,def])=>
+    '<div class="chip-opt'+(key===tripFormType?' on':'')+'" onclick="selectTripType(\''+key+'\', this)">'+def.icon+' '+def.label+'</div>'
+  ).join('');
+}
+function openNewTripModal(){
+  tripFormSelected = [];
+  tripFormType = 'ciudad';
+  openModal(
+    '<div class="modal-head"><div class="modal-title">Nuevo viaje</div><button class="modal-close" onclick="closeModal()">×</button></div>'
+    + '<div class="modal-body">'
+    + '<div class="inp-g"><label class="inp-lbl">Nombre del viaje</label><input class="inp" id="nt-nombre" placeholder="ej: Cancún, Ruta 40, o Crucero por el Mediterráneo"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Tipo de viaje</label><div class="chip-select" id="nt-tipo">'+tripTypeChipsHtml()+'</div></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Destinos</label><div id="nt-destinos">'+destinoRowHtml()+'</div>'
+    + '<button class="btn btn-outline btn-sm" type="button" onclick="addDestinoRow()">+ Agregar otro destino</button></div>'
+    + '<div class="form-row"><div class="inp-g"><label class="inp-lbl">Fecha de salida</label><input class="inp" id="nt-salida" type="date"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Fecha de vuelta</label><input class="inp" id="nt-vuelta" type="date"></div></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Viajeros del viaje</label>'
+    + '<input class="inp" id="nt-traveler-search" placeholder="Buscar por nombre, email o DNI…" oninput="filterTravelerPicker(\'nt-traveler-search\',\'nt-travelers\')">'
+    + '<div class="traveler-picker" id="nt-travelers">'+travelerPickerHtml(state.travelers, [])+'</div></div>'
+    + '<div class="inp-g"><label class="inp-lbl">¿Viajero nuevo? Cargalo acá (opcional)</label>'
+    + '<div class="form-row"><input class="inp" id="nt-new-name" placeholder="Nombre y apellido"><input class="inp" id="nt-new-dni" placeholder="DNI"><input class="inp" id="nt-new-email" placeholder="Email"></div></div>'
+    + '</div>'
+    + '<div class="modal-foot"><button class="btn btn-outline" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="createTrip()">Crear viaje</button></div>'
+  );
+}
+function createTrip(){
+  const destinos = collectDestinos('nt-destinos');
+  if(!destinos.length) return showToast('Ingresá al menos un destino');
+  const nombre = document.getElementById('nt-nombre').value.trim() || destinos[0].ciudad;
+  const salida = document.getElementById('nt-salida').value;
+  const vuelta = document.getElementById('nt-vuelta').value;
+  const newName = document.getElementById('nt-new-name').value.trim();
+  const newDni = document.getElementById('nt-new-dni').value.trim();
+  const newEmail = document.getElementById('nt-new-email').value.trim();
+  let ids = [...tripFormSelected];
+  if(newName){
+    if(!newDni) return showToast('Ingresá el DNI del viajero nuevo');
+    const t = { id:uid(), name:newName, dni:newDni, email:newEmail||'—', phone:'—', accessSent:false };
+    state.travelers.push(t);
+    ids.push(t.id);
+  }
+  const noches = (salida && vuelta) ? Math.max(0, Math.round((new Date(vuelta) - new Date(salida)) / 86400000)) : 0;
+  const trip = {
+    id: uid(), nombre, tipo: tripFormType, destinos, travelerIds: ids,
+    salida, vuelta, noches,
+    services:{ transport:[], hotel:[], excursions:[], insurance:[] }, docs:[],
+  };
+  trip.progreso = computeProgress(trip);
+  state.trips.push(trip);
+  closeModal();
+  renderDashboard();
+  renderTravelers();
+  showToast('✓ Viaje creado');
+  openTrip(trip.id);
+}
+
+// ── Modal: agregar viajero a un viaje existente ─────────────────────────────
+function openAddTravelerToTripModal(){
+  const trip = currentTrip();
+  if(!trip) return;
+  const available = state.travelers.filter(t=>!trip.travelerIds.includes(t.id));
+  tripFormSelected = [];
+  const chips = available.map(t=>'<div class="chip-opt" data-id="'+t.id+'" onclick="toggleTripTraveler(\''+t.id+'\', this)">'+t.name+'</div>').join('');
+  openModal(
+    '<div class="modal-head"><div class="modal-title">Agregar viajero al viaje</div><button class="modal-close" onclick="closeModal()">×</button></div>'
+    + '<div class="modal-body">'
+    + (available.length
+        ? '<div class="inp-g"><label class="inp-lbl">Viajeros existentes</label><div class="chip-select">'+chips+'</div></div>'
+        : '<div style="font-size:12px;color:var(--mu);margin-bottom:14px">Ya agregaste a todos los viajeros existentes. Podés crear uno nuevo abajo.</div>')
+    + '<div class="inp-g"><label class="inp-lbl">¿Viajero nuevo?</label>'
+    + '<div class="form-row"><input class="inp" id="at-new-name" placeholder="Nombre y apellido"><input class="inp" id="at-new-dni" placeholder="DNI"><input class="inp" id="at-new-email" placeholder="Email"></div></div>'
+    + '</div>'
+    + '<div class="modal-foot"><button class="btn btn-outline" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="addTravelersToTrip()">Agregar</button></div>'
+  );
+}
+function addTravelersToTrip(){
+  const trip = currentTrip();
+  if(!trip) return;
+  const newName = document.getElementById('at-new-name').value.trim();
+  const newDni = document.getElementById('at-new-dni').value.trim();
+  const newEmail = document.getElementById('at-new-email').value.trim();
+  let ids = [...tripFormSelected];
+  if(newName){
+    if(!newDni) return showToast('Ingresá el DNI del viajero nuevo');
+    const t = { id:uid(), name:newName, dni:newDni, email:newEmail||'—', phone:'—', accessSent:false };
+    state.travelers.push(t);
+    ids.push(t.id);
+  }
+  if(!ids.length) return showToast('Elegí o creá un viajero');
+  trip.travelerIds.push(...ids);
+  closeModal();
+  renderTravelers();
+  renderTripSummary();
+  renderDashboard();
+  showToast('✓ Viajero agregado al viaje');
+}
+
+// ── Modal: agregar servicio manual (transporte/hotel/excursiones/seguro) ────
+let manualTransportType = 'vuelo';
+function selectManualTransportType(key, el){
+  manualTransportType = key;
+  el.parentElement.querySelectorAll('.chip-opt').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+}
+function openManualServiceModal(kind, label){
+  manualTransportType = 'vuelo';
+  const transportChips = kind === 'transport'
+    ? '<div class="inp-g"><label class="inp-lbl">Tipo de transporte</label><div class="chip-select" id="ms-transport-tipo">'
+      + Object.entries(TRANSPORT_TYPES).map(([key,def])=>'<div class="chip-opt'+(key==='vuelo'?' on':'')+'" onclick="selectManualTransportType(\''+key+'\', this)">'+def.icon+' '+def.label+'</div>').join('')
+      + '</div></div>'
+    : '';
+  openModal(
+    '<div class="modal-head"><div class="modal-title">Agregar '+label+' manualmente</div><button class="modal-close" onclick="closeModal()">×</button></div>'
+    + '<div class="modal-body">'
+    + transportChips
+    + '<div class="inp-g"><label class="inp-lbl">Título</label><input class="inp" id="ms-title" placeholder="ej: '+label+'"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Fecha y hora (opcional)</label><input class="inp" id="ms-date" type="datetime-local"></div>'
+    + '<div class="inp-g"><label class="inp-lbl">Detalle</label><input class="inp" id="ms-detail" placeholder="Notas, horarios, referencia…"></div>'
+    + '</div>'
+    + '<div class="modal-foot"><button class="btn btn-outline" onclick="closeModal()">Cancelar</button><button class="btn btn-primary" onclick="saveManualService(\''+kind+'\')">Guardar</button></div>'
+  );
+}
+function saveManualService(kind){
+  const title = document.getElementById('ms-title').value.trim();
+  if(!title) return showToast('Ingresá un título');
+  const dateVal = document.getElementById('ms-date').value;
+  const detail = document.getElementById('ms-detail').value.trim();
+  const icon = kind === 'transport' ? TRANSPORT_TYPES[manualTransportType].icon : {hotel:'🏨',excursions:'🗺',insurance:'🛡'}[kind];
+  const tipo = kind === 'transport' ? manualTransportType : undefined;
+  const trip = currentTrip();
+  trip.services[kind].push({ id:uid(), icon, tipo, title, detail, dateKey: dateVal || null, source:'manual' });
+  closeModal();
+  syncTripProgress(trip);
+  renderTripServices();
+  renderTripSummary();
+  rebuildItinerary();
+  renderDashboard();
+  showToast('✓ Agregado');
+}
+
+// ── Flight lookup (autocompletar por número de vuelo) ──────────────────────
+function toggleFlightLookup(){
+  const el = document.getElementById('fl-lookup');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+function lookupFlight(){
+  const btn = event.target;
+  btn.textContent = '⏳ Buscando…';
+  btn.disabled = true;
+  document.getElementById('fl-result').style.display = 'none';
+  setTimeout(() => {
+    document.getElementById('fl-result').style.display = 'block';
+    btn.textContent = '✓ Encontrado';
+    btn.style.background = 'var(--gn)';
+  }, 1200);
+}
+function confirmFlight(){
+  const num = document.getElementById('fl-num').value.trim() || 'AM0029';
+  const trip = currentTrip();
+  if(!trip) return;
+  trip.services.transport.push({ id:uid(), icon:'✈', tipo:'vuelo', title:num+' — EZE → MEX', detail:'Aeroméxico · Mié 08 Oct 23:25 → Jue 09 Oct 06:05 · 9h 40m', tag:'Ida', source:'ia', dateKey:'2026-10-08T23:25' });
+  document.getElementById('fl-lookup').style.display = 'none';
+  document.getElementById('fl-result').style.display = 'none';
+  const btn = document.querySelector('#fl-lookup .btn-primary');
+  if(btn){ btn.textContent = 'Buscar vuelo'; btn.disabled = false; btn.style.background = ''; }
+  syncTripProgress(trip);
+  renderTripServices();
+  renderTripSummary();
+  rebuildItinerary();
+  renderDashboard();
+  showToast('✓ Vuelo ' + num + ' agregado');
+}
+
+// ── AI Parse (archivo real, extracción simulada con datos de ejemplo) ───────
+function triggerFileParse(category, inputEl){
+  const file = inputEl.files[0];
+  if(!file) return;
+  showParseViewer(category, file);
+  runParse(category, file);
+}
+function handleDocDrop(e){
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if(!file) return;
+  showParseViewer('boarding', file);
+  runParse('boarding', file);
+}
+
+// ── Visor del documento original, al lado del resultado del parseo IA.
+//    Usa el File real recién subido (URL.createObjectURL) — sin backend, sin
+//    rutas fijas: el agenciero revisa el archivo que él mismo acaba de cargar. ──
+const PARSE_OBJECT_URLS = {};
+function showParseViewer(category, file){
+  const split = document.getElementById(category+'-parse-split');
+  const box = document.getElementById(category+'-viewer-box');
+  const nameEl = document.getElementById(category+'-viewer-name');
+  if(!split || !box) return;
+  if(PARSE_OBJECT_URLS[category]) URL.revokeObjectURL(PARSE_OBJECT_URLS[category]);
+  const url = URL.createObjectURL(file);
+  PARSE_OBJECT_URLS[category] = url;
+  if(nameEl) nameEl.textContent = file.name;
+  box.innerHTML = file.type.startsWith('image/')
+    ? '<img src="'+url+'" alt="'+file.name+'">'
+    : '<iframe src="'+url+'#toolbar=0" title="'+file.name+'"></iframe>';
+  split.style.display = 'grid';
+}
+// keepUrl: true cuando el documento confirmado se queda con el object URL (ej. boarding → trip.docs);
+// en ese caso no lo revocamos, solo ocultamos el visor de la etapa de revisión.
+function clearParseViewer(category, keepUrl){
+  if(PARSE_OBJECT_URLS[category]){
+    if(!keepUrl) URL.revokeObjectURL(PARSE_OBJECT_URLS[category]);
+    delete PARSE_OBJECT_URLS[category];
+  }
+  const split = document.getElementById(category+'-parse-split');
+  const box = document.getElementById(category+'-viewer-box');
+  if(split) split.style.display = 'none';
+  if(box) box.innerHTML = '';
+}
+function discardParse(category){
+  document.getElementById(category+'-result').style.display = 'none';
+  clearParseViewer(category);
+}
+// ── Visor de "Ver original" para documentos ya guardados (lista de Documentos) ──
+function openDocViewer(url, name){
+  const isImg = /\.(jpe?g|jpg|png|gif|webp)($|\?)/i.test(url);
+  const visor = isImg
+    ? '<img src="'+url+'" style="width:100%;display:block;max-height:70vh;object-fit:contain;background:#f1f5f9">'
+    : '<iframe src="'+url+'#toolbar=0" style="width:100%;height:70vh;border:none;display:block;background:#f1f5f9" title="'+name+'"></iframe>';
+  openModal(
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:12px">'
+    + '<div style="font-size:14px;font-weight:700;color:var(--tx)">📄 '+name+'</div>'
+    + '<button class="btn btn-ghost btn-sm" onclick="closeModal()">Cerrar</button></div>'
+    + visor
+  );
+}
+function runParse(category, file){
+  document.getElementById(category+'-filename').textContent = file.name;
+  const spinner = document.getElementById(category+'-spinner');
+  const result = document.getElementById(category+'-result');
+  spinner.style.display = 'block';
+  result.style.display = 'none';
+  setTimeout(() => {
+    spinner.style.display = 'none';
+    populateAiResult(category);
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }, 1600);
+}
+function populateAiResult(category){
+  const def = SAMPLE_EXTRACTIONS[category];
+  document.getElementById(category+'-ai-fields').innerHTML = def.fields.map(([l,v])=>
+    '<div class="ai-field"><div class="ai-field-lbl">'+l+'</div><div class="ai-field-val">'+v+'</div></div>'
+  ).join('');
+}
+function confirmParse(category){
+  const trip = currentTrip();
+  if(!trip) return;
+  const def = SAMPLE_EXTRACTIONS[category];
+  const filename = document.getElementById(category+'-filename').textContent;
+  const fileUrl = PARSE_OBJECT_URLS[category] || null;
+  if(category === 'hotel') trip.services.hotel.push(def.build());
+  else if(category === 'seguro') trip.services.insurance.push(def.build());
+  else if(category === 'boarding'){ const doc = def.build(filename); doc.archivo = fileUrl; trip.docs.push(doc); }
+  document.getElementById(category+'-result').style.display = 'none';
+  clearParseViewer(category, category === 'boarding');
+  syncTripProgress(trip);
+  renderTripServices();
+  renderTripDocs();
+  renderTripSummary();
+  rebuildItinerary();
+  renderDashboard();
+  showToast('✓ Datos confirmados y guardados');
+}
+
+// ── Configuración / Personalización de marca ────────────────────────────────
+const BRAND_PRESETS = [
+  { name:'Peregrí (default)', value:'#4f46e5' },
+  { name:'Teal', value:'#0e7490' },
+  { name:'Esmeralda', value:'#059669' },
+  { name:'Coral', value:'#e11d48' },
+  { name:'Ámbar', value:'#d97706' },
+  { name:'Violeta', value:'#7c3aed' },
+];
+function renderConfig(){
+  document.getElementById('cfg-name').value = state.agency.name;
+  document.getElementById('cfg-email').value = state.agency.email;
+  document.getElementById('cfg-civitatis').value = state.agency.civitatisUrl || '';
+  document.getElementById('cfg-logo-emoji').value = state.agency.logoImg ? '' : state.agency.logo;
+  document.getElementById('cfg-swatches').innerHTML = BRAND_PRESETS.map(p=>
+    '<div class="swatch '+(p.value.toLowerCase()===state.agency.color.toLowerCase()?'on':'')+'" style="background:'+p.value+'" title="'+p.name+'" onclick="setBrandColor(\''+p.value+'\')"></div>'
+  ).join('');
+  document.getElementById('cfg-color-custom').value = state.agency.color;
+  document.getElementById('cfg-logo-preview').innerHTML = brandMark();
+  document.getElementById('cfg-preview-sb-ico').innerHTML = brandMark();
+  document.getElementById('cfg-preview-name').textContent = state.agency.name;
+}
+function setBrandColor(hex){
+  state.agency.color = hex;
+  applyBrand();
+  renderConfig();
+  renderChrome();
+}
+function onCustomColor(input){ setBrandColor(input.value); }
+function onAgencyNameChange(input){ state.agency.name = input.value || 'Mi agencia'; renderChrome(); }
+function onAgencyEmailChange(input){ state.agency.email = input.value; renderChrome(); }
+function onCivitatisChange(input){ state.agency.civitatisUrl = input.value.trim() || null; }
+function onLogoEmojiChange(input){ state.agency.logo = input.value || '✈'; state.agency.logoImg = null; renderChrome(); renderConfig(); }
+function onLogoFile(input){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => { state.agency.logoImg = e.target.result; renderChrome(); renderConfig(); };
+  reader.readAsDataURL(file);
+}
+function resetBrandDefault(){
+  state.agency.color = '#4f46e5';
+  state.agency.logo = '🧭';
+  state.agency.logoImg = null;
+  applyBrand();
+  renderChrome();
+  renderConfig();
+  showToast('✓ Restaurado el estilo default de Peregrí');
+}
+
+// ── Toast ───────────────────────────────────────────────────────────────────
+function showToast(msg){
+  const t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style, {
+    position:'fixed',bottom:'28px',left:'50%',transform:'translateX(-50%)',
+    background:'#0f172a',color:'#fff',padding:'10px 20px',borderRadius:'8px',
+    fontSize:'13px',fontWeight:'600',zIndex:'9999',boxShadow:'0 4px 20px rgba(0,0,0,.25)',
+    transition:'opacity .3s'
+  });
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2200);
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  applyBrand();
+  renderChrome();
+  renderDashboard();
+  renderTravelers();
+  renderConfig();
+});
+</script>
+</body>
+</html>

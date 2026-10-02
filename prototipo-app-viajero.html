@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Hybris Turismo — Prototipo App del Viajero</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Marca de la agencia (theming). Tema actual: Hybris Turismo.
+     Default de plataforma si la agencia no configura nada: --brand:#4f46e5;--brand-d:#4338ca;--brand-l:#eef2ff; */
+  --brand:#0e7490;--brand-d:#155e75;--brand-l:#ecfeff;
+  --tx:#0f172a;--t2:#334155;--mu:#64748b;
+  --bg:#f8fafc;--wh:#fff;--br:#e2e8f0;
+  --gn:#10b981;--am:#f59e0b;--rd:#ef4444;--pu:#8b5cf6;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;background:#c8c8c8;overflow:hidden;min-height:100vh}
+
+/* TOPBAR */
+.topbar{position:fixed;top:0;left:0;right:0;height:52px;background:#1e1e1e;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:1000;user-select:none}
+.tb-l{display:flex;align-items:center;gap:10px}
+.tb-ico{width:30px;height:30px;background:linear-gradient(135deg,var(--brand),var(--brand-d));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;flex-shrink:0}
+.tb-t{font-size:14px;font-weight:700;color:#f1f5f9}
+.tb-s{font-size:11px;color:#64748b}
+.tb-r{display:flex;align-items:center;gap:6px}
+.zbtn{height:28px;min-width:28px;padding:0 8px;background:#2d2d2d;border:1px solid #444;border-radius:6px;color:#e2e8f0;cursor:pointer;font-size:14px;font-weight:700;transition:background .12s;font-family:inherit}
+.zbtn:hover{background:#3d3d3d}
+.zval{font-size:12px;color:#94a3b8;min-width:40px;text-align:center}
+
+/* BOARD */
+#board{position:fixed;top:52px;left:0;right:0;bottom:0;overflow:auto;background-color:#c4c4c4;background-image:radial-gradient(circle,#aaa 1px,transparent 1px);background-size:24px 24px}
+#bi{display:flex;flex-wrap:wrap;gap:60px;padding:60px;min-width:max-content;transform-origin:top left}
+
+/* FRAME */
+.fc{display:flex;flex-direction:column;align-items:center;gap:12px}
+.fc-lbl{font-size:11px;font-weight:600;color:#555;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.7);padding:4px 10px;border-radius:20px}
+
+/* PHONE */
+.phone{width:285px;height:598px;background:#111;border-radius:46px;padding:13px;box-shadow:0 0 0 1px #2a2a2a,inset 0 0 0 1px #3a3a3a,0 32px 80px rgba(0,0,0,.45),0 10px 20px rgba(0,0,0,.25);position:relative;flex-shrink:0}
+.phone::before{content:'';position:absolute;left:-4px;top:90px;width:4px;height:66px;background:#1a1a1a;border-radius:3px 0 0 3px;box-shadow:0 -36px 0 #1a1a1a,0 36px 0 #1a1a1a}
+.phone::after{content:'';position:absolute;right:-4px;top:128px;width:4px;height:80px;background:#1a1a1a;border-radius:0 3px 3px 0}
+
+/* PHONE SCREEN */
+.ps{width:100%;height:100%;background:var(--bg);border-radius:34px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.di{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:88px;height:27px;background:#111;border-radius:20px;z-index:30;pointer-events:none}
+
+/* SCREENS WRAPPER */
+.sw{flex:1;position:relative;overflow:hidden;min-height:0}
+.scr{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;display:none;flex-direction:column;scrollbar-width:none}
+.scr::-webkit-scrollbar{display:none}
+.scr.on{display:flex}
+
+/* STATUS BAR */
+.sb{height:46px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 20px 9px;flex-shrink:0;position:relative;z-index:5}
+.sb svg{display:block;width:16px;height:16px}
+.sb-i{display:flex;align-items:center;gap:4px}
+
+/* BOTTOM NAV */
+.bn{height:62px;background:#fff;border-top:1px solid var(--br);display:grid;grid-template-columns:repeat(4,1fr);flex-shrink:0;padding-bottom:6px}
+.bni{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--mu);transition:color .12s;user-select:none;-webkit-tap-highlight-color:transparent}
+.bni:hover{color:var(--t2)}
+.bni.on{color:var(--brand)}
+.bni svg{width:20px;height:20px}
+.bni-l{font-size:9px;font-weight:600;letter-spacing:.01em}
+
+/* SHARED */
+.back{display:flex;align-items:center;gap:5px;color:var(--brand);font-size:13px;font-weight:600;cursor:pointer;padding:14px 16px 6px;user-select:none;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.sec-l{font-size:11px;font-weight:700;color:var(--mu);letter-spacing:.07em;text-transform:uppercase;padding:14px 16px 8px;flex-shrink:0}
+.card{background:#fff;border-radius:16px;padding:14px;margin:0 12px 10px;box-shadow:0 1px 3px rgba(0,0,0,.07);cursor:pointer;transition:transform .1s;-webkit-tap-highlight-color:transparent}
+.card:active{transform:scale(.98)}
+.cards{background:#fff;border-radius:16px;padding:14px;margin:0 12px 10px;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.02em;white-space:nowrap}
+.p-bl{background:var(--brand-l);color:var(--brand)}
+.p-gn{background:#d1fae5;color:#065f46}
+.p-am{background:#fef3c7;color:#92400e}
+.p-pu{background:#f5f3ff;color:#5b21b6}
+.dr{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid var(--br);background:#fff;flex-shrink:0}
+.dr:last-child{border-bottom:none}
+.dr-l{font-size:12px;color:var(--mu)}
+.dr-v{font-size:13px;font-weight:600;color:var(--tx);text-align:right;max-width:62%}
+.safe{height:20px;flex-shrink:0}
+
+/* SPLASH */
+.sp-hero{height:288px;flex-shrink:0;background:linear-gradient(165deg,#0f172a 0%,#c2410c 100%);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;overflow:hidden}
+.sp-c1{position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05);top:-60px;right:-60px}
+.sp-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%)}
+.sp-txt{position:relative;z-index:1}
+.sp-ag{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.sp-dst{font-size:30px;font-weight:900;color:#fff;line-height:1.05;letter-spacing:-.02em}
+.sp-dt{font-size:13px;color:rgba(255,255,255,.85);margin-top:6px;font-weight:500}
+.sp-body{flex:1;background:#fff;padding:16px 16px 14px;display:flex;flex-direction:column;min-height:0}
+.sp-lr{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-shrink:0}
+.sp-logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand-d));display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
+.sp-wn{font-size:17px;font-weight:800;color:var(--tx)}
+.sp-wt{font-size:11px;color:var(--mu);font-weight:500}
+.sp-gr{font-size:14px;color:var(--tx);margin-bottom:4px;flex-shrink:0}
+.sp-dc{font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:14px;flex:1}
+.btn-p{display:block;width:100%;background:var(--brand);color:#fff;border:none;border-radius:13px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;transition:background .15s,transform .1s;font-family:inherit;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.btn-p:hover{background:var(--brand-d)}
+.btn-p:active{transform:scale(.98)}
+.sp-pwr{font-size:9px;color:var(--mu);text-align:center;margin-top:10px;flex-shrink:0;letter-spacing:.02em}
+
+/* HOME */
+.hm-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-d) 100%);padding:16px 16px 20px;flex-shrink:0}
+.hm-gr{font-size:13px;color:rgba(255,255,255,.82);font-weight:500}
+.hm-nm{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.hm-tr{font-size:12px;color:rgba(255,255,255,.7);margin-top:5px}
+.cd{margin:12px;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 2px 12px rgba(14,116,144,.15),0 1px 3px rgba(0,0,0,.06);border-left:4px solid var(--brand);cursor:pointer;transition:transform .1s;-webkit-tap-highlight-color:transparent}
+.cd:active{transform:scale(.98)}
+.cd-top{font-size:10px;font-weight:700;color:var(--brand);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
+.cd-row{display:flex;align-items:center;justify-content:space-between}
+.cd-inf h3{font-size:15px;font-weight:700;color:var(--tx)}
+.cd-inf p{font-size:11px;color:var(--mu);margin-top:3px}
+.cd-num{font-size:36px;font-weight:900;color:var(--brand);line-height:1;letter-spacing:-.03em;text-align:right}
+.cd-unit{font-size:10px;color:var(--mu);font-weight:600;text-transform:uppercase;letter-spacing:.05em;text-align:right}
+.ts{margin:0 12px 12px;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:14px;padding:14px}
+.ts-t{font-size:12px;font-weight:700;color:#0369a1;margin-bottom:10px}
+.ts-r{display:flex;gap:16px}
+.ts-i{flex:1}
+.ts-v{font-size:16px;font-weight:800;color:var(--tx)}
+.ts-l{font-size:10px;color:#64748b;margin-top:2px;font-weight:500}
+
+/* ITINERARY */
+.it-hd{background:#fff;padding:14px 16px 10px;border-bottom:1px solid var(--br);flex-shrink:0}
+.it-hd h2{font-size:18px;font-weight:800;color:var(--tx)}
+.it-hd p{font-size:12px;color:var(--mu);margin-top:2px}
+.tl{padding:16px 0}
+.tl-day{padding:0 16px 8px 50px;position:relative;margin-bottom:6px}
+.tl-dot{position:absolute;left:16px;top:4px;width:24px;height:24px;background:var(--brand);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;z-index:2}
+.tl-line{position:absolute;left:27px;top:28px;bottom:0;width:2px;background:var(--br)}
+.tl-dh{margin-bottom:8px}
+.tl-dt{font-size:14px;font-weight:700;color:var(--tx)}
+.tl-dd{font-size:11px;color:var(--mu);margin-top:1px}
+.tl-ev{background:#fff;border-radius:11px;padding:10px 12px;margin-bottom:7px;box-shadow:0 1px 2px rgba(0,0,0,.06);display:flex;gap:9px;align-items:center;cursor:pointer;transition:transform .1s;-webkit-tap-highlight-color:transparent}
+.tl-ev:active{transform:scale(.98)}
+.tl-ic{font-size:17px;flex-shrink:0;margin-top:1px}
+.tl-ti{font-size:12px;font-weight:600;color:var(--tx)}
+.tl-tm{font-size:10px;color:var(--mu);margin-top:2px}
+
+/* FLIGHT */
+.fl-hero{background:linear-gradient(155deg,#0f172a 0%,#1e3a5f 100%);padding:18px 16px 20px;flex-shrink:0}
+.fl-al{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.fl-al-lg{width:34px;height:34px;background:var(--brand);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.fl-al-nm{font-size:14px;font-weight:700;color:rgba(255,255,255,.95)}
+.fl-al-cd{font-size:11px;color:rgba(255,255,255,.6)}
+.fl-rt{display:flex;align-items:flex-start}
+.fl-end{flex:1}
+.fl-end.r{text-align:right}
+.fl-cd{font-size:30px;font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1}
+.fl-cy{font-size:10px;color:rgba(255,255,255,.65);margin-top:3px}
+.fl-ti{font-size:15px;font-weight:700;color:rgba(255,255,255,.9);margin-top:5px}
+.fl-da{font-size:10px;color:rgba(255,255,255,.55);margin-top:2px}
+.fl-mid{display:flex;flex-direction:column;align-items:center;padding:0 8px;padding-top:6px;flex:.7}
+.fl-lr{display:flex;align-items:center;width:100%}
+.fl-hl{flex:1;height:1px;background:rgba(255,255,255,.25)}
+.fl-pl{font-size:18px;margin:0 4px}
+.fl-dr{font-size:10px;color:rgba(255,255,255,.55);margin-top:5px}
+
+/* HOTEL */
+.ht-hero{height:130px;background:linear-gradient(160deg,#78350f 0%,#d97706 100%);position:relative;flex-shrink:0;display:flex;align-items:flex-end;padding:14px;overflow:hidden}
+.ht-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 55%)}
+.ht-ht{position:relative;z-index:1}
+.ht-nm{font-size:17px;font-weight:800;color:#fff;line-height:1.2}
+.ht-st{color:#fbbf24;font-size:12px;margin-top:3px}
+.ht-lc{font-size:11px;color:rgba(255,255,255,.8);margin-top:2px}
+.map-ph{margin:10px 12px;height:90px;background:#e2e8f0;border-radius:12px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.map-gl{position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.4) 1px,transparent 1px);background-size:18px 18px}
+.map-rh{position:absolute;left:0;right:0;height:8px;background:rgba(255,255,255,.7);top:50%;transform:translateY(-50%)}
+.map-rv{position:absolute;top:0;bottom:0;width:8px;background:rgba(255,255,255,.7);left:45%}
+.map-pin{position:relative;z-index:1;font-size:24px}
+
+/* DOCS */
+.docs-hd{background:#fff;padding:14px 16px 10px;border-bottom:1px solid var(--br);flex-shrink:0}
+.docs-hd h2{font-size:18px;font-weight:800;color:var(--tx)}
+.docs-hd p{font-size:12px;color:var(--mu);margin-top:2px}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.dc{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.07);cursor:pointer;transition:transform .1s;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+.dc:active{transform:scale(.96)}
+.dc-ic{font-size:28px;margin-bottom:8px}
+.dc-nm{font-size:12px;font-weight:700;color:var(--tx);line-height:1.3}
+.dc-sb{font-size:10px;color:var(--mu);margin-top:4px}
+.dc-dot{position:absolute;top:11px;right:11px;width:8px;height:8px;border-radius:50%}
+.dc-g{background:var(--gn)}
+.dc-a{background:var(--am)}
+
+/* INSURANCE */
+.ins-hero{background:linear-gradient(135deg,#065f46 0%,#10b981 100%);padding:18px 16px;flex-shrink:0}
+.ins-tp{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ins-lg{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;border:1.5px solid rgba(255,255,255,.3)}
+.ins-nm{font-size:18px;font-weight:800;color:#fff}
+.ins-ty{font-size:12px;color:rgba(255,255,255,.8);font-weight:500}
+.ins-pol{background:rgba(0,0,0,.15);border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center}
+.ins-pl{font-size:10px;color:rgba(255,255,255,.75);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.ins-pv{font-size:13px;font-weight:700;color:#fff}
+.cov{display:flex;align-items:flex-start;gap:10px;padding:11px 16px;border-bottom:1px solid var(--br);background:#fff;flex-shrink:0}
+.cov:last-of-type{border-bottom:none}
+.cov-ck{font-size:15px;flex-shrink:0;margin-top:1px}
+.cov-ti{font-size:13px;font-weight:600;color:var(--tx)}
+.cov-am{font-size:11px;color:var(--mu);margin-top:2px}
+.sos{margin:10px 12px;background:linear-gradient(135deg,#dc2626,#ef4444);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;cursor:pointer;flex-shrink:0}
+.sos-ic{font-size:26px}
+.sos-ti{font-size:14px;font-weight:800;color:#fff}
+.sos-nm{font-size:17px;font-weight:900;color:#fff;margin-top:2px;letter-spacing:.02em}
+
+/* EXPLORE */
+.ex-hero{height:140px;background:linear-gradient(160deg,#581c87 0%,#db2777 100%);padding:16px;display:flex;flex-direction:column;justify-content:flex-end;flex-shrink:0;position:relative;overflow:hidden}
+.ex-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.38) 0%,transparent 55%)}
+.ex-ht{position:relative;z-index:1}
+.ex-cy{font-size:24px;font-weight:900;color:#fff;letter-spacing:-.02em}
+.ex-sb{font-size:12px;color:rgba(255,255,255,.88);margin-top:3px}
+.cat-r{display:flex;gap:8px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;flex-shrink:0}
+.cat-r::-webkit-scrollbar{display:none}
+.chip{padding:7px 13px;border-radius:20px;font-size:12px;font-weight:600;white-space:nowrap;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.08);flex-shrink:0;-webkit-tap-highlight-color:transparent;background:#fff;color:var(--tx)}
+.chip.on{background:var(--brand);color:#fff}
+.poi{margin:0 12px 10px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.07);flex-shrink:0}
+.poi-img{height:76px;display:flex;align-items:center;justify-content:center;font-size:34px}
+.poi-bd{padding:10px 12px 12px}
+.poi-nm{font-size:13px;font-weight:700;color:var(--tx)}
+.poi-dc{font-size:11px;color:var(--mu);margin-top:3px;line-height:1.4}
+.poi-mt{display:flex;align-items:center;gap:8px;margin-top:7px;flex-wrap:wrap}
+
+/* EXCURSIONS */
+.exc-hd{background:#fff;padding:14px 16px 10px;border-bottom:1px solid var(--br);flex-shrink:0}
+.exc-hd h2{font-size:18px;font-weight:800;color:var(--tx)}
+.exc-hd p{font-size:12px;color:var(--mu);margin-top:2px}
+.exc{margin:0 12px 10px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.07);flex-shrink:0}
+.exc-img{height:88px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.exc-bd{padding:12px}
+.exc-nm{font-size:13px;font-weight:700;color:var(--tx)}
+.exc-dt{font-size:12px;color:var(--brand);font-weight:700;margin-top:3px}
+.exc-dc{font-size:11px;color:var(--mu);margin-top:4px;line-height:1.4}
+.exc-mt{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+
+/* PASO DE ITINERARIO (detalle genérico) + VISOR DE DOCUMENTO ORIGINAL */
+.st-hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand-d) 100%);padding:18px 16px;flex-shrink:0}
+.doc-frame{width:100%;height:340px;border:none;display:block;background:#f1f5f9}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tb-l">
+    <div class="tb-ico">✈</div>
+    <div>
+      <div class="tb-t">Hybris Turismo</div>
+      <div class="tb-s">Peregrí · Prototipo App del Viajero</div>
+    </div>
+  </div>
+  <div class="tb-r">
+    <button class="zbtn" onclick="zd(-.1)">−</button>
+    <span class="zval" id="zv">100%</span>
+    <button class="zbtn" onclick="zd(.1)">+</button>
+    <button class="zbtn" onclick="zr()" style="font-size:11px">100%</button>
+  </div>
+</header>
+
+<div id="board">
+  <div id="bi"></div>
+</div>
+
+<script>
+// ── Icons ────────────────────────────────────────────────────────────────────
+const IC = {
+  home:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  cal:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  doc:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  cmp:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="currentColor" stroke="none"/></svg>`,
+  bk:`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>`,
+  sig:`<svg width="15" height="12" viewBox="0 0 20 16" fill="currentColor"><rect x="0" y="10" width="4" height="6" rx="1"/><rect x="5" y="7" width="4" height="9" rx="1"/><rect x="10" y="3" width="4" height="13" rx="1"/><rect x="15" y="0" width="4" height="16" rx="1" opacity=".35"/></svg>`,
+  bat:`<svg width="22" height="12" viewBox="0 0 25 13" fill="none"><rect x=".5" y=".5" width="20" height="12" rx="3" stroke="currentColor" stroke-width="1.2"/><rect x="2" y="2" width="14" height="9" rx="2" fill="currentColor"/><path d="M22 4.5v4c1-.5 1.5-1 1.5-2s-.5-1.5-1.5-2z" fill="currentColor"/></svg>`,
+};
+
+const SBD = `<div class="sb"><span style="font-size:13px;font-weight:700;letter-spacing:-.02em;color:#0f172a">9:41</span><div class="sb-i" style="color:#0f172a">${IC.sig}${IC.bat}</div></div>`;
+const SBL = `<div class="sb"><span style="font-size:13px;font-weight:700;letter-spacing:-.02em;color:#fff">9:41</span><div class="sb-i" style="color:#fff">${IC.sig}${IC.bat}</div></div>`;
+
+// ══════════════════════════════════════════════════════════════════════════════
+// CAPA DE DATOS — nombres de campo espejan parseo/MODELO-DATOS.md (servicios,
+// proveedor, referencias, extraccion.paginasFuente) para que el prototipo y el
+// contrato de parseo real hablen el mismo idioma. Todo lo demás del archivo se
+// genera a partir de esto; no hay más pantallas hardcodeadas con datos de viaje.
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Reloj simulado del prototipo — referencia fija para calcular ventanas de check-in.
+const NOW = new Date('2026-06-11T10:00:00');
+
+// ── Catálogo de aerolíneas (dato de PLATAFORMA, no de la agencia ni del parseo:
+//    el prompt de IA prohíbe inventar la web pública de un proveedor — parseo/PROMPT-PARSEO-v1.md) ──
+const AEROLINEAS = {
+  AR:{ nombre:'Aerolíneas Argentinas', web:'https://www.aerolineas.com.ar', urlCheckin:'https://www.aerolineas.com.ar/checkin', ventanaHoras:48 },
+  AM:{ nombre:'Aeroméxico',            web:'https://aeromexico.com',            urlCheckin:'https://aeromexico.com/checkin',            ventanaHoras:24 },
+  LA:{ nombre:'LATAM Airlines',        web:'https://www.latamairlines.com',     urlCheckin:'https://www.latamairlines.com/checkin',     ventanaHoras:48 },
+  IB:{ nombre:'Iberia',                web:'https://www.iberia.com',            urlCheckin:'https://www.iberia.com/checkin',            ventanaHoras:48 },
+  AF:{ nombre:'Air France',            web:'https://www.airfrance.com',         urlCheckin:'https://wwws.airfrance.com/checkin',        ventanaHoras:30 },
+  KL:{ nombre:'KLM',                   web:'https://www.klm.com',               urlCheckin:'https://www.klm.com/checkin',               ventanaHoras:30 },
+  UA:{ nombre:'United Airlines',       web:'https://www.united.com',            urlCheckin:'https://www.united.com/checkin',            ventanaHoras:24 },
+  AA:{ nombre:'American Airlines',     web:'https://www.aa.com',                urlCheckin:'https://www.aa.com/checkin',                ventanaHoras:24 },
+  CM:{ nombre:'Copa Airlines',         web:'https://www.copaair.com',           urlCheckin:'https://www.copaair.com/checkin',           ventanaHoras:24 },
+  G3:{ nombre:'GOL Linhas Aéreas',     web:'https://www.voegol.com.br',         urlCheckin:'https://www.voegol.com.br/checkin',         ventanaHoras:24 },
+  H2:{ nombre:'Sky Airline',           web:'https://www.skyairline.com',        urlCheckin:'https://www.skyairline.com/checkin',        ventanaHoras:48 },
+  TP:{ nombre:'TAP Air Portugal',      web:'https://www.flytap.com',            urlCheckin:'https://www.flytap.com/checkin',            ventanaHoras:24 },
+  TK:{ nombre:'Turkish Airlines',      web:'https://www.turkishairlines.com',   urlCheckin:'https://www.turkishairlines.com/checkin',   ventanaHoras:24 },
+  DL:{ nombre:'Delta Air Lines',       web:'https://www.delta.com',             urlCheckin:'https://www.delta.com/checkin',             ventanaHoras:24 },
+  JJ:{ nombre:'LATAM Brasil',          web:'https://www.latamairlines.com',     urlCheckin:'https://www.latamairlines.com/checkin',     ventanaHoras:48 },
+};
+
+// estado del check-in de un vuelo en el instante NOW, dada la ventana de la aerolínea.
+function estadoCheckin(fechaHoraSalida, ventanaHoras) {
+  const salida = new Date(fechaHoraSalida);
+  const abre = new Date(salida.getTime() - ventanaHoras * 3600 * 1000);
+  if (NOW < abre) return { estado: 'cerrado', abre };
+  if (NOW >= salida) return { estado: 'vencido', abre };
+  return { estado: 'abierto', abre };
+}
+
+function fmtFechaHora(d) {
+  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${dias[d.getDay()]} ${d.getDate()} ${meses[d.getMonth()]} · ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')} hs`;
+}
+
+function fmtFechaCorta(iso) {
+  const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${d} ${meses[m - 1]} ${y}`;
+}
+
+// ── Catálogo de aseguradoras (dato de PLATAFORMA — mismo criterio que AEROLINEAS) ──
+const ASEGURADORAS = {
+  'assist card':          { nombre:'Assist Card',          web:'https://www.assistcard.com',           portalCliente:'https://www.assistcard.com/mi-cuenta',            urlTelemedicina:'https://www.assistcard.com/telemedicina' },
+  'universal assistance': { nombre:'Universal Assistance',  web:'https://www.universal-assistance.com', portalCliente:'https://www.universal-assistance.com/mi-cuenta',  urlTelemedicina:'https://www.universal-assistance.com/telemedicina' },
+  'coris':                { nombre:'Coris Seguros',        web:'https://www.coris.com.ar',             portalCliente:'https://www.coris.com.ar/mi-cuenta',              urlTelemedicina:null },
+  'assist 365':           { nombre:'Assist 365',           web:'https://www.assist365.com.ar',         portalCliente:null,                                               urlTelemedicina:null },
+  'axa':                  { nombre:'AXA Assistance',       web:'https://www.axa-assistance.com',       portalCliente:'https://www.axa-assistance.com/mi-cuenta',        urlTelemedicina:'https://www.axa-assistance.com/telemedicina' },
+};
+function buscarAseguradora(nombre) {
+  const k = (nombre || '').toLowerCase().trim();
+  return ASEGURADORAS[k] || Object.values(ASEGURADORAS).find(a => k.includes(a.nombre.toLowerCase())) || null;
+}
+
+// ── Catálogo de países (mismo criterio que COUNTRY_FLAGS de prototipo-panel-agencia.html) ──
+const PAISES = {
+  'italia':          { iso:'IT', flag:'🇮🇹', moneda:'EUR', simbolo:'€' },
+  'españa':          { iso:'ES', flag:'🇪🇸', moneda:'EUR', simbolo:'€' },
+  'francia':         { iso:'FR', flag:'🇫🇷', moneda:'EUR', simbolo:'€' },
+  'brasil':          { iso:'BR', flag:'🇧🇷', moneda:'BRL', simbolo:'R$' },
+  'chile':           { iso:'CL', flag:'🇨🇱', moneda:'CLP', simbolo:'$' },
+  'perú':            { iso:'PE', flag:'🇵🇪', moneda:'PEN', simbolo:'S/' },
+  'estados unidos':  { iso:'US', flag:'🇺🇸', moneda:'USD', simbolo:'US$' },
+  'méxico':          { iso:'MX', flag:'🇲🇽', moneda:'MXN', simbolo:'$' },
+  'costa rica':      { iso:'CR', flag:'🇨🇷', moneda:'CRC', simbolo:'₡' },
+};
+
+// ── Cotizaciones de referencia — mock estático. En producción vendría de una API de FX
+//    (ver parseo/MODELO-DATOS.md § catálogos de plataforma para el diseño real). ──
+const FX = {
+  base:'ARS', actualizado:'Hoy 09:15 hs',
+  tasas:{ EUR:1580, USD:1425, BRL:265, CLP:1.55, PEN:382, MXN:75, CRC:2.75 },
+};
+function cotizacion(moneda) { return FX.tasas[moneda] || null; }
+
+// ── Viaje de demo: Buenos Aires → Roma. Un `paso` = un ítem del itinerario;
+//    `documento: null` marca los pasos sin respaldo documental (a propósito, para
+//    demostrar el estado vacío). Las rutas de documento van URL-encodeadas. ──
+const TRIP = {
+  viajero:'Santiago', agencia:'Hybris Turismo',
+  // Link de afiliado que la agencia configuró en su panel (Configuración → Integraciones).
+  // null = la agencia no cargó uno todavía → la card de Civitatis no se muestra.
+  civitatisUrl:'https://www.civitatis.com/es/roma/?aid=hybristurismo',
+  destinos:[ { ciudad:'Roma', pais:'Italia', ...PAISES['italia'] } ],
+  salida:'2026-06-12', vuelta:'2026-06-19', noches:7,
+  dias:{
+    1:{ label:'Día 1 — Viernes',    fecha:'12 de Junio, 2026' },
+    2:{ label:'Día 2 — Sábado',     fecha:'13 de Junio, 2026' },
+    3:{ label:'Día 3 — Domingo',    fecha:'14 de Junio, 2026' },
+    4:{ label:'Día 4 — Lunes',      fecha:'15 de Junio, 2026' },
+    5:{ label:'Día 5 — Martes',     fecha:'16 de Junio, 2026' },
+    6:{ label:'Día 6 — Miércoles',  fecha:'17 de Junio, 2026' },
+    7:{ label:'Día 7 — Jueves',     fecha:'18 de Junio, 2026' },
+  },
+  pasos:[
+    { id:'p1', tipo:'vuelo', icono:'✈', dia:1, hora:'09:00 hs',
+      titulo:'Vuelo AR1304 EZE → FCO', subtitulo:'Aerolíneas Argentinas · Clase Económica', estado:'confirmado',
+      proveedor:{ nombre:'Aerolíneas Argentinas', telefono:null, sitioWeb:null },
+      referencias:[ { etiqueta:'Código de reserva', valor:'QK7ZP2', tipo:'pnr' } ],
+      datos:{ codigoAerolinea:'AR', numeroVuelo:'AR1304', fechaHoraSalida:'2026-06-12T09:00:00' },
+      camposMostrar:[
+        { etiqueta:'Fecha de salida', valor:'Viernes 12 Jun 2026' },
+        { etiqueta:'Terminal · Puerta', valor:'Terminal A · Puerta 14' },
+        { etiqueta:'Asiento', valor:'24B (ventana)' },
+        { etiqueta:'Equipaje', valor:'1 × 23 kg + cabina' },
+      ],
+      notas:['Presentate en el aeropuerto 3 horas antes para vuelos internacionales.'],
+      documento:{ nombre:'E-TKT Giemenez Nelida Raquel.pdf', ruta:'DocumentosEjemplo/E-TKT%20Giemenez%20Nelida%20Raquel.pdf', tipo:'pdf', paginas:2, pagina:1, tamano:'24 KB' } },
+
+    { id:'p2', tipo:'llegada', icono:'🛬', dia:2, hora:'04:30 hs',
+      titulo:'Llegada Roma FCO', subtitulo:'Aeropuerto Fiumicino', estado:'confirmado',
+      proveedor:null, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Aeropuerto', valor:'Fiumicino (FCO)' }, { etiqueta:'Hora estimada', valor:'04:30 hs' } ],
+      notas:[], documento:null },
+
+    { id:'p3', tipo:'traslado', icono:'🚌', dia:2, hora:'05:30 hs',
+      titulo:'Transfer privado al hotel', subtitulo:'Incluido · Sistema Moderno de Viajes', estado:'confirmado',
+      proveedor:{ nombre:'Sistema Moderno de Viajes', telefono:'+39 06 4555 1234', sitioWeb:null },
+      referencias:[ { etiqueta:'Cód. Confirmación', valor:'86982', tipo:'confirmacion' } ], datos:{},
+      camposMostrar:[
+        { etiqueta:'Desde', valor:'Aeropuerto Fiumicino (FCO)' },
+        { etiqueta:'Hasta', valor:'Hotel Artemide Roma' },
+        { etiqueta:'Espera máxima', valor:'60 minutos' },
+      ],
+      notas:['El chofer te espera en Arribos con un cartel a tu nombre.'],
+      documento:{ nombre:'Traslados y Excursion.pdf', ruta:'DocumentosEjemplo/Traslados%20y%20Excursion.pdf', tipo:'pdf', paginas:3, pagina:1, tamano:'126 KB' } },
+
+    { id:'p4', tipo:'tour', icono:'🏛', dia:2, hora:'10:00 hs',
+      titulo:'Tour Coliseo y Foro Romano', subtitulo:'3 hs · guía en español', estado:'confirmado',
+      proveedor:{ nombre:'Sistema Moderno de Viajes', telefono:'+39 06 4555 1234', sitioWeb:null },
+      referencias:[ { etiqueta:'Nro. File', valor:'1200640', tipo:'booking' } ], datos:{},
+      camposMostrar:[
+        { etiqueta:'Duración', valor:'3 horas' },
+        { etiqueta:'Idioma', valor:'Español' },
+        { etiqueta:'Incluye', valor:'Entrada prioritaria sin colas' },
+      ],
+      notas:[],
+      documento:{ nombre:'Traslados y Excursion.pdf', ruta:'DocumentosEjemplo/Traslados%20y%20Excursion.pdf', tipo:'pdf', paginas:3, pagina:2, tamano:'126 KB' } },
+
+    { id:'p5', tipo:'tour', icono:'⛪', dia:3, hora:'09:00 hs',
+      titulo:'Tour Vaticano y Capilla Sixtina', subtitulo:'4 horas', estado:'confirmado',
+      proveedor:null, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Duración', valor:'4 horas' }, { etiqueta:'Incluye', valor:'Museos Vaticanos' } ],
+      notas:['Llevá ropa que cubra hombros y rodillas — es requisito para ingresar.'],
+      documento:{ nombre:'WhatsApp Image 2026-06-09 at 7.05.22 PM.jpeg', ruta:'DocumentosEjemplo/WhatsApp%20Image%202026-06-09%20at%207.05.22%20PM.jpeg', tipo:'imagen', paginas:1, pagina:1, tamano:'175 KB' } },
+
+    { id:'p6', tipo:'comida', icono:'🍝', dia:3, hora:'14:00 hs',
+      titulo:'Almuerzo en Trastevere', subtitulo:'Barrio histórico', estado:'sugerido',
+      proveedor:null, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Zona', valor:'Trastevere' } ], notas:[], documento:null },
+
+    { id:'p7', tipo:'tour', icono:'🎨', dia:4, hora:'10:00 hs',
+      titulo:'Galería Borghese', subtitulo:'Entrada incluida', estado:'confirmado',
+      proveedor:null, referencias:[ { etiqueta:'Confirmación', valor:'GB-58821', tipo:'confirmacion' } ], datos:{},
+      camposMostrar:[ { etiqueta:'Entrada', valor:'Incluida' } ], notas:[],
+      documento:{ nombre:'05 Universal x4 Expres Pass.pdf', ruta:'DocumentosEjemplo/05%20Universal%20x4%20Expres%20Pass.pdf', tipo:'pdf', paginas:1, pagina:1, tamano:'261 KB' } },
+
+    { id:'p8', tipo:'libre', icono:'🌅', dia:4, hora:'17:00 hs',
+      titulo:'Piazza di Spagna — tarde libre', subtitulo:null, estado:'libre',
+      proveedor:null, referencias:[], datos:{}, camposMostrar:[], notas:[], documento:null },
+
+    { id:'p9', tipo:'tour', icono:'🗺', dia:5, hora:'Todo el día',
+      titulo:'Día libre — Ostia Antica', subtitulo:'Excursión opcional', estado:'opcional',
+      proveedor:null, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Tipo', valor:'Excursión opcional, no incluida' } ],
+      notas:['Se puede coordinar en el hotel o contratarla con tu agencia.'],
+      documento:{ nombre:'02 Paquete Tortuguero y Alquiler Auto 02 al 04 Enero.pdf', ruta:'DocumentosEjemplo/02%20Paquete%20Tortuguero%20y%20Alquiler%20Auto%2002%20al%2004%20Enero.pdf', tipo:'pdf', paginas:4, pagina:1, tamano:'460 KB' } },
+
+    { id:'p10', tipo:'comida', icono:'🍽', dia:5, hora:'20:30 hs',
+      titulo:'Cena en Trastevere', subtitulo:'Reserva confirmada', estado:'confirmado',
+      proveedor:{ nombre:'Osteria del Boccone', telefono:null, sitioWeb:null }, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Reserva a nombre de', valor:'Bassi' }, { etiqueta:'Personas', valor:'2' } ],
+      notas:[], documento:null },
+
+    { id:'p11', tipo:'tour', icono:'🏛', dia:6, hora:'10:00 hs',
+      titulo:'Panteón y Piazza Navona', subtitulo:null, estado:'sugerido',
+      proveedor:null, referencias:[], datos:{}, camposMostrar:[], notas:[], documento:null },
+
+    { id:'p12', tipo:'libre', icono:'🛍', dia:6, hora:'15:00 hs',
+      titulo:'Compras — Via del Corso', subtitulo:null, estado:'libre',
+      proveedor:null, referencias:[], datos:{}, camposMostrar:[], notas:[], documento:null },
+
+    { id:'p13', tipo:'tour', icono:'⛲', dia:7, hora:'06:30 hs',
+      titulo:'Fontana di Trevi al amanecer', subtitulo:null, estado:'sugerido',
+      proveedor:null, referencias:[], datos:{}, camposMostrar:[],
+      notas:['Ideal ir temprano para evitar la multitud de turistas.'], documento:null },
+
+    { id:'p14', tipo:'libre', icono:'🏨', dia:7, hora:'Tarde',
+      titulo:'Tarde libre · preparar valijas', subtitulo:'Check-out mañana', estado:'libre',
+      proveedor:null, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Check-out', valor:'Viernes 19 Jun · 12:00 hs' } ], notas:[], documento:null },
+  ],
+};
+
+// ── Viaje multi-país de demo, mínimo a propósito: solo alimenta el frame que
+//    prueba el selector de país del conversor de moneda. ──
+const TRIP_MULTI = {
+  viajero:'Santiago', agencia:'Hybris Turismo',
+  civitatisUrl:null, // demuestra el estado sin integración configurada
+  destinos:[
+    { ciudad:'Río de Janeiro', pais:'Brasil', ...PAISES['brasil'] },
+    { ciudad:'Santiago',       pais:'Chile',  ...PAISES['chile'] },
+    { ciudad:'Lima',           pais:'Perú',   ...PAISES['perú'] },
+  ],
+  salida:'2026-08-03', vuelta:'2026-08-14', noches:11,
+  dias:{ 1:{ label:'Día 1', fecha:'3 de Agosto, 2026' }, 2:{ label:'Día 2', fecha:'4 de Agosto, 2026' } },
+  pasos:[
+    { id:'m1', tipo:'vuelo', icono:'✈', dia:1, hora:'07:15 hs',
+      titulo:'Vuelo AR1234 EZE → GIG', subtitulo:'Aerolíneas Argentinas', estado:'confirmado',
+      proveedor:{ nombre:'Aerolíneas Argentinas', telefono:null, sitioWeb:null },
+      referencias:[ { etiqueta:'Código de reserva', valor:'MP4K1L', tipo:'pnr' } ],
+      datos:{ codigoAerolinea:'AR', numeroVuelo:'AR1234', fechaHoraSalida:'2026-08-03T07:15:00' },
+      camposMostrar:[ { etiqueta:'Ruta', valor:'EZE → GIG' } ], notas:[], documento:null },
+    { id:'m2', tipo:'tour', icono:'🏖', dia:2, hora:'10:00 hs',
+      titulo:'City tour Río de Janeiro', subtitulo:'Medio día', estado:'confirmado',
+      proveedor:null, referencias:[], datos:{},
+      camposMostrar:[ { etiqueta:'Duración', valor:'4 horas' } ], notas:[], documento:null },
+  ],
+};
+
+const FRAME_TRIPS = {}; // f-id → trip, poblado en buildBoard()
+
+// ── Render del itinerario a partir de trip.pasos, agrupado por día ──
+function renderItinerary(f, trip) {
+  const porDia = {};
+  trip.pasos.forEach(p => (porDia[p.dia] = porDia[p.dia] || []).push(p));
+  const diasOrdenados = Object.keys(porDia).map(Number).sort((a, b) => a - b);
+  const ultimo = diasOrdenados[diasOrdenados.length - 1];
+  return diasOrdenados.map(dia => {
+    const info = trip.dias[dia] || { label:`Día ${dia}`, fecha:'' };
+    const eventos = porDia[dia].map(p => `
+      <div class="tl-ev" onclick="nav('${f}','paso-${p.id}')">
+        <div class="tl-ic">${p.icono}</div>
+        <div style="flex:1"><div class="tl-ti">${p.titulo}</div><div class="tl-tm">${p.hora}${p.subtitulo ? ' · ' + p.subtitulo : ''}${p.documento ? ' · 📄' : ''}</div></div>
+        <div style="color:var(--mu);font-size:14px">›</div>
+      </div>`).join('');
+    return `<div class="tl-day">
+      <div class="tl-dot">${dia}</div>${dia !== ultimo ? '<div class="tl-line"></div>' : ''}
+      <div class="tl-dh"><div class="tl-dt">${info.label}</div><div class="tl-dd">${info.fecha}</div></div>
+      ${eventos}
+    </div>`;
+  }).join('');
+}
+
+// ── Pill minimalista de check-in, para insertar DENTRO de la card "Próximo en
+//    tu viaje" de Home (no una card aparte) — solo aparece si ya está abierto. ──
+function checkinPillHomeHtml(trip) {
+  const p = trip.pasos.find(p => p.tipo === 'vuelo' && p.datos && p.datos.fechaHoraSalida
+    && estadoCheckin(p.datos.fechaHoraSalida, (AEROLINEAS[p.datos.codigoAerolinea] || { ventanaHoras:48 }).ventanaHoras).estado === 'abierto');
+  if (!p) return '';
+  return `<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--br)"><span class="pill p-am">🛫 Check-in abierto</span></div>`;
+}
+
+// ── Card de Civitatis en Home: link de afiliado que configuró la agencia
+//    (panel → Configuración → Integraciones). Si compran por ese link, Civitatis
+//    le paga la comisión a la agencia directamente. No se muestra si la agencia
+//    no cargó un link todavía. Va con más jerarquía que el tipo de cambio. ──
+function civitatisCardHtml(trip) {
+  if (!trip.civitatisUrl) return '';
+  return `<a href="${trip.civitatisUrl}" target="_blank" style="text-decoration:none;display:block">
+    <div class="card" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-left:4px solid #ea580c">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="font-size:28px;flex-shrink:0">🎟️</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:800;color:#7c2d12">¿No sabés qué hacer hoy?</div>
+          <div style="font-size:11px;color:#9a3412;margin-top:2px">Reservá excursiones y actividades con Civitatis ↗</div>
+        </div>
+      </div>
+    </div>
+  </a>`;
+}
+
+// ── Card de tipo de cambio en Home (país del primer tramo del viaje) ──
+function moneyHomeCardHtml(f, trip) {
+  const d = trip.destinos[0];
+  return `<div class="ts" style="cursor:pointer" onclick="nav('${f}','money')">
+    <div class="ts-t">${d.flag} Tipo de cambio en ${d.pais}</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:18px;font-weight:800;color:var(--tx)">1 ${d.simbolo} = $${cotizacion(d.moneda).toLocaleString('es-AR')}</div>
+      <div style="font-size:11px;color:var(--brand);font-weight:700">Ver conversor →</div>
+    </div>
+    <div style="font-size:10px;color:#64748b;margin-top:4px">Actualizado ${FX.actualizado}</div>
+  </div>`;
+}
+
+// ── Bloque de check-in dentro de una pantalla de detalle (paso o vuelo) ──
+function checkinBlockHtml(p) {
+  if (!p || p.tipo !== 'vuelo' || !p.datos || !p.datos.fechaHoraSalida) return '';
+  const al = AEROLINEAS[p.datos.codigoAerolinea];
+  if (!al) return '';
+  const r = estadoCheckin(p.datos.fechaHoraSalida, al.ventanaHoras);
+  const pnr = (p.referencias.find(x => x.tipo === 'pnr') || {}).valor || '';
+  if (r.estado === 'abierto') {
+    return `<div class="sec-l">Check-in online</div>
+    <div class="cards" style="background:#ecfdf5;border:1px solid #6ee7b7">
+      <div style="font-size:13px;font-weight:800;color:#065f46;margin-bottom:8px">✓ Check-in abierto</div>
+      <a href="${al.urlCheckin}" target="_blank" style="display:block;text-align:center;background:var(--gn);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;text-decoration:none;margin-bottom:8px">Hacer check-in en ${al.nombre} ↗</a>
+      <div style="font-size:11px;color:#065f46">Vas a necesitar tu código de reserva: <b>${pnr}</b></div>
+    </div>`;
+  }
+  if (r.estado === 'vencido') {
+    return `<div class="sec-l">Check-in online</div>
+    <div class="cards"><div style="font-size:12px;color:var(--mu)">La ventana de check-in online ya cerró — presentate directamente en el mostrador de ${al.nombre}.</div></div>`;
+  }
+  return `<div class="sec-l">Check-in online</div>
+    <div class="cards"><div style="font-size:12px;color:var(--mu)">Todavía no abre. Se habilita ${al.ventanaHoras} hs antes de tu vuelo — el ${fmtFechaHora(r.abre)}.</div></div>`;
+}
+
+// ── Bloque "Documento original": visor embebido (PDF o imagen), Abrir y Descargar,
+//    o estado vacío si el paso no tiene documento asociado. ──
+function docRawHtml(doc) {
+  if (!doc) {
+    return `<div class="cards" style="text-align:center;color:var(--mu)">
+      <div style="font-size:22px;margin-bottom:4px">📭</div>
+      <div style="font-size:12px;font-weight:600;color:var(--t2)">Sin documento asociado</div>
+      <div style="font-size:11px;margin-top:2px">Este paso lo armó tu agencia — no viene de un archivo cargado.</div>
+    </div>`;
+  }
+  const visor = doc.tipo === 'imagen'
+    ? `<img src="${doc.ruta}" style="width:100%;display:block;max-height:340px;object-fit:contain;background:#f1f5f9">`
+    : `<iframe class="doc-frame" src="${doc.ruta}#page=${doc.pagina}&toolbar=0" loading="lazy"></iframe>`;
+  return `<div class="cards" style="padding:0;overflow:hidden">
+    <div style="padding:12px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--br)">
+      <div style="font-size:16px">📄</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:700;color:var(--tx);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${doc.nombre}</div>
+        <div style="font-size:10px;color:var(--mu)">${doc.paginas} pág${doc.paginas > 1 ? 's' : ''} · ${doc.tamano}</div>
+      </div>
+    </div>
+    ${visor}
+    <div style="display:flex;gap:8px;padding:10px 12px">
+      <a href="${doc.ruta}" target="_blank" style="flex:1;text-align:center;background:var(--brand-l);color:var(--brand);border-radius:10px;padding:9px;font-size:12px;font-weight:700;text-decoration:none">Abrir ↗</a>
+      <a href="${doc.ruta}" download style="flex:1;text-align:center;background:#f1f5f9;color:var(--tx);border-radius:10px;padding:9px;font-size:12px;font-weight:700;text-decoration:none">Descargar</a>
+    </div>
+  </div>`;
+}
+
+const TIPO_META = {
+  vuelo:   { hero:'fl' },
+  llegada: { hero:'st' },
+  traslado:{ hero:'st' },
+  tour:    { hero:'st' },
+  comida:  { hero:'st' },
+  libre:   { hero:'st' },
+};
+const ESTADO_PILL = {
+  confirmado:{ cls:'p-gn', txt:'✓ Confirmado' },
+  opcional:  { cls:'p-am', txt:'Opcional · no incluido' },
+  sugerido:  { cls:'p-bl', txt:'💡 Sugerido' },
+  libre:     { cls:'p-bl', txt:'Tiempo libre' },
+};
+
+// ── Pantalla de detalle genérica de un paso del itinerario ──
+function pasoScreen(p, f) {
+  const meta = TIPO_META[p.tipo] || TIPO_META.libre;
+  const pill = ESTADO_PILL[p.estado] || ESTADO_PILL.sugerido;
+  const hero = meta.hero === 'fl'
+    ? `<div class="fl-hero"><div class="back" style="padding:0 0 12px;color:rgba(255,255,255,.8)" onclick="nav('${f}','itinerary')">${IC.bk} Itinerario</div>
+        <div class="fl-al"><div class="fl-al-lg">${p.icono}</div><div><div class="fl-al-nm">${p.titulo}</div><div class="fl-al-cd">${p.subtitulo || ''}</div></div></div>
+      </div>`
+    : `<div class="st-hero"><div class="back" style="padding:0 0 12px;color:rgba(255,255,255,.85)" onclick="nav('${f}','itinerary')">${IC.bk} Itinerario</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px">${p.icono}</div>
+          <div><div style="font-size:17px;font-weight:800;color:#fff">${p.titulo}</div>${p.subtitulo ? `<div style="font-size:12px;color:rgba(255,255,255,.8)">${p.subtitulo}</div>` : ''}</div>
+        </div>
+      </div>`;
+  const camposRows = (p.camposMostrar || []).map(c => `<div class="dr"><div class="dr-l">${c.etiqueta}</div><div class="dr-v">${c.valor}</div></div>`).join('');
+  const referenciasRows = (p.referencias || []).map(r => `<div class="dr"><div class="dr-l">${r.etiqueta}</div><div class="dr-v">${r.valor}</div></div>`).join('');
+  const estadoRow = `<div class="dr"><div class="dr-l">Estado</div><div class="dr-v"><span class="pill ${pill.cls}">${pill.txt}</span></div></div>`;
+  const notasHtml = (p.notas && p.notas.length)
+    ? `<div class="sec-l">Notas</div><div class="cards" style="background:#fef3c7;border:1px solid #fcd34d">
+        ${p.notas.map(n => `<div style="display:flex;gap:8px;font-size:12px;color:#78350f;line-height:1.5"><span>⚠️</span><span>${n}</span></div>`).join('')}
+      </div>` : '';
+  return `<div class="scr" data-s="paso-${p.id}">
+${SBL}
+${hero}
+<div class="sec-l">Detalle</div>
+${camposRows}${referenciasRows}${estadoRow}
+${checkinBlockHtml(p)}
+${notasHtml}
+<div class="sec-l">Documento original</div>
+${docRawHtml(p.documento)}
+<div class="safe"></div>
+</div>`;
+}
+
+// ── Pantalla "Dinero": cotización de referencia + conversor + tabla rápida ──
+function moneyCardInner(d) {
+  return `<div style="display:flex;align-items:center;gap:12px">
+    <div style="font-size:32px">${d.flag}</div>
+    <div>
+      <div style="font-size:16px;font-weight:800;color:var(--tx)">1 ${d.simbolo} = $${cotizacion(d.moneda).toLocaleString('es-AR')} ARS</div>
+      <div style="font-size:11px;color:var(--mu);margin-top:2px">${d.pais} · ${d.moneda} · Actualizado ${FX.actualizado}</div>
+    </div>
+  </div>`;
+}
+function moneyRefTable(d) {
+  const tasa = cotizacion(d.moneda);
+  return [1, 5, 10, 20, 50, 100].map(m =>
+    `<div class="dr"><div class="dr-l">${m} ${d.simbolo}</div><div class="dr-v">$${Math.round(m * tasa).toLocaleString('es-AR')} ARS</div></div>`
+  ).join('');
+}
+const MONEY_STATE = {};
+function selectMoneyChip(f, idx) {
+  const trip = FRAME_TRIPS[f];
+  const d = trip.destinos[idx];
+  MONEY_STATE[f] = d;
+  document.querySelectorAll(`#money-chips-${f} .chip`).forEach((c, i) => c.classList.toggle('on', i === idx));
+  document.getElementById(`money-card-${f}`).innerHTML = moneyCardInner(d);
+  document.getElementById(`money-ref-${f}`).innerHTML = moneyRefTable(d);
+  document.getElementById(`money-lbl-${f}`).textContent = d.moneda;
+  convertMoney(f, 'ars');
+}
+function convertMoney(f, from) {
+  const trip = FRAME_TRIPS[f];
+  const d = MONEY_STATE[f] || trip.destinos[0];
+  const tasa = cotizacion(d.moneda);
+  const arsEl = document.getElementById(`money-ars-${f}`);
+  const extEl = document.getElementById(`money-ext-${f}`);
+  if (!arsEl || !extEl) return;
+  if (from === 'ars') extEl.value = (parseFloat(arsEl.value || 0) / tasa).toFixed(2);
+  else arsEl.value = Math.round(parseFloat(extEl.value || 0) * tasa);
+}
+function moneyScreen(f, trip) {
+  const chips = trip.destinos.map((d, i) =>
+    `<div class="chip ${i === 0 ? 'on' : ''}" onclick="selectMoneyChip('${f}',${i})">${d.flag} ${d.pais}</div>`
+  ).join('');
+  return `<div class="scr" data-s="money">
+${SBD}
+<div class="back" onclick="nav('${f}','home')">${IC.bk} Inicio</div>
+<div class="sec-l">Tipo de cambio${trip.destinos.length > 1 ? ' · elegí el país' : ''}</div>
+<div class="cat-r" id="money-chips-${f}">${chips}</div>
+<div class="cards" id="money-card-${f}">${moneyCardInner(trip.destinos[0])}</div>
+<div class="sec-l">Conversor</div>
+<div class="cards">
+  <div style="display:flex;gap:10px;align-items:flex-end">
+    <div style="flex:1">
+      <div style="font-size:10px;color:var(--mu);margin-bottom:4px;font-weight:600">PESOS (ARS)</div>
+      <input id="money-ars-${f}" type="number" value="10000" oninput="convertMoney('${f}','ars')" style="width:100%;border:1px solid var(--br);border-radius:10px;padding:10px;font-size:15px;font-weight:700;font-family:inherit">
+    </div>
+    <div style="font-size:18px;color:var(--mu);padding-bottom:10px">=</div>
+    <div style="flex:1">
+      <div style="font-size:10px;color:var(--mu);margin-bottom:4px;font-weight:600" id="money-lbl-${f}">${trip.destinos[0].moneda}</div>
+      <input id="money-ext-${f}" type="number" value="0" oninput="convertMoney('${f}','ext')" style="width:100%;border:1px solid var(--br);border-radius:10px;padding:10px;font-size:15px;font-weight:700;font-family:inherit">
+    </div>
+  </div>
+</div>
+<div class="sec-l">Referencia rápida</div>
+<div class="cards" id="money-ref-${f}">${moneyRefTable(trip.destinos[0])}</div>
+<div class="cards" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe)">
+  <div style="font-size:12px;font-weight:700;color:#0369a1;margin-bottom:6px">💡 Tips de pago</div>
+  <div style="font-size:11px;color:#334155;line-height:1.6">La tarjeta suele tener mejor cambio que el efectivo. Llevá algo de moneda local para taxis y propinas. Cotización de referencia — la actualiza tu agencia.</div>
+</div>
+<div class="safe"></div>
+</div>`;
+}
+
+// ── Screen templates ──────────────────────────────────────────────────────────
+function makeScreens(f, trip) {
+  const aseg = buscarAseguradora('Assist Card');
+  return {
+
+  splash:`<div class="scr" data-s="splash">
+${SBL}
+<div class="sp-hero">
+  <div class="sp-c1"></div><div class="sp-ov"></div>
+  <div class="sp-txt">
+    <div class="sp-ag">Hybris Turismo</div>
+    <div class="sp-dst">Tu viaje<br>a ${trip.destinos.map(d => d.ciudad).join(' · ')}</div>
+    <div class="sp-dt">✈ Buenos Aires → ${trip.destinos[0].ciudad} &nbsp;·&nbsp; ${fmtFechaCorta(trip.salida)} – ${fmtFechaCorta(trip.vuelta)}</div>
+  </div>
+</div>
+<div class="sp-body">
+  <div class="sp-lr">
+    <div class="sp-logo">✈</div>
+    <div><div class="sp-wn">Hybris Turismo</div><div class="sp-wt">Tu agencia de confianza</div></div>
+  </div>
+  <div class="sp-gr">¡Hola, Santiago!</div>
+  <div class="sp-dc">Preparamos todo para que disfrutes Roma sin preocuparte por nada. Tu itinerario, vuelos, hotel, documentos y más, todo en un lugar.</div>
+  <button class="btn-p" onclick="nav('${f}','home')">Ver mi viaje →</button>
+  <div class="sp-pwr">Con tecnología de Peregrí</div>
+</div>
+</div>`,
+
+  home:`<div class="scr" data-s="home">
+${SBL}
+<div class="hm-hero">
+  <div class="hm-gr">¡Hola, Santiago!</div>
+  <div class="hm-nm">Buenos Aires → ${trip.destinos.map(d => d.ciudad).join(' · ')}</div>
+  <div class="hm-tr">${fmtFechaCorta(trip.salida)} &nbsp;·&nbsp; ${trip.noches} noches</div>
+</div>
+<div class="ts">
+  <div class="ts-t">Resumen del viaje</div>
+  <div class="ts-r">
+    <div class="ts-i"><div class="ts-v">7</div><div class="ts-l">Noches</div></div>
+    <div class="ts-i"><div class="ts-v">2</div><div class="ts-l">Excursiones</div></div>
+    <div class="ts-i"><div class="ts-v">4</div><div class="ts-l">Documentos</div></div>
+  </div>
+</div>
+<div class="cd" onclick="nav('${f}','flight')">
+  <div class="cd-top">🕐 Próximo en tu viaje</div>
+  <div class="cd-row">
+    <div class="cd-inf"><h3>✈ Vuelo AR1304</h3><p>EZE → FCO &nbsp;·&nbsp; 12 Jun 09:00 hs</p></div>
+    <div><div class="cd-num">3</div><div class="cd-unit">días</div></div>
+  </div>
+  ${checkinPillHomeHtml(trip)}
+</div>
+${civitatisCardHtml(trip)}
+${moneyHomeCardHtml(f, trip)}
+<div class="safe"></div>
+</div>`,
+
+  itinerary:`<div class="scr" data-s="itinerary">
+${SBD}
+<div class="it-hd"><h2>Tu Itinerario</h2><p>Buenos Aires → ${trip.destinos.map(d => d.ciudad).join(' · ')} &nbsp;·&nbsp; ${new Set(trip.pasos.map(p => p.dia)).size} días</p></div>
+<div class="tl">
+${renderItinerary(f, trip)}
+</div>
+<div class="safe"></div>
+</div>`,
+
+  flight:`<div class="scr" data-s="flight">
+${SBL}
+<div class="fl-hero">
+  <div class="back" style="padding:0 0 12px;color:rgba(255,255,255,.8)" onclick="nav('${f}','home')">${IC.bk} Inicio</div>
+  <div class="fl-al">
+    <div class="fl-al-lg">✈</div>
+    <div><div class="fl-al-nm">Aerolíneas Argentinas</div><div class="fl-al-cd">Vuelo AR1304 · Clase Económica</div></div>
+  </div>
+  <div class="fl-rt">
+    <div class="fl-end">
+      <div class="fl-cd">EZE</div>
+      <div class="fl-cy">Buenos Aires</div>
+      <div class="fl-ti">09:00</div>
+      <div class="fl-da">Vie 12 Jun 2026</div>
+    </div>
+    <div class="fl-mid">
+      <div class="fl-lr"><div class="fl-hl"></div><div class="fl-pl">✈</div><div class="fl-hl"></div></div>
+      <div class="fl-dr">15h 30m</div>
+    </div>
+    <div class="fl-end r">
+      <div class="fl-cd">FCO</div>
+      <div class="fl-cy">Roma</div>
+      <div class="fl-ti">04:30</div>
+      <div class="fl-da">Sáb 13 Jun +1</div>
+    </div>
+  </div>
+</div>
+<div class="sec-l">Detalles del vuelo</div>
+<div class="dr"><div class="dr-l">Fecha de salida</div><div class="dr-v">Viernes 12 Jun 2026</div></div>
+<div class="dr"><div class="dr-l">Terminal · Puerta</div><div class="dr-v">Terminal A · Puerta 14</div></div>
+<div class="dr"><div class="dr-l">Asiento</div><div class="dr-v">24B (ventana)</div></div>
+<div class="dr"><div class="dr-l">Equipaje</div><div class="dr-v">1 × 23 kg + cabina</div></div>
+<div class="dr"><div class="dr-l">Estado</div><div class="dr-v"><span class="pill p-gn">Confirmado</span></div></div>
+${checkinBlockHtml(trip.pasos.find(p => p.tipo === 'vuelo'))}
+<div class="sec-l">Vuelo de regreso</div>
+<div class="dr"><div class="dr-l">Vuelo</div><div class="dr-v">AR1305</div></div>
+<div class="dr"><div class="dr-l">Fecha</div><div class="dr-v">Jue 19 Jun · 11:00 hs</div></div>
+<div class="dr"><div class="dr-l">FCO → EZE</div><div class="dr-v">Llegada 02:45 hs +1</div></div>
+<div class="safe"></div>
+</div>`,
+
+  hotel:`<div class="scr" data-s="hotel">
+${SBD}
+<div class="ht-hero">
+  <div class="ht-ht">
+    <div class="ht-nm">Hotel Artemide Roma</div>
+    <div class="ht-st">★ ★ ★ ★</div>
+    <div class="ht-lc">📍 Via Nazionale 22, Roma</div>
+  </div>
+</div>
+<div class="back" onclick="nav('${f}','home')">${IC.bk} Inicio</div>
+<div class="map-ph">
+  <div class="map-gl"></div><div class="map-rh"></div><div class="map-rv"></div>
+  <div class="map-pin">📍</div>
+</div>
+<div class="sec-l">Detalles de la reserva</div>
+<div class="dr"><div class="dr-l">Check-in</div><div class="dr-v">Sáb 13 Jun · desde 14:00</div></div>
+<div class="dr"><div class="dr-l">Check-out</div><div class="dr-v">Jue 19 Jun · hasta 12:00</div></div>
+<div class="dr"><div class="dr-l">Duración</div><div class="dr-v">6 noches</div></div>
+<div class="dr"><div class="dr-l">Habitación</div><div class="dr-v">Doble Superior</div></div>
+<div class="dr"><div class="dr-l">Régimen</div><div class="dr-v">Desayuno buffet incluido</div></div>
+<div class="dr"><div class="dr-l">Teléfono hotel</div><div class="dr-v">+39 06 489 911</div></div>
+<div class="dr"><div class="dr-l">Estado</div><div class="dr-v"><span class="pill p-gn">Confirmado</span></div></div>
+<div class="sec-l">Servicios</div>
+<div class="cards"><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill p-bl">🍳 Desayuno</span><span class="pill p-bl">📶 WiFi</span><span class="pill p-bl">🧳 Consigna</span><span class="pill p-bl">🛎 Concierge</span><span class="pill p-bl">♿ Accesible</span></div></div>
+<div class="safe"></div>
+</div>`,
+
+  docs:`<div class="scr" data-s="docs">
+${SBD}
+<div class="docs-hd"><h2>Mis Documentos</h2><p>Todos tus archivos en un lugar</p></div>
+<div class="dg">
+  <div class="dc" onclick="nav('${f}','insurance')">
+    <div class="dc-dot dc-g"></div>
+    <div class="dc-ic">🛡</div>
+    <div class="dc-nm">Seguro de Viaje</div>
+    <div class="dc-sb">Assist Card Gold</div>
+  </div>
+  <div class="dc" onclick="nav('${f}','boarding')">
+    <div class="dc-dot dc-g"></div>
+    <div class="dc-ic">✈</div>
+    <div class="dc-nm">Boarding Pass</div>
+    <div class="dc-sb">AR1304 · EZE→FCO</div>
+  </div>
+  <div class="dc" onclick="nav('${f}','voucher')">
+    <div class="dc-dot dc-g"></div>
+    <div class="dc-ic">🏨</div>
+    <div class="dc-nm">Voucher Hotel</div>
+    <div class="dc-sb">Artemide Roma</div>
+  </div>
+  <div class="dc" onclick="nav('${f}','passport')">
+    <div class="dc-dot dc-a"></div>
+    <div class="dc-ic">🪪</div>
+    <div class="dc-nm">Info Pasaporte</div>
+    <div class="dc-sb">Vence Mar 2029</div>
+  </div>
+</div>
+<div class="sec-l">Estado general</div>
+<div class="cards">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <span style="font-size:13px;font-weight:600;color:#0f172a">3 de 4 documentos ok</span>
+    <span class="pill p-am">⚠ 1 pendiente</span>
+  </div>
+  <div style="background:#e2e8f0;border-radius:20px;height:6px;overflow:hidden">
+    <div style="width:75%;height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:20px"></div>
+  </div>
+</div>
+<div class="safe"></div>
+</div>`,
+
+  boarding:`<div class="scr" data-s="boarding">
+${SBD}
+<div class="back" onclick="nav('${f}','docs')">${IC.bk} Documentos</div>
+<div class="sec-l">Boarding Pass</div>
+<div style="margin:0 12px 10px;background:linear-gradient(135deg,#1e3a5f,var(--brand));padding:18px;border-radius:16px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <span style="font-size:11px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.08em;text-transform:uppercase">Boarding Pass</span>
+    <span style="font-size:11px;font-weight:700;background:rgba(255,255,255,.2);color:#fff;padding:3px 8px;border-radius:20px">AR1304</span>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+    <div><div style="font-size:28px;font-weight:900;color:#fff">EZE</div><div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:2px">Buenos Aires</div></div>
+    <div style="font-size:22px">✈</div>
+    <div style="text-align:right"><div style="font-size:28px;font-weight:900;color:#fff">FCO</div><div style="font-size:10px;color:rgba(255,255,255,.65);margin-top:2px">Roma</div></div>
+  </div>
+  <div style="border-top:1px dashed rgba(255,255,255,.25);padding-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+    <div><div style="font-size:9px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.05em">Pasajero</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:3px">S. BASSI</div></div>
+    <div><div style="font-size:9px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.05em">Asiento</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:3px">24B</div></div>
+    <div><div style="font-size:9px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.05em">Puerta</div><div style="font-size:12px;font-weight:700;color:#fff;margin-top:3px">A14</div></div>
+  </div>
+</div>
+<div style="margin:0 12px 12px;background:#f8fafc;border-radius:14px;padding:14px;display:flex;flex-direction:column;align-items:center">
+  <div style="display:flex;gap:3px;flex-wrap:wrap;width:180px;justify-content:center;margin-bottom:8px">
+    ${Array.from({length:90},(_,i)=>`<div style="width:8px;height:${i%7===0?16:8}px;background:#0f172a;border-radius:2px;opacity:${[1,.3,1,1,.3,.5,1][i%7]}"></div>`).join('')}
+  </div>
+  <div style="font-size:11px;color:#64748b;letter-spacing:.1em;font-weight:600">AR1304 · 12 JUN 2026</div>
+</div>
+<div class="dr"><div class="dr-l">Embarque cierra</div><div class="dr-v">08:15 hs</div></div>
+<div class="dr"><div class="dr-l">Duración vuelo</div><div class="dr-v">15h 30m</div></div>
+<div class="safe"></div>
+</div>`,
+
+  voucher:`<div class="scr" data-s="voucher">
+${SBD}
+<div class="back" onclick="nav('${f}','docs')">${IC.bk} Documentos</div>
+<div class="sec-l">Voucher Hotel</div>
+<div style="margin:0 12px 10px;background:linear-gradient(135deg,#78350f,#d97706);padding:18px;border-radius:16px">
+  <div style="font-size:10px;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px">Voucher de Reserva</div>
+  <div style="font-size:19px;font-weight:800;color:#fff;margin-bottom:4px">Hotel Artemide Roma</div>
+  <div style="font-size:12px;color:rgba(255,255,255,.8)">Via Nazionale 22, Roma ★★★★</div>
+</div>
+<div class="dr"><div class="dr-l">N° de Reserva</div><div class="dr-v">HYB-2026-0612</div></div>
+<div class="dr"><div class="dr-l">Check-in</div><div class="dr-v">Sáb 13 Jun · 14:00</div></div>
+<div class="dr"><div class="dr-l">Check-out</div><div class="dr-v">Jue 19 Jun · 12:00</div></div>
+<div class="dr"><div class="dr-l">Habitación</div><div class="dr-v">Doble Superior</div></div>
+<div class="dr"><div class="dr-l">Huéspedes</div><div class="dr-v">2 adultos</div></div>
+<div class="dr"><div class="dr-l">Incluye</div><div class="dr-v">Desayuno buffet</div></div>
+<div class="dr"><div class="dr-l">Estado</div><div class="dr-v"><span class="pill p-gn">Confirmado</span></div></div>
+<div class="safe"></div>
+</div>`,
+
+  passport:`<div class="scr" data-s="passport">
+${SBD}
+<div class="back" onclick="nav('${f}','docs')">${IC.bk} Documentos</div>
+<div class="sec-l">Info Pasaporte</div>
+<div class="cards">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="font-size:40px">🪪</div>
+    <div><div style="font-size:14px;font-weight:700;color:#0f172a">Santiago Bassi</div><div style="font-size:11px;color:#64748b">Pasaporte Argentino</div></div>
+  </div>
+  <div style="background:#fef3c7;border:1px solid #fcd34d;border-radius:10px;padding:10px;display:flex;gap:8px">
+    <span style="font-size:15px">⚠️</span>
+    <div><div style="font-size:12px;font-weight:700;color:#92400e">Recordatorio</div><div style="font-size:11px;color:#78350f;margin-top:2px;line-height:1.4">Verificá que tu pasaporte tenga al menos 6 meses de vigencia desde la fecha de salida.</div></div>
+  </div>
+</div>
+<div class="dr"><div class="dr-l">Número</div><div class="dr-v">AAB012345</div></div>
+<div class="dr"><div class="dr-l">Vencimiento</div><div class="dr-v">15 Mar 2029</div></div>
+<div class="dr"><div class="dr-l">Vigencia al viajar</div><div class="dr-v" style="color:#10b981">✓ 2 años y 9 meses</div></div>
+<div class="dr"><div class="dr-l">Visa requerida</div><div class="dr-v">No (Mercosur + Schengen)</div></div>
+<div class="safe"></div>
+</div>`,
+
+  insurance:`<div class="scr" data-s="insurance">
+${SBL}
+<div class="ins-hero">
+  <div class="back" style="padding:0 0 10px;color:rgba(255,255,255,.85)" onclick="nav('${f}','docs')">${IC.bk} Documentos</div>
+  <div class="ins-tp">
+    <div class="ins-lg">🛡</div>
+    <div><div class="ins-nm">Assist Card</div><div class="ins-ty">Gold Internacional · Argentina</div></div>
+  </div>
+  <div class="ins-pol"><div class="ins-pl">N° de Póliza</div><div class="ins-pv">AC-2026-4821-SB</div></div>
+</div>
+<div class="sec-l">Coberturas incluidas</div>
+<div class="cov"><div class="cov-ck" style="color:#10b981">✓</div><div><div class="cov-ti">Asistencia médica</div><div class="cov-am">Hasta USD 100.000</div></div></div>
+<div class="cov"><div class="cov-ck" style="color:#10b981">✓</div><div><div class="cov-ti">Cobertura de equipaje</div><div class="cov-am">Hasta USD 2.000</div></div></div>
+<div class="cov"><div class="cov-ck" style="color:#10b981">✓</div><div><div class="cov-ti">Cancelación de vuelo</div><div class="cov-am">Hasta USD 3.000</div></div></div>
+<div class="cov"><div class="cov-ck" style="color:#10b981">✓</div><div><div class="cov-ti">Responsabilidad civil</div><div class="cov-am">Hasta USD 15.000</div></div></div>
+<div class="cov"><div class="cov-ck" style="color:#10b981">✓</div><div><div class="cov-ti">Odontología de urgencia</div><div class="cov-am">Hasta USD 500</div></div></div>
+<div class="sec-l">Asistencia 24hs</div>
+<a href="tel:+18009991234" style="text-decoration:none">
+<div class="sos"><div class="sos-ic">🆘</div><div><div class="sos-ti">Línea de emergencias</div><div class="sos-nm">+1 800 999 1234</div></div></div>
+</a>
+<div class="cards">
+  <a href="${aseg.web}" target="_blank" style="display:block;text-align:center;background:var(--brand);color:#fff;border-radius:12px;padding:12px;font-size:13px;font-weight:700;text-decoration:none;margin-bottom:${aseg.urlTelemedicina ? '8px' : '0'}">Ir al portal de ${aseg.nombre} ↗</a>
+  ${aseg.urlTelemedicina ? `<a href="${aseg.urlTelemedicina}" target="_blank" style="display:block;text-align:center;background:#ecfdf5;color:#065f46;border-radius:12px;padding:12px;font-size:13px;font-weight:700;text-decoration:none">🩺 Telemedicina 24 hs ↗</a>` : ''}
+</div>
+<div class="sec-l">Datos de contacto</div>
+<div class="dr"><div class="dr-l">N° de Póliza <span class="pill p-bl" style="margin-left:4px;vertical-align:middle">del documento</span></div><div class="dr-v">AC-2026-4821-SB</div></div>
+<div class="dr"><div class="dr-l">Teléfono SOS <span class="pill p-bl" style="margin-left:4px;vertical-align:middle">del documento</span></div><div class="dr-v">+1 800 999 1234</div></div>
+<div class="dr"><div class="dr-l">Sitio web <span class="pill p-pu" style="margin-left:4px;vertical-align:middle">de la aseguradora</span></div><div class="dr-v">${aseg.web.replace('https://', '')}</div></div>
+<div class="dr"><div class="dr-l">Vigencia</div><div class="dr-v">12 Jun — 19 Jun 2026</div></div>
+<div class="dr"><div class="dr-l">Destino</div><div class="dr-v">Italia + Schengen</div></div>
+<div class="sec-l">Documento original</div>
+${docRawHtml({ nombre:'póliza-assist-card.pdf (demo)', ruta:'DocumentosEjemplo/04%20HTL%20Lomas%20del%20Volcan%2007%20Enero.pdf', tipo:'pdf', paginas:2, pagina:1, tamano:'91 KB' })}
+<div class="safe"></div>
+</div>`,
+
+  explore:`<div class="scr" data-s="explore">
+${SBL}
+<div class="ex-hero">
+  <div class="ex-ht">
+    <div class="ex-cy">Descubrí Roma 🇮🇹</div>
+    <div class="ex-sb">Recomendaciones de Hybris Turismo</div>
+  </div>
+</div>
+<div class="cat-r">
+  <div class="chip on">Todos</div>
+  <div class="chip">Arte</div>
+  <div class="chip">Gastronomía</div>
+  <div class="chip">Museos</div>
+  <div class="chip">Noche</div>
+</div>
+<div class="sec-l">⭐ Destacados</div>
+<div class="poi">
+  <div class="poi-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🏛</div>
+  <div class="poi-bd">
+    <div class="poi-nm">Coliseo Romano</div>
+    <div class="poi-dc">El anfiteatro más grande de la Antigüedad. Reserva incluida en tu tour del Día 2.</div>
+    <div class="poi-mt"><span class="pill p-gn">✓ Incluido</span><span class="pill p-bl">Arte</span></div>
+  </div>
+</div>
+<div class="poi">
+  <div class="poi-img" style="background:linear-gradient(135deg,#fdf4ff,#e9d5ff)">⛪</div>
+  <div class="poi-bd">
+    <div class="poi-nm">Basílica de San Pedro</div>
+    <div class="poi-dc">El corazón del Vaticano. Acceso gratuito a la basílica; la Cúpula es imperdible.</div>
+    <div class="poi-mt"><span class="pill p-am">💡 Recomendado</span><span class="pill p-pu">Museos</span></div>
+  </div>
+</div>
+<div class="poi">
+  <div class="poi-img" style="background:linear-gradient(135deg,#ecfdf5,#bbf7d0)">⛲</div>
+  <div class="poi-bd">
+    <div class="poi-nm">Fontana di Trevi</div>
+    <div class="poi-dc">Visitala al amanecer para evitar aglomeraciones. Está en tu itinerario del Día 7.</div>
+    <div class="poi-mt"><span class="pill p-bl">Arte</span></div>
+  </div>
+</div>
+<div class="poi">
+  <div class="poi-img" style="background:linear-gradient(135deg,#fff7ed,#fed7aa)">🍝</div>
+  <div class="poi-bd">
+    <div class="poi-nm">Osteria del Boccone</div>
+    <div class="poi-dc">Trastevere. Auténtica cocina romana, sin turistas. Reserva confirmada para el Día 5.</div>
+    <div class="poi-mt"><span class="pill p-gn">✓ Reservado</span><span class="pill p-am">Gastronomía</span></div>
+  </div>
+</div>
+<div class="poi">
+  <div class="poi-img" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe)">🏺</div>
+  <div class="poi-bd">
+    <div class="poi-nm">Museos Vaticanos</div>
+    <div class="poi-dc">Hogar de la Capilla Sixtina y obras de Rafael y Miguel Ángel. Incluido en el Día 3.</div>
+    <div class="poi-mt"><span class="pill p-gn">✓ Incluido</span><span class="pill p-pu">Museos</span></div>
+  </div>
+</div>
+<div class="safe"></div>
+</div>`,
+
+  excursions:`<div class="scr" data-s="excursions">
+${SBD}
+<div class="exc-hd"><h2>Tus Excursiones</h2><p>2 excursiones reservadas · Roma</p></div>
+<div class="sec-l">Reservadas</div>
+<div class="exc">
+  <div class="exc-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🏛</div>
+  <div class="exc-bd">
+    <div class="exc-nm">Tour Coliseo y Foro Romano</div>
+    <div class="exc-dt">📅 Sábado 13 Jun · 10:00 hs</div>
+    <div class="exc-dc">Recorrido guiado en español por el Coliseo, Foro Romano y Palatino. Entrada prioritaria sin colas.</div>
+    <div class="exc-mt"><span class="pill p-gn">✓ Confirmado</span><span class="pill p-bl">3 horas</span><span class="pill p-bl">Guía ESP</span></div>
+  </div>
+</div>
+<div class="exc">
+  <div class="exc-img" style="background:linear-gradient(135deg,#fdf4ff,#e9d5ff)">⛪</div>
+  <div class="exc-bd">
+    <div class="exc-nm">Tour Vaticano y Capilla Sixtina</div>
+    <div class="exc-dt">📅 Domingo 14 Jun · 09:00 hs</div>
+    <div class="exc-dc">Museos Vaticanos, Capilla Sixtina y Basílica de San Pedro con guía en español.</div>
+    <div class="exc-mt"><span class="pill p-gn">✓ Confirmado</span><span class="pill p-bl">4 horas</span><span class="pill p-bl">Guía ESP</span></div>
+  </div>
+</div>
+<div class="sec-l">Reservas de mesa</div>
+<div class="exc">
+  <div class="exc-img" style="background:linear-gradient(135deg,#fff7ed,#fed7aa)">🍽</div>
+  <div class="exc-bd">
+    <div class="exc-nm">Cena en Osteria del Boccone</div>
+    <div class="exc-dt">📅 Martes 16 Jun · 20:30 hs</div>
+    <div class="exc-dc">Restaurante tradicional en Trastevere. Reserva a nombre de Bassi, 2 personas. Menú degustación recomendado.</div>
+    <div class="exc-mt"><span class="pill p-gn">✓ Confirmado</span><span class="pill p-am">Trastevere</span></div>
+  </div>
+</div>
+<div class="safe"></div>
+</div>`,
+
+  // pantallas generadas a partir de trip.pasos (una por cada ítem del itinerario)
+  // más la pantalla de conversor de moneda — no son claves fijas, se concatenan.
+  _extra: trip.pasos.map(p => pasoScreen(p, f)).join('') + moneyScreen(f, trip),
+
+  }; // end makeScreens
+}
+
+// ── Bottom nav ────────────────────────────────────────────────────────────────
+function makeNav(f) {
+  const tabs = [
+    { id:'home',      ic:IC.home, lbl:'Inicio' },
+    { id:'itinerary', ic:IC.cal,  lbl:'Itinerario' },
+    { id:'docs',      ic:IC.doc,  lbl:'Docs' },
+    { id:'explore',   ic:IC.cmp,  lbl:'Explorar' },
+  ];
+  return tabs.map(t =>
+    `<div class="bni" data-tab="${t.id}" onclick="nav('${f}','${t.id}')">${t.ic}<span class="bni-l">${t.lbl}</span></div>`
+  ).join('');
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+const TAB_MAP = {
+  home:'home', itinerary:'itinerary', docs:'docs', explore:'explore',
+  flight:'home', hotel:'home', money:'home',
+  insurance:'docs', boarding:'docs', voucher:'docs', passport:'docs',
+  excursions:'explore',
+  splash:null,
+};
+
+function nav(fid, screen) {
+  const frame = document.getElementById(fid);
+  if (!frame) return;
+  frame.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
+  const target = frame.querySelector('[data-s="' + screen + '"]');
+  if (target) { target.classList.add('on'); target.scrollTop = 0; }
+  const activeTab = TAB_MAP[screen] ?? (screen.startsWith('paso-') ? 'itinerary' : null);
+  frame.querySelectorAll('.bni').forEach(b => b.classList.toggle('on', b.dataset.tab === activeTab));
+  const bn = frame.querySelector('.bn');
+  if (bn) bn.style.display = screen === 'splash' ? 'none' : 'grid';
+}
+
+// ── Build board ───────────────────────────────────────────────────────────────
+const FRAMES = [
+  { id:'f1',  label:'1 · Bienvenida',                          start:'splash',     trip:TRIP },
+  { id:'f2',  label:'2 · Inicio',                              start:'home',       trip:TRIP },
+  { id:'f3',  label:'3 · Itinerario',                          start:'itinerary',  trip:TRIP },
+  { id:'f4',  label:'4 · Vuelo',                                start:'flight',     trip:TRIP },
+  { id:'f5',  label:'5 · Hotel',                                start:'hotel',      trip:TRIP },
+  { id:'f6',  label:'6 · Documentos',                           start:'docs',       trip:TRIP },
+  { id:'f7',  label:'7 · Seguro',                               start:'insurance',  trip:TRIP },
+  { id:'f8',  label:'8 · Explorar Roma',                        start:'explore',    trip:TRIP },
+  { id:'f9',  label:'9 · Excursiones',                          start:'excursions', trip:TRIP },
+  { id:'f10', label:'10 · Detalle de paso (check-in abierto)',  start:'paso-p1',    trip:TRIP },
+  { id:'f11', label:'11 · Dinero',                              start:'money',      trip:TRIP },
+  { id:'f12', label:'12 · Dinero · viaje multi-país',           start:'money',      trip:TRIP_MULTI },
+];
+
+function buildBoard() {
+  const bi = document.getElementById('bi');
+  FRAMES.forEach(({ id, label, start, trip }) => {
+    FRAME_TRIPS[id] = trip;
+    const fc = document.createElement('div');
+    fc.className = 'fc';
+    fc.innerHTML =
+      '<div class="fc-lbl">' + label + '</div>' +
+      '<div class="phone"><div class="ps" id="' + id + '">' +
+        '<div class="di"></div>' +
+        '<div class="sw"></div>' +
+        '<nav class="bn"></nav>' +
+      '</div></div>';
+    bi.appendChild(fc);
+
+    const ps  = document.getElementById(id);
+    const sw  = ps.querySelector('.sw');
+    const sc  = makeScreens(id, trip);
+    sw.innerHTML = Object.values(sc).join('');
+    ps.querySelector('.bn').innerHTML = makeNav(id);
+    nav(id, start);
+  });
+  // inicializa el conversor de moneda de cada frame que tenga pantalla "money"
+  FRAMES.forEach(({ id }) => { if (document.getElementById('money-ars-' + id)) convertMoney(id, 'ars'); });
+}
+
+// ── Zoom ──────────────────────────────────────────────────────────────────────
+let scale = 1;
+function zd(delta) {
+  scale = Math.min(2, Math.max(0.35, Math.round((scale + delta) * 10) / 10));
+  document.getElementById('bi').style.zoom = scale;
+  document.getElementById('zv').textContent = Math.round(scale * 100) + '%';
+}
+function zr() {
+  scale = 1;
+  document.getElementById('bi').style.zoom = 1;
+  document.getElementById('zv').textContent = '100%';
+}
+
+document.addEventListener('DOMContentLoaded', buildBoard);
+</script>
+</body>
+</html>

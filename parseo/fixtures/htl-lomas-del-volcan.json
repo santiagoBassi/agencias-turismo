@@ -1,0 +1,150 @@
+{
+  "_comentario_fixture": "Fuente: DocumentosEjemplo/04 HTL Lomas del Volcan 07 Enero.pdf. Caso: el titular de la reserva (bernardo adrian monte) es distinto de los 4 ocupantes de la habitación (que lo incluyen a él también); el documento NO da hora de check-in/check-out, así que se usa 'dia_completo' en vez de inventar 14:00/12:00 (regla anti-alucinación) y se marca requiereRevision. También ejemplifica formato de fecha ambiguo (05/11/2025) resuelto por idioma del documento (español -> DD/MM), aunque esa fecha es solo metadata de reserva y no un campo temporal del servicio.",
+  "documento": {
+    "idiomaDetectado": "es",
+    "tipoDocumentoDetectado": "voucher_hotel",
+    "confianzaGlobal": 0.9
+  },
+  "servicios": [
+    {
+      "claveLocal": "svc-1",
+      "tipo": "hotel",
+      "subtipo": null,
+      "titulo": "Hotel Lomas del Volcán",
+      "subtitulo": "San Carlos, Costa Rica · Bungalow · Alojamiento y Desayuno",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "rango",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-07T00:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "dia"
+        },
+        "fin": {
+          "fechaHoraLocal": "2026-01-09T00:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "dia"
+        }
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Hotel Lomas del Volcán",
+          "direccion": "4.5 Km NW of Fortuna, San Carlos, Costa Rica",
+          "ciudad": "San Carlos",
+          "pais": "Costa Rica",
+          "codigo": null
+        },
+        "fin": {
+          "nombre": "Hotel Lomas del Volcán",
+          "direccion": "4.5 Km NW of Fortuna, San Carlos, Costa Rica",
+          "ciudad": "San Carlos",
+          "pais": "Costa Rica",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Hotel Lomas del Volcán",
+        "telefono": "(011) 5236-5235",
+        "telefonoEmergencia": null,
+        "email": "supplier.confirmation@tailorbeds.travel",
+        "contacto": null,
+        "direccion": "4.5 Km NW of Fortuna, San Carlos, Costa Rica",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Reserva",
+          "valor": "P5TB2Z",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Localizador externo",
+          "valor": "35153140402",
+          "tipo": "otro"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "bernardo adrian monte",
+          "nombreNormalizado": "Bernardo Adrián Monte",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": "luciano monte",
+          "nombreNormalizado": "Luciano Monte",
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": "julian monte",
+          "nombreNormalizado": "Julián Monte",
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": "maria paula russo",
+          "nombreNormalizado": "María Paula Russo",
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "nombreHotel": "Hotel Lomas del Volcán",
+        "categoria": null,
+        "direccion": "4.5 Km NW of Fortuna, San Carlos, Costa Rica",
+        "zona": "San Carlos",
+        "noches": 2,
+        "habitaciones": [
+          {
+            "descripcion": "Bungalow, 2 Queen Beds",
+            "regimen": "Alojamiento y Desayuno",
+            "ocupantes": [
+              "luciano monte",
+              "julian monte",
+              "bernardo adrian monte",
+              "maria paula russo"
+            ]
+          }
+        ],
+        "horaCheckIn": null,
+        "horaCheckOut": null,
+        "telefonoHotel": "(011) 5236-5235",
+        "localizadorExterno": "35153140402"
+      },
+      "camposExtra": [],
+      "notas": [
+        "Puede aplicarse un cargo por cada persona adicional según la política de la propiedad.",
+        "Puede solicitarse documento de identidad con foto y una tarjeta de crédito/débito en el check-in para cubrir gastos imprevistos.",
+        "La recepción abre todos los días de 06:00 a 22:00, con horario limitado."
+      ],
+      "letraChica": "Las solicitudes especiales no se pueden garantizar y están sujetas a disponibilidad al momento del check-in, pudiendo conllevar cargos adicionales. El titular de la tarjeta de crédito utilizada para la reserva debe presentar la misma tarjeta y un documento de identidad con foto al hacer el check-in. Impuesto sobre servicio 13% sobre la tarifa. Habitación de 52 metros cuadrados con balcón o patio, aire acondicionado y servicio de limpieza diario.",
+      "extraccion": {
+        "confianza": 0.85,
+        "requiereRevision": true,
+        "motivoRevision": "El documento no especifica hora de check-in ni de check-out; se usó día completo por defecto en vez de asumir un horario estándar.",
+        "camposInciertos": [
+          "temporal.inicio",
+          "temporal.fin"
+        ],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "Fecha de llegada: 07/01/2026  Fecha de salida: 09/01/2026  Noches: 2"
+      }
+    }
+  ]
+}

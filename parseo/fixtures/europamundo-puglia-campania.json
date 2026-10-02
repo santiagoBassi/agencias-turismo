@@ -1,0 +1,356 @@
+{
+  "_comentario_fixture": "Fuente: DocumentosEjemplo/WhatsApp Image 2026-06-09 at 7.05.22 PM.jpeg. Caso: imagen (no PDF) con nombres de pasajeros tachados/redactados -> nombreEnDocumento/nombreNormalizado van null (regla anti-alucinación), no se intenta reconstruir el fragmento parcialmente visible. Genera 3 servicios: el circuito en sí, el traslado de llegada (con punto de encuentro condicional por terminal) y el traslado de salida, que está explícitamente 'No Incluido y No Contratado' -> estado:'no_incluido'.",
+  "documento": {
+    "idiomaDetectado": "es",
+    "tipoDocumentoDetectado": "voucher_paquete",
+    "confianzaGlobal": 0.72
+  },
+  "servicios": [
+    {
+      "claveLocal": "svc-1",
+      "tipo": "circuito",
+      "subtipo": null,
+      "titulo": "Bellezas de Puglia y Campania",
+      "subtitulo": "Europamundo Vacaciones",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "rango",
+        "inicio": {
+          "fechaHoraLocal": "2026-06-18T00:00",
+          "zonaHoraria": "Europe/Rome",
+          "precision": "dia"
+        },
+        "fin": {
+          "fechaHoraLocal": "2026-06-24T00:00",
+          "zonaHoraria": "Europe/Rome",
+          "precision": "dia"
+        }
+      },
+      "ubicacion": {
+        "inicio": null,
+        "fin": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Roma",
+          "pais": "Italia",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Europamundo Vacaciones",
+        "telefono": null,
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": null,
+        "direccion": null,
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Localizador Agencia",
+          "valor": "1283612",
+          "tipo": "booking"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": null,
+          "nombreNormalizado": null,
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": null,
+          "nombreNormalizado": null,
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 2,
+        "menores": 0,
+        "infantes": 0,
+        "total": 2
+      },
+      "datos": {
+        "nombre": "Bellezas de Puglia y Campania",
+        "duracion": "7 noches",
+        "idiomaGuia": null,
+        "lugarRecogida": null,
+        "horaRecogida": null,
+        "incluye": [],
+        "noIncluye": [],
+        "ciudadesVisitadas": [
+          "Puglia",
+          "Campania",
+          "Roma"
+        ]
+      },
+      "camposExtra": [
+        {
+          "etiqueta": "Agencia emisora",
+          "valor": "aero · Calle 48 630, Of. 5F, CP 1900"
+        },
+        {
+          "etiqueta": "ID de pasajero 1",
+          "valor": "11398508"
+        },
+        {
+          "etiqueta": "ID de pasajero 2",
+          "valor": "11398509"
+        },
+        {
+          "etiqueta": "Pasaporte pasajero 2",
+          "valor": "AAM208537"
+        },
+        {
+          "etiqueta": "Nacionalidad",
+          "valor": "Argentina"
+        }
+      ],
+      "notas": [
+        "Verificar que el pasaporte y la nacionalidad de cada viajero sean correctos; corregirlo antes del viaje desde la web de Europamundo si hace falta.",
+        "Se recomienda imprimir cierta documentación de viaje 48 horas antes de la salida (el resto de esta instrucción no es legible en la imagen)."
+      ],
+      "letraChica": null,
+      "extraccion": {
+        "confianza": 0.65,
+        "requiereRevision": true,
+        "motivoRevision": "Los nombres de los dos pasajeros y el Localizador Europamundo están tachados/redactados en la imagen; no se pudo confirmar la identidad de los viajeros ni completar ese localizador. Además, el bloque final de Observaciones está cortado por el borde de la imagen.",
+        "camposInciertos": [
+          "viajeros.0.nombreEnDocumento",
+          "viajeros.1.nombreEnDocumento",
+          "referencias.localizadorEuropamundo",
+          "observacionesFinales"
+        ],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "Habitacion Doble 1 · Bo[...]ergio Luis. PassengerID 11398508 · [...] PassengerID 11398509 : Pasaporte: AAM208537"
+      }
+    },
+    {
+      "claveLocal": "svc-2",
+      "tipo": "traslado",
+      "subtipo": null,
+      "titulo": "Traslado — Aeropuerto FCO (Roma) → Hotel",
+      "subtitulo": "Vuelo AZ 681 desde Buenos Aires",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "instante",
+        "inicio": {
+          "fechaHoraLocal": "2026-06-18T06:30",
+          "zonaHoraria": "Europe/Rome",
+          "precision": "minuto"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Aeropuerto de Roma Fiumicino",
+          "direccion": null,
+          "ciudad": "Roma",
+          "pais": "Italia",
+          "codigo": "FCO"
+        },
+        "fin": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Roma",
+          "pais": "Italia",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Europamundo Vacaciones",
+        "telefono": null,
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": null,
+        "direccion": null,
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Localizador Agencia",
+          "valor": "1283612",
+          "tipo": "booking"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": null,
+          "nombreNormalizado": null,
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": null,
+          "nombreNormalizado": null,
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 2,
+        "menores": 0,
+        "infantes": 0,
+        "total": 2
+      },
+      "datos": {
+        "modalidad": null,
+        "desde": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Buenos Aires",
+          "pais": "Argentina",
+          "codigo": null
+        },
+        "hasta": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Roma",
+          "pais": "Italia",
+          "codigo": "FCO"
+        },
+        "vueloReferencia": {
+          "numero": "AZ 681",
+          "hora": "06:30",
+          "aeropuerto": "FCO"
+        },
+        "puntoEncuentro": [
+          "Terminal 1: al lado de la salida número 2, dentro de la terminal",
+          "Terminal 3: al lado de la salida número 1, dentro de la terminal"
+        ],
+        "esperaMaxima": "1 hora aproximadamente",
+        "direccionServicio": "llegada"
+      },
+      "camposExtra": [],
+      "notas": [
+        "El transferista espera un máximo de 1 hora aproximadamente tras la llegada del vuelo; si se demora más, contactar por teléfono.",
+        "Si el vuelo tiene conexión y la aerolínea cambia el número de vuelo u horario, hay que informarlo o se pierde el derecho al traslado."
+      ],
+      "letraChica": null,
+      "extraccion": {
+        "confianza": 0.85,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "Traslados de Llegada: Aeropuerto: FCO ROMA, Compañía aérea: ALITALIA,AZ, Num. Vuelo: 681, Ciudad de Procedencia: Buenos Aires, Fecha y Hora: 18/06/2026 06:30"
+      }
+    },
+    {
+      "claveLocal": "svc-3",
+      "tipo": "traslado",
+      "subtipo": null,
+      "titulo": "Traslado de salida — Roma",
+      "subtitulo": "No incluido ni contratado",
+      "estado": "no_incluido",
+      "temporal": {
+        "modo": "dia_completo",
+        "inicio": {
+          "fechaHoraLocal": "2026-06-24T00:00",
+          "zonaHoraria": "Europe/Rome",
+          "precision": "dia"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Roma",
+          "pais": "Italia",
+          "codigo": null
+        },
+        "fin": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Roma",
+          "pais": "Italia",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Europamundo Vacaciones",
+        "telefono": null,
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": null,
+        "direccion": null,
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Localizador Agencia",
+          "valor": "1283612",
+          "tipo": "booking"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": null,
+          "nombreNormalizado": null,
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        },
+        {
+          "nombreEnDocumento": null,
+          "nombreNormalizado": null,
+          "rol": "acompanante",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 2,
+        "menores": 0,
+        "infantes": 0,
+        "total": 2
+      },
+      "datos": {
+        "modalidad": null,
+        "desde": null,
+        "hasta": null,
+        "vueloReferencia": null,
+        "puntoEncuentro": [],
+        "esperaMaxima": null,
+        "direccionServicio": "salida"
+      },
+      "camposExtra": [],
+      "notas": [
+        "Revisar bien los horarios y fechas de salida del vuelo y del traslado de salida.",
+        "No se admiten cambios con menos de 72 horas de anticipación.",
+        "Este traslado no está incluido ni contratado: el viajero debe coordinarlo por su cuenta."
+      ],
+      "letraChica": null,
+      "extraccion": {
+        "confianza": 0.8,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "Traslados de Salida: Ciudad: ROMA, Fecha: 24/06/2026 · No Incluidos y No Contratados, Hotel Recogida:"
+      }
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "_comentario_fixture": "Fuente: DocumentosEjemplo/E-TKT Giemenez Nelida Raquel.pdf. Caso: e-ticket en inglés, ida y vuelta = 2 servicios agrupados por 'grupo', año ausente en la línea de cada tramo pero resuelto contra el encabezado del documento (2025) y verificado con el día de la semana declarado (08 OCT 2025 = miércoles, 13 OCT 2025 = lunes). No requiere revisión: la ambigüedad se resolvió con las propias reglas del prompt.",
+  "documento": {
+    "idiomaDetectado": "en",
+    "tipoDocumentoDetectado": "e_ticket",
+    "confianzaGlobal": 0.94
+  },
+  "servicios": [
+    {
+      "claveLocal": "svc-1",
+      "tipo": "vuelo",
+      "subtipo": null,
+      "titulo": "AM 0029 — EZE → MEX",
+      "subtitulo": "Aeroméxico · Economy · 9h 40m",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "instante",
+        "inicio": {
+          "fechaHoraLocal": "2025-10-08T23:25",
+          "zonaHoraria": "America/Argentina/Buenos_Aires",
+          "precision": "minuto"
+        },
+        "fin": {
+          "fechaHoraLocal": "2025-10-09T06:05",
+          "zonaHoraria": "America/Mexico_City",
+          "precision": "minuto"
+        }
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Buenos Aires",
+          "pais": "Argentina",
+          "codigo": "EZE"
+        },
+        "fin": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        }
+      },
+      "grupo": {
+        "clave": "ida",
+        "etiqueta": "Ida",
+        "orden": 1
+      },
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Aeroméxico",
+        "telefono": null,
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": null,
+        "direccion": null,
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Código de reserva",
+          "valor": "LQRKKZ",
+          "tipo": "pnr"
+        },
+        {
+          "etiqueta": "Código de reserva aerolínea",
+          "valor": "IHASZY",
+          "tipo": "pnr"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "GIMENEZ/NELIDA RAQUEL",
+          "nombreNormalizado": "Nélida Raquel Giménez",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 1,
+        "menores": 0,
+        "infantes": 0,
+        "total": 1
+      },
+      "datos": {
+        "aerolinea": "Aeroméxico",
+        "codigoAerolinea": "AM",
+        "numeroVuelo": "AM 0029",
+        "cabina": "Economy",
+        "origen": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Buenos Aires",
+          "pais": "Argentina",
+          "codigo": "EZE"
+        },
+        "destino": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        },
+        "duracion": "9h 40m",
+        "aeronave": "Boeing 787-9",
+        "escalas": [],
+        "asientos": [],
+        "equipajeBodega": "1x25kg (55lbs)",
+        "equipajeCabina": "1x15kg",
+        "numeroETicket": "1392953714135",
+        "estadoVuelo": "Confirmed"
+      },
+      "camposExtra": [
+        {
+          "etiqueta": "Distancia",
+          "valor": "4584 millas"
+        },
+        {
+          "etiqueta": "Emisión estimada",
+          "valor": "349.73 kg CO2"
+        },
+        {
+          "etiqueta": "Comidas",
+          "valor": "Comida caliente, bebidas alcohólicas de cortesía"
+        }
+      ],
+      "notas": [
+        "Verificar los horarios de vuelo antes de la salida.",
+        "Check-in requerido."
+      ],
+      "letraChica": null,
+      "extraccion": {
+        "confianza": 0.93,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "08 OCT 2025 ... DEPARTURE: WEDNESDAY 08 OCT ... AM 0029 ... Departing At: 23:25 ... Arriving At: 06:05"
+      }
+    },
+    {
+      "claveLocal": "svc-2",
+      "tipo": "vuelo",
+      "subtipo": null,
+      "titulo": "AM 0030 — MEX → EZE",
+      "subtitulo": "Aeroméxico · Economy · 9h 10m",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "instante",
+        "inicio": {
+          "fechaHoraLocal": "2025-10-13T09:15",
+          "zonaHoraria": "America/Mexico_City",
+          "precision": "minuto"
+        },
+        "fin": {
+          "fechaHoraLocal": "2025-10-13T21:25",
+          "zonaHoraria": "America/Argentina/Buenos_Aires",
+          "precision": "minuto"
+        }
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        },
+        "fin": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Buenos Aires",
+          "pais": "Argentina",
+          "codigo": "EZE"
+        }
+      },
+      "grupo": {
+        "clave": "vuelta",
+        "etiqueta": "Vuelta",
+        "orden": 2
+      },
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Aeroméxico",
+        "telefono": null,
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": null,
+        "direccion": null,
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Código de reserva",
+          "valor": "LQRKKZ",
+          "tipo": "pnr"
+        },
+        {
+          "etiqueta": "Código de reserva aerolínea",
+          "valor": "IHASZY",
+          "tipo": "pnr"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "GIMENEZ/NELIDA RAQUEL",
+          "nombreNormalizado": "Nélida Raquel Giménez",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 1,
+        "menores": 0,
+        "infantes": 0,
+        "total": 1
+      },
+      "datos": {
+        "aerolinea": "Aeroméxico",
+        "codigoAerolinea": "AM",
+        "numeroVuelo": "AM 0030",
+        "cabina": "Economy",
+        "origen": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        },
+        "destino": {
+          "nombre": null,
+          "direccion": null,
+          "ciudad": "Buenos Aires",
+          "pais": "Argentina",
+          "codigo": "EZE"
+        },
+        "duracion": "9h 10m",
+        "aeronave": "Boeing 787-9",
+        "escalas": [],
+        "asientos": [],
+        "equipajeBodega": "1x25kg (55lbs)",
+        "equipajeCabina": "1x15kg",
+        "numeroETicket": "1392953714135",
+        "estadoVuelo": "Confirmed"
+      },
+      "camposExtra": [
+        {
+          "etiqueta": "Emisión estimada",
+          "valor": "348.44 kg CO2"
+        }
+      ],
+      "notas": [
+        "Verificar los horarios de vuelo antes de la salida.",
+        "Check-in requerido."
+      ],
+      "letraChica": null,
+      "extraccion": {
+        "confianza": 0.93,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "DEPARTURE: MONDAY 13 OCT ... AM 0030 ... Departing At: 09:15 ... Arriving At: 21:25"
+      }
+    }
+  ]
+}

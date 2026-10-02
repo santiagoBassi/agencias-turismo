@@ -1,0 +1,330 @@
+{
+  "_comentario_fixture": "Fuente: DocumentosEjemplo/Traslados y Excursion.pdf. Caso central: el traslado de llegada da DOS horas candidatas -- '06:05hs' junto al vuelo de referencia AM29, y '07:30 am' en Observaciones -- y la correcta es la segunda (hora real del servicio, no la del vuelo). Por contraste, el traslado de salida NO tiene una hora de Observaciones separada, así que ahí sí queda genuinamente incierta (no se debe asumir que coincide con la hora del vuelo AM 30). También cubre 'excursion' sin horario asignado.",
+  "documento": {
+    "idiomaDetectado": "es",
+    "tipoDocumentoDetectado": "voucher_traslado",
+    "confianzaGlobal": 0.88
+  },
+  "servicios": [
+    {
+      "claveLocal": "svc-1",
+      "tipo": "traslado",
+      "subtipo": null,
+      "titulo": "Traslado — Aeropuerto MEX → Hotel Holiday Inn Express Mexico Airport",
+      "subtitulo": "Servicio privado",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "instante",
+        "inicio": {
+          "fechaHoraLocal": "2025-10-09T07:30",
+          "zonaHoraria": "America/Mexico_City",
+          "precision": "minuto"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Aeropuerto Internacional de la Ciudad de México (AICM)",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        },
+        "fin": {
+          "nombre": "Hotel Holiday Inn Express Mexico Airport",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Sistema Moderno de Viajes",
+        "telefono": "+52 55 5533-6466 / 67",
+        "telefonoEmergencia": "+52 55 6423-4069",
+        "email": null,
+        "contacto": null,
+        "direccion": "Florencia 57-102, Col. Juárez, DF",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Nro. File",
+          "valor": "1200640",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Cód. Confirmación",
+          "valor": "86982",
+          "tipo": "confirmacion"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "nelida raquel gimenez",
+          "nombreNormalizado": "Nélida Raquel Giménez",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 1,
+        "menores": 0,
+        "infantes": 0,
+        "total": 1
+      },
+      "datos": {
+        "modalidad": "privado",
+        "desde": {
+          "nombre": "Aeropuerto Internacional de la Ciudad de México (AICM)",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        },
+        "hasta": {
+          "nombre": "Hotel Holiday Inn Express Mexico Airport",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": null
+        },
+        "vueloReferencia": {
+          "numero": "AM 29",
+          "hora": "06:05",
+          "aeropuerto": "MEX"
+        },
+        "puntoEncuentro": [],
+        "esperaMaxima": "60 minutos",
+        "direccionServicio": "llegada"
+      },
+      "camposExtra": [],
+      "notas": [
+        "Reconfirmar 24 horas antes con el operador.",
+        "Tiempo máximo de espera una vez aterrizado el vuelo: 60 minutos.",
+        "Equipaje permitido: 1 maleta de 23 kg y 1 de mano de 10 kg por persona; el exceso se cobra aparte."
+      ],
+      "letraChica": "Las situaciones ajenas al operador, como demoras por equipaje o migración, quedan fuera de su control. Cualquier No Show se considera con penalidad del 100%. Reprogramaciones con aviso menor a 3 horas antes del servicio se cobran nuevamente completas.",
+      "extraccion": {
+        "confianza": 0.92,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "Traslado el día 09/10/2025 ... Vuelo AM 29 a las 06:05hs para 1 pax. Observaciones: a las 07:30 am."
+      }
+    },
+    {
+      "claveLocal": "svc-2",
+      "tipo": "excursion",
+      "subtipo": null,
+      "titulo": "Excursión — Visita de ciudad",
+      "subtitulo": "Servicio regular",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "dia_completo",
+        "inicio": {
+          "fechaHoraLocal": "2025-10-11T00:00",
+          "zonaHoraria": "America/Mexico_City",
+          "precision": "dia"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": null,
+        "fin": null
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Sistema Moderno de Viajes",
+        "telefono": "+52 55 5533-6466 / 67",
+        "telefonoEmergencia": "+52 55 6423-4069",
+        "email": null,
+        "contacto": null,
+        "direccion": "Florencia 57-102, Col. Juárez, DF",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Nro. File",
+          "valor": "1200640",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Cód. Confirmación",
+          "valor": "86982",
+          "tipo": "confirmacion"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "nelida raquel gimenez",
+          "nombreNormalizado": "Nélida Raquel Giménez",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 1,
+        "menores": 0,
+        "infantes": 0,
+        "total": 1
+      },
+      "datos": {
+        "nombre": "Visita de ciudad",
+        "duracion": null,
+        "idiomaGuia": null,
+        "lugarRecogida": "Hotel (pick up en el hotel)",
+        "horaRecogida": null,
+        "incluye": [],
+        "noIncluye": [],
+        "ciudadesVisitadas": [
+          "Ciudad de México"
+        ]
+      },
+      "camposExtra": [],
+      "notas": [
+        "Reconfirmar 24 horas antes con el operador.",
+        "Pick up en el hotel."
+      ],
+      "letraChica": null,
+      "extraccion": {
+        "confianza": 0.75,
+        "requiereRevision": true,
+        "motivoRevision": "No se especifica horario de la excursión, solo el día; falta coordinar el horario de pick up con el operador.",
+        "camposInciertos": [
+          "temporal.inicio"
+        ],
+        "paginasFuente": [
+          2
+        ],
+        "fragmentoFuente": "Excursión: Visita de ciudad el día 11/10/2025 en servicio regular para (1 ADL)."
+      }
+    },
+    {
+      "claveLocal": "svc-3",
+      "tipo": "traslado",
+      "subtipo": null,
+      "titulo": "Traslado — Hotel NH Collection Mexico City Centro Histórico → Aeropuerto MEX",
+      "subtitulo": "Servicio regular",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "dia_completo",
+        "inicio": {
+          "fechaHoraLocal": "2025-10-13T00:00",
+          "zonaHoraria": "America/Mexico_City",
+          "precision": "dia"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Hotel NH Collection Mexico City Centro Histórico",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": null
+        },
+        "fin": {
+          "nombre": "Aeropuerto Internacional de la Ciudad de México (AICM)",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Sistema Moderno de Viajes",
+        "telefono": "+52 55 5533-6466 / 67",
+        "telefonoEmergencia": "+52 55 6423-4069",
+        "email": null,
+        "contacto": null,
+        "direccion": "Florencia 57-102, Col. Juárez, DF",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Nro. File",
+          "valor": "1200640",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Cód. Confirmación",
+          "valor": "86982",
+          "tipo": "confirmacion"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "nelida raquel gimenez",
+          "nombreNormalizado": "Nélida Raquel Giménez",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 1,
+        "menores": 0,
+        "infantes": 0,
+        "total": 1
+      },
+      "datos": {
+        "modalidad": "regular",
+        "desde": {
+          "nombre": "Hotel NH Collection Mexico City Centro Histórico",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": null
+        },
+        "hasta": {
+          "nombre": "Aeropuerto Internacional de la Ciudad de México (AICM)",
+          "direccion": null,
+          "ciudad": "Ciudad de México",
+          "pais": "México",
+          "codigo": "MEX"
+        },
+        "vueloReferencia": {
+          "numero": "AM 30",
+          "hora": "09:15",
+          "aeropuerto": "MEX"
+        },
+        "puntoEncuentro": [],
+        "esperaMaxima": "60 minutos",
+        "direccionServicio": "salida"
+      },
+      "camposExtra": [],
+      "notas": [
+        "Reconfirmar 24 horas antes con el operador.",
+        "Tiempo máximo de espera una vez aterrizado el vuelo: 60 minutos.",
+        "Equipaje permitido: 1 maleta de 23 kg y 1 de mano de 10 kg por persona; el exceso se cobra aparte."
+      ],
+      "letraChica": "Las situaciones ajenas al operador, como demoras por equipaje o migración, quedan fuera de su control. Cualquier No Show se considera con penalidad del 100%. Reprogramaciones con aviso menor a 3 horas antes del servicio se cobran nuevamente completas.",
+      "extraccion": {
+        "confianza": 0.7,
+        "requiereRevision": true,
+        "motivoRevision": "No hay una hora de recogida explícita distinta de la hora del vuelo de referencia (09:15hs); a diferencia del traslado de llegada, acá no hay una Observación con la hora real del servicio, así que no se debe asumir que coincide con el horario del vuelo.",
+        "camposInciertos": [
+          "temporal.inicio"
+        ],
+        "paginasFuente": [
+          3
+        ],
+        "fragmentoFuente": "Traslado el día 13/10/2025 ... Vuelo AM 30 a las 09:15hs para 1 pax."
+      }
+    }
+  ]
+}

@@ -1,0 +1,512 @@
+{
+  "_comentario_fixture": "Fuente: DocumentosEjemplo/02 Paquete Tortuguero y Alquiler Auto 02 al 04 Enero.pdf. El fixture más importante: un solo PDF genera 5 servicios bajo el mismo Booking BKFI115266. svc-4 (seguro) y svc-5 (devolución) son esComplemento de svc-3 (mismo N° Reserva 1282132 del alquiler). svc-1 solo imprime la fecha de inicio ('FECHA: 02 Jan 26') y la duración ('3D/2N'); la fecha de fin (04 Jan) se infiere de la duración + el nombre del archivo ('02 al 04 Enero'), marcada precision:'aproximada'. svc-5 tiene columnas Entrega/Devolución cruzadas o incompletas -> requiereRevision.",
+  "documento": {
+    "idiomaDetectado": "es",
+    "tipoDocumentoDetectado": "voucher_paquete",
+    "confianzaGlobal": 0.85
+  },
+  "servicios": [
+    {
+      "claveLocal": "svc-1",
+      "tipo": "paquete",
+      "subtipo": null,
+      "titulo": "3D/2N Paquete Tortuguero en Habitación Standard",
+      "subtitulo": "Aninga Lodge · Parque Nacional Tortuguero",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "rango",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-02T06:30",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "minuto"
+        },
+        "fin": {
+          "fechaHoraLocal": "2026-01-04T00:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "aproximada"
+        }
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Aninga Lodge",
+          "direccion": "Laguna Tortuguero",
+          "ciudad": "Parque Nacional Tortuguero",
+          "pais": "Costa Rica",
+          "codigo": null
+        },
+        "fin": {
+          "nombre": "Aninga Lodge",
+          "direccion": "Laguna Tortuguero",
+          "ciudad": "Parque Nacional Tortuguero",
+          "pais": "Costa Rica",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Aninga Lodge",
+        "telefono": "22567080",
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": "Lesly Castillo",
+        "direccion": "Laguna Tortuguero",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Booking",
+          "valor": "BKFI115266",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Voucher",
+          "valor": "234759",
+          "tipo": "voucher"
+        },
+        {
+          "etiqueta": "N° Reserva",
+          "valor": "R-0000027735",
+          "tipo": "booking"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "Luciano Monte x4",
+          "nombreNormalizado": "Luciano Monte",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "nombre": "3D/2N Paquete Tortuguero en Habitación Standard",
+        "duracion": "3 días / 2 noches",
+        "lugarRecogida": "Sleep Inn",
+        "horaRecogida": "06:30",
+        "incluye": [
+          "Transporte",
+          "Excursiones",
+          "Pensión completa"
+        ],
+        "noIncluye": [
+          "Gastos o servicios no especificados"
+        ],
+        "serviciosComponentes": [
+          "Transporte",
+          "Excursiones",
+          "Pensión completa"
+        ]
+      },
+      "camposExtra": [],
+      "notas": [
+        "No reembolsable, no endosable."
+      ],
+      "letraChica": "Los derechos por los servicios estipulados dentro de este voucher de servicios prepagados son intransferibles, no negociables y solo redimibles por autorización de Best of Costa Rica. Las modificaciones o cancelaciones deben realizarse con 72 horas de anticipación para no incurrir en penalidades. En casos de fuerza mayor, el operador podrá modificar o reemplazar itinerarios para minimizar el impacto a los pasajeros.",
+      "extraccion": {
+        "confianza": 0.82,
+        "requiereRevision": true,
+        "motivoRevision": "El voucher solo imprime la fecha de inicio (02 Jan 26); la fecha de fin se infirió a partir de la duración impresa ('3D/2N') y del nombre del archivo fuente ('02 al 04 Enero'), no de un campo de fecha de fin explícito.",
+        "camposInciertos": [
+          "temporal.fin"
+        ],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "SERVICIO: 3D/2N Paquete Tortuguero en Habitacion Standard  FECHA: 02 Jan 26"
+      }
+    },
+    {
+      "claveLocal": "svc-2",
+      "tipo": "entrada",
+      "subtipo": null,
+      "titulo": "Entrada — Parque Nacional Tortuguero",
+      "subtitulo": "SINAC",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "dia_completo",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-03T00:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "dia"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "Parque Nacional Tortuguero",
+          "direccion": "Santo Domingo, Santa Rosa de McDonald 400 metros al oeste",
+          "ciudad": null,
+          "pais": "Costa Rica",
+          "codigo": null
+        },
+        "fin": null
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "SINAC",
+        "telefono": "2522 6500",
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": "Lesly Castillo",
+        "direccion": "Santo Domingo, Santa Rosa de McDonald 400 metros al oeste",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Booking",
+          "valor": "BKFI115266",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Voucher",
+          "valor": "234760",
+          "tipo": "voucher"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "Luciano Monte x4",
+          "nombreNormalizado": "Luciano Monte",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "atraccion": "Parque Nacional Tortuguero",
+        "tipoPase": "Entrada general",
+        "validezDesde": "2026-01-03",
+        "validezHasta": "2026-01-03",
+        "diasDeUso": 1,
+        "numeroConfirmacion": null,
+        "codigoBarras": null,
+        "restricciones": [],
+        "noIncluye": [
+          "Gastos o servicios no especificados"
+        ]
+      },
+      "camposExtra": [],
+      "notas": [
+        "No reembolsable, no endosable."
+      ],
+      "letraChica": "Los derechos por los servicios estipulados dentro de este voucher de servicios prepagados son intransferibles, no negociables y solo redimibles por autorización de Best of Costa Rica.",
+      "extraccion": {
+        "confianza": 0.85,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "SERVICIO: Entrada Parque Nacional Tortuguero  FECHA: 03 Jan 26  T. SERVICIO: Sin asignar"
+      }
+    },
+    {
+      "claveLocal": "svc-3",
+      "tipo": "alquiler_auto",
+      "subtipo": null,
+      "titulo": "Alquiler Mitsubishi Montero Sport (AT)",
+      "subtitulo": "Adobe Rent a Carro",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "rango",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-04T13:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "minuto"
+        },
+        "fin": {
+          "fechaHoraLocal": "2026-01-16T14:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "minuto"
+        }
+      },
+      "ubicacion": {
+        "inicio": {
+          "nombre": "El Ceibo",
+          "direccion": null,
+          "ciudad": null,
+          "pais": "Costa Rica",
+          "codigo": null
+        },
+        "fin": {
+          "nombre": "Adobe Rio Segundo",
+          "direccion": null,
+          "ciudad": null,
+          "pais": "Costa Rica",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": false,
+      "complementoDe": null,
+      "proveedor": {
+        "nombre": "Adobe Rent a Carro",
+        "telefono": "2542 4800",
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": "Lesly Castillo",
+        "direccion": "Edificio Adobe, Calle 34, Barrio Sagrado Corazón, San José",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Booking",
+          "valor": "BKFI115266",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Voucher",
+          "valor": "234761",
+          "tipo": "voucher"
+        },
+        {
+          "etiqueta": "N° Reserva",
+          "valor": "1282132",
+          "tipo": "booking"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "Luciano Monte x4",
+          "nombreNormalizado": "Luciano Monte",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "categoriaVehiculo": "Mitsubishi Montero Sport (AT) o similar",
+        "transmision": "Automática",
+        "lugarRetiro": "El Ceibo",
+        "horaRetiro": "13:00",
+        "lugarDevolucion": "Adobe Rio Segundo",
+        "horaDevolucion": "14:00",
+        "coberturas": [
+          "Basic Coverage (Mandatory)"
+        ],
+        "kilometraje": null,
+        "noIncluye": [
+          "Gastos o servicios no especificados deben ser cancelados por los pasajeros directamente"
+        ]
+      },
+      "camposExtra": [],
+      "notas": [
+        "No reembolsable, no endosable.",
+        "Vuelo de salida del pasajero: LA2409 a las 17:00 hrs (para coordinar la devolución del vehículo)."
+      ],
+      "letraChica": "Los derechos por los servicios estipulados dentro de este voucher de servicios prepagados son intransferibles, no negociables y solo redimibles por autorización de Best of Costa Rica.",
+      "extraccion": {
+        "confianza": 0.9,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "SERVICIO – Auto de renta: Mitsubishi Montero Sport (AT) o similar  FECHA: 04 Jan 26 - 16 Jan 26  Entrega: El Ceibo Hora: 13:00  Devolución: Adobe Rio Segundo Hora: 14:00"
+      }
+    },
+    {
+      "claveLocal": "svc-4",
+      "tipo": "alquiler_auto",
+      "subtipo": "seguro_complementario",
+      "titulo": "Seguro Todo Riesgo — alquiler de auto",
+      "subtitulo": "Adobe Rent a Carro",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "rango",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-04T00:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "dia"
+        },
+        "fin": {
+          "fechaHoraLocal": "2026-01-16T00:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "dia"
+        }
+      },
+      "ubicacion": {
+        "inicio": null,
+        "fin": null
+      },
+      "grupo": null,
+      "esComplemento": true,
+      "complementoDe": "svc-3",
+      "proveedor": {
+        "nombre": "Adobe Rent a Carro",
+        "telefono": "2542 4800",
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": "Lesly Castillo",
+        "direccion": "Edificio Adobe, Calle 34, Barrio Sagrado Corazón, San José",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Booking",
+          "valor": "BKFI115266",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Voucher",
+          "valor": "234762",
+          "tipo": "voucher"
+        },
+        {
+          "etiqueta": "N° Reserva",
+          "valor": "1282132",
+          "tipo": "booking"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "Luciano Monte x4",
+          "nombreNormalizado": "Luciano Monte",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "coberturas": [
+          "Seguro Todo Riesgo"
+        ]
+      },
+      "camposExtra": [],
+      "notas": [
+        "No reembolsable, no endosable."
+      ],
+      "letraChica": "Los derechos por los servicios estipulados dentro de este voucher de servicios prepagados son intransferibles, no negociables y solo redimibles por autorización de Best of Costa Rica.",
+      "extraccion": {
+        "confianza": 0.85,
+        "requiereRevision": false,
+        "motivoRevision": null,
+        "camposInciertos": [],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "SERVICIOS – Auto de renta: Seguro Todo Riesgo  FECHA: 04 Jan 26 - 16 Jan 26  N° Reserva: 1282132"
+      }
+    },
+    {
+      "claveLocal": "svc-5",
+      "tipo": "alquiler_auto",
+      "subtipo": "devolucion_vehiculo",
+      "titulo": "Devolución de vehículo de renta",
+      "subtitulo": "Best of Costa Rica DMC",
+      "estado": "confirmado",
+      "temporal": {
+        "modo": "instante",
+        "inicio": {
+          "fechaHoraLocal": "2026-01-16T14:00",
+          "zonaHoraria": "America/Costa_Rica",
+          "precision": "aproximada"
+        },
+        "fin": null
+      },
+      "ubicacion": {
+        "inicio": null,
+        "fin": {
+          "nombre": "Adobe Rio Segundo",
+          "direccion": null,
+          "ciudad": null,
+          "pais": "Costa Rica",
+          "codigo": null
+        }
+      },
+      "grupo": null,
+      "esComplemento": true,
+      "complementoDe": "svc-3",
+      "proveedor": {
+        "nombre": "Best of Costa Rica DMC",
+        "telefono": "2290 1302",
+        "telefonoEmergencia": null,
+        "email": null,
+        "contacto": "Lesly Castillo",
+        "direccion": "Uruca, Urbanización El Robledal",
+        "sitioWeb": null
+      },
+      "referencias": [
+        {
+          "etiqueta": "Booking",
+          "valor": "BKFI115266",
+          "tipo": "booking"
+        },
+        {
+          "etiqueta": "Voucher",
+          "valor": "236943",
+          "tipo": "voucher"
+        }
+      ],
+      "viajeros": [
+        {
+          "nombreEnDocumento": "Luciano Monte x4",
+          "nombreNormalizado": "Luciano Monte",
+          "rol": "titular",
+          "viajeroId": null,
+          "confianzaMatch": null
+        }
+      ],
+      "pax": {
+        "adultos": 4,
+        "menores": 0,
+        "infantes": 0,
+        "total": 4
+      },
+      "datos": {
+        "lugarDevolucion": "Adobe Rio Segundo",
+        "horaDevolucion": "14:00",
+        "noIncluye": [
+          "Gastos o servicios no especificados deben ser cancelados por los pasajeros directamente"
+        ]
+      },
+      "camposExtra": [],
+      "notas": [
+        "No reembolsable, no endosable."
+      ],
+      "letraChica": "Los derechos por los servicios estipulados dentro de este voucher de servicios prepagados son intransferibles, no negociables y solo redimibles por autorización de Best of Costa Rica.",
+      "extraccion": {
+        "confianza": 0.6,
+        "requiereRevision": true,
+        "motivoRevision": "El voucher tiene columnas 'Entrega'/'Devolución' con horas incompletas o cruzadas (la hora 14:00 aparece bajo 'Entrega' sin fecha propia, y 'Devolución' no tiene hora); no queda claro a cuál corresponde exactamente el horario impreso, ni si este voucher es un evento distinto del retiro/devolución ya declarado en el alquiler principal (svc-3) o solo una confirmación redundante emitida por otro operador local.",
+        "camposInciertos": [
+          "temporal.inicio"
+        ],
+        "paginasFuente": [
+          1
+        ],
+        "fragmentoFuente": "SERVICIO: Devolución de Vehículo de Renta  FECHA: 16 Jan 26  Entrega: Hora: 14:00  Devolución: Adobe Rio Segundo Hora:"
+      }
+    }
+  ]
+}
